@@ -38,12 +38,23 @@ Tools       →  Git · GitHub · JWT
 
 <!-- OSS_CONTRIBUTIONS_START -->
 <!-- auto-updated by .github/workflows/update-contributions.yml -->
-| org / repo | contribution |
-|---|---|
-| [openmrs/openmrs-esm-patient-management](https://github.com/openmrs/openmrs-esm-patient-management) | (fix) O3-5565: Fix showToast and showSnackbar called during render in queue table components |
-| [openmrs/openmrs-esm-core](https://github.com/openmrs/openmrs-esm-core) | (fix): O3-5298 Fix localStorage iteration bug causing items to be skipped during removal |
-| [AutoMQ/automq](https://github.com/AutoMQ/automq) | feat: Added consumer percentage control for catch-up reading in perf test |
-| [TheAlgorithms/Python](https://github.com/TheAlgorithms/Python) | fixes join.py and split.py action and requirements error |
+
+<a href="https://github.com/openmrs/openmrs-esm-patient-management">
+  <img src="https://img.shields.io/badge/openmrs%2Fopenmrs--esm--patient--management-PRs-blue?style=for-the-badge&logo=github" alt="openmrs/openmrs-esm-patient-management" />
+</a>
+
+<a href="https://github.com/openmrs/openmrs-esm-core">
+  <img src="https://img.shields.io/badge/openmrs%2Fopenmrs--esm--core-PRs-blue?style=for-the-badge&logo=github" alt="openmrs/openmrs-esm-core" />
+</a>
+
+<a href="https://github.com/AutoMQ/automq">
+  <img src="https://img.shields.io/badge/AutoMQ%2Fautomq-PRs-blue?style=for-the-badge&logo=github" alt="AutoMQ/automq" />
+</a>
+
+<a href="https://github.com/TheAlgorithms/Python">
+  <img src="https://img.shields.io/badge/TheAlgorithms%2FPython-PRs-blue?style=for-the-badge&logo=github" alt="TheAlgorithms/Python" />
+</a>
+
 <!-- OSS_CONTRIBUTIONS_END -->
 
 ---

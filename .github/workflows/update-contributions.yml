@@ -19,21 +19,21 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          # Fetch last 100 merged PRs by sanks011 in repos they don't own
+          # Fetch last 500 PRs (all states) by sanks011 in external repos
           gh api graphql -f query='
             {
               user(login: "sanks011") {
                 pullRequests(
-                  first: 100
-                  states: MERGED
+                  first: 500
                   orderBy: { field: UPDATED_AT, direction: DESC }
                 ) {
                   nodes {
-                    title
-                    url
+                    state
                     repository {
                       nameWithOwner
                       owner { login }
+                      description
+                      url
                     }
                   }
                 }
@@ -41,7 +41,7 @@ jobs:
             }
           ' > prs.json
 
-          # Filter to PRs in repos not owned by sanks011 or friends, dedupe by org/repo
+          # Extract unique orgs, count PRs, create cards
           python3 - << 'PYEOF'
           import json, sys
 
@@ -52,27 +52,53 @@ jobs:
           excluded_owners = ["sanks011", "sahnik0", "shovon0004", "abhijit5996", "shreyas0017"]
 
           prs = data["data"]["user"]["pullRequests"]["nodes"]
-          seen = {}
+          orgs = {}
+          
           for pr in prs:
-              owner = pr["repository"]["owner"]["login"]
+              repo = pr["repository"]
+              owner = repo["owner"]["login"]
+              
               if owner.lower() in [e.lower() for e in excluded_owners]:
                   continue
-              repo = pr["repository"]["nameWithOwner"]
-              if repo not in seen:
-                  seen[repo] = {"title": pr["title"], "url": pr["url"], "repo": repo}
+              
+              repo_name = repo["nameWithOwner"]
+              if repo_name not in orgs:
+                  orgs[repo_name] = {
+                      "name": repo_name,
+                      "url": repo["url"],
+                      "description": repo.get("description", ""),
+                      "open": 0,
+                      "closed": 0,
+                      "merged": 0
+                  }
+              
+              state = pr["state"]
+              if state == "OPEN":
+                  orgs[repo_name]["open"] += 1
+              elif state == "CLOSED":
+                  orgs[repo_name]["closed"] += 1
+              elif state == "MERGED":
+                  orgs[repo_name]["merged"] += 1
 
-          rows = []
-          for repo, info in seen.items():
-              rows.append(f'| [{repo}](https://github.com/{repo}) | {info["title"]} |')
+          # Create cards for each org
+          cards = []
+          for org_name, info in orgs.items():
+              total = info["open"] + info["closed"] + info["merged"]
+              desc = info["description"][:80] + "..." if len(info["description"]) > 80 else info["description"]
+              
+              card = f'''<a href="{info['url']}">
+  <img src="https://img.shields.io/badge/{org_name.replace('/', '%2F')}-{total}_PRs-blue?style=for-the-badge&logo=github" alt="{org_name}" />
+</a>'''
+              cards.append(card)
 
-          table = "| org / repo | contribution |\n|---|---|\n" + "\n".join(rows)
+          cards_html = "\n\n".join(cards)
 
           with open("README.md") as f:
               content = f.read()
 
           start = "<!-- OSS_CONTRIBUTIONS_START -->"
           end = "<!-- OSS_CONTRIBUTIONS_END -->"
-          new_block = f"{start}\n<!-- auto-updated by .github/workflows/update-contributions.yml -->\n{table}\n{end}"
+          new_block = f"{start}\n<!-- auto-updated by .github/workflows/update-contributions.yml -->\n\n{cards_html}\n\n{end}"
 
           import re
           updated = re.sub(
@@ -85,7 +111,7 @@ jobs:
           with open("README.md", "w") as f:
               f.write(updated)
 
-          print(f"Updated with {len(rows)} contribution rows.")
+          print(f"Updated with {len(orgs)} organizations.")
           PYEOF
 
       - name: Commit if changed
