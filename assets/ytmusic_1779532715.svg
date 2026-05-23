@@ -52,9 +52,9 @@
     </circle>
     <text x="20" y="9" dominant-baseline="middle" class="badge">RECENTLY PLAYED</text>
 
-    <!-- Song & Artist Details (clipped to avoid overlap) -->
+    <!-- Song and Artist Details -->
     <text x="0" y="34" class="song-title">Chand Mera Dil (Title Track)</text>
-    <text x="0" y="50" class="artist">Sachin-Jigar, Faheem Abdullah, &a...</text>
+    <text x="0" y="50" class="artist">Sachin-Jigar, Faheem Abdullah, &amp; A...</text>
   </g>
 
   <!-- Progress Bar -->

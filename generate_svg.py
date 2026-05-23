@@ -406,10 +406,19 @@ try:
 except:
     duration_secs = 210
 
-# Sanitize details for XML safety
-song_title = song_title_raw.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace('"', "&quot;") if song_title_raw else "Loading..."
-artist = artist_raw.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace('"', "&quot;") if artist_raw else "—"
-album = album.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace('"', "&quot;")
+# Truncate long text BEFORE XML escaping to avoid splitting entities like &amp;
+max_title_chars = 30
+max_artist_chars = 35
+truncated_title = song_title_raw if len(song_title_raw) <= max_title_chars else song_title_raw[:max_title_chars-1] + "..."
+truncated_artist = artist_raw if len(artist_raw) <= max_artist_chars else artist_raw[:max_artist_chars-1] + "..."
+
+# Sanitize for XML safety AFTER truncation
+def xml_escape(s):
+    return s.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace('"', "&quot;")
+
+display_title = xml_escape(truncated_title) if truncated_title else "Loading..."
+display_artist = xml_escape(truncated_artist) if truncated_artist else "—"
+album = xml_escape(album)
 
 # Always try to get album art (whether playing or recently played)
 b64_art = download_image_as_b64(art_url) if art_url else ""
@@ -476,11 +485,6 @@ else:
       <circle cx="60" cy="70" r="3" fill="#0d0a1b" />
     </g>'''
 
-# Truncate long text for SVG display
-max_title_chars = 30
-max_artist_chars = 35
-display_title = song_title if len(song_title) <= max_title_chars else song_title[:max_title_chars-2] + "..."
-display_artist = artist if len(artist) <= max_artist_chars else artist[:max_artist_chars-2] + "..."
 
 ytmusic_svg = f'''<svg width="480" height="140" viewBox="0 0 480 140" fill="none" xmlns="http://www.w3.org/2000/svg">
   <style>
@@ -524,7 +528,7 @@ ytmusic_svg = f'''<svg width="480" height="140" viewBox="0 0 480 140" fill="none
     </circle>
     <text x="20" y="9" dominant-baseline="middle" class="badge">{status_label}</text>
 
-    <!-- Song & Artist Details (clipped to avoid overlap) -->
+    <!-- Song and Artist Details -->
     <text x="0" y="34" class="song-title">{display_title}</text>
     <text x="0" y="50" class="artist">{display_artist}</text>
   </g>
