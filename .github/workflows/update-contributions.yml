@@ -113,6 +113,9 @@ jobs:
           done
 
       - name: Process PRs and update README
+        env:
+          LASTFM_USERNAME: ${{ secrets.LASTFM_USERNAME }}
+          LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
         run: |
           python3 generate_svg.py
 

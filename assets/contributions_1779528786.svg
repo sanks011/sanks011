@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420" fill="none">
+  <style>
+    .title { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: 800; font-size: 19px; fill: #a78bfa; letter-spacing: 0.5px; }
+    .subtitle { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 11px; fill: #64748b; font-weight: 500; }
+    .stat-val { font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace; font-weight: 800; font-size: 22px; fill: #f8fafc; }
+    .stat-label { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 9px; fill: #94a3b8; font-weight: 700; letter-spacing: 0.8px; }
+    .repo-name { font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace; font-weight: 700; font-size: 12px; fill: #f1f5f9; }
+    .repo-org { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 10px; fill: #64748b; font-weight: 600; }
+    .pr-badge-txt { font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 10.5px; font-weight: bold; fill: #a78bfa; }
+  </style>
+
+  <!-- Frame border with glowing margins -->
+  <rect x="1" y="1" width="798" height="418" rx="10" fill="#0d0b21" stroke="#1e1b4b" stroke-width="1.5"/>
+
+  <!-- Header -->
+  <g transform="translate(25, 28)">
+    <text x="0" y="10" class="title">OPEN SOURCE TELEMETRY</text>
+    <text x="0" y="26" class="subtitle">Distributed telemetry stream covering multi-tenant modules and integration pipelines</text>
+  </g>
+
+  <!-- Online status badge -->
+  <g transform="translate(625, 25)">
+    <rect width="150" height="22" rx="4" fill="#110e2e" stroke="#1e1b4b" stroke-width="1"/>
+    <circle cx="15" cy="11" r="3.5" fill="#10b981"/>
+    <text x="26" y="14.5" font-family="monospace" font-size="9" font-weight="bold" fill="#34d399">SYS_STATUS: LIVE</text>
+  </g>
+
+  <!-- Metrics row -->
+  <g transform="translate(25, 72)">
+    <rect width="240" height="52" rx="6" fill="#110e2e" stroke="#1e1b4b" stroke-width="1"/>
+    <rect width="3.5" height="52" rx="1.5" fill="#8b5cf6"/>
+    <text x="18" y="21" class="stat-label">REPOSITORIES INTEGRATED</text>
+    <text x="18" y="42" class="stat-val">1</text>
+  </g>
+
+  <g transform="translate(280, 72)">
+    <rect width="240" height="52" rx="6" fill="#110e2e" stroke="#1e1b4b" stroke-width="1"/>
+    <rect width="3.5" height="52" rx="1.5" fill="#c084fc"/>
+    <text x="18" y="21" class="stat-label">AGGREGATED PULL REQUESTS</text>
+    <text x="18" y="42" class="stat-val">1</text>
+  </g>
+
+  <g transform="translate(535, 72)">
+    <rect width="240" height="52" rx="6" fill="#110e2e" stroke="#1e1b4b" stroke-width="1"/>
+    <rect width="3.5" height="52" rx="1.5" fill="#38bdf8"/>
+    <text x="18" y="21" class="stat-label">ORGANIZATIONS IMPACTED</text>
+    <text x="18" y="42" class="stat-val">1</text>
+  </g>
+
+  <!-- Grid rendering -->
+  <!-- Repo Card 0 -->
+  <g transform="translate(25, 145)">
+    <rect width="365" height="48" rx="6" fill="#110e2e" stroke="#1e1b4b" stroke-width="1"/>
+    <clipPath id="avatar-clip-0">
+      <rect x="8" y="8" width="32" height="32" rx="4" />
+    </clipPath>
+    <image href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAFN0lEQVRo3u2aW2xURRjH/zPnnGV3u92ytmWB3khZQFCRYglFDIHIxbQaYggSlIQYE+IDLyZGX3wyRmMiD15iDD5IMFErvliRKAQbRElbhAJBKhZ6gwJtKS3bvZzLXHygKZTTc1L2VohM8r3szHd2fnPm+8/MN4dIKSUe4ELxgBc1Uw+SI4Pg7cfBu89C9HVC3uyHNBIAAOLxgQSLQIsrQMsWQok8BVpUNvUAMj4Mq7kBrKUBvOs0IMTkX/3MuVCra6E9vSktGJJSDEgBY9/7sI7Wj41y6pNYgVpdB99ruwBCcxQDnMH8bW/6nQcAwcFO/gII/v8M4ocAGSmEAiBTK6O24vGB+PIBSMhkDDCTLgDklk0lAPEGoFath/rEGtDKJaDTwwBVxgJVDF2D6DwFdqYR7NRBSD1+23cqFzLiy4dnww5oa7aB+IKOUkkLS0ALS6BW10EmorAa98L89UtIPTZ1C5my6Bl4t38IGpp5b9D+IDx1O6Gu2AR9z1vgHa1prKZ3FcGFZIyPGefCboYu9fr3pORMpl04k/q+D6RuGlJnlqsxwW3utpX480+PoaXl0mhsEdAJguvZdRG8vK0qY/EuAbxx9CA+O/OXa7vNkYX4dsOLzjI60B9Hc1MPmCXALAHL5DAMNs4i8wqxZeuSzKoogI9WrsXqkgpwKRzth4tt6IoOOwP8fqQDnDtvjXw+DTter4GikIyrrkopvlr7AoKeaY5tmBDY889pZ4Dmph7XP6l9/lEUFvmztnSUBYJ4s6rGtc337W0TAwz0x3ClN+ro6PWqWP/c/KwvyjsXL0O+5nGsbxu6Pm4ajQGcP3/d9cHVy0qRl+fJOkBomhcbKxe4tvnz6iU7QE/3kKtT1dKSnG2N6uZEXOtPX++3A/T1ua+Ic+cV5gygJuw+WBejQ3aA6E3deV/mURAK+XMGUBoIwqs6bxL6EnE7gGEwZ/n0a1mRTsctCqUIas5yGrfMezsP5K7raRxoPB7nV5ZIWhAid/kvJgSipuFYn3eHzI4BFBR4HR1Mg2PoRiJnAJdjUejceUqH/Xl2gHA44PrQCxcGcwbQdK3XtT5SELIDlFdMd3VqPXklZwD7u9pd658sCtsB5i8odnU6cfwyEnEz652/oSfxY+e/roKyclaZHWBGOIBZs4OOjsmkhUMH27MO8MmZ4+Nk8u6y6JFiVOQXTCyjy2vcc5T7G9pwYzB7wdwVHcau1ibXNi9FFjlvp1etrgSlxPUt7P6iOSuSagmBVw//hJjL6GuUYvvCxc4AM2YEsHxFOVSNOlrbuX5883Vrhrsv8faxw2jpuwK/qjna1vmPj5s+kzrU322WxaVp6DLR+q6UIgOHemHJ+Il3JGOGZIK7mhDC5k7tWT4CRaGOpqoUmkqhn9+N2JFXIJJXUx53kejFSOMWGO17oBAChVBXIxMkGNLKjVpXGxH9eRX0cx9DWtHJTxjzJvSzuxA9sAqs74/0EgIpXXAIC0P7KgFxO+CIlg+ttBba7HVQi5aC+mYCZDS1KBlE4hrY4AlYvYdgXT4AyeJ3DKMHoc0dANVylZmTo3bHL9YIzM56mJ31t4BUH4gWvJXcNUcgeTIr0psSgJQSkO73YZIlIdkkO01S37DfF/cDhCgp3Y/dNwAZOdD8rwAIVeEpq7utMmnNHxVaaW3KU4ik862EiHXB6PgOZk8DxMjFezu4B+dBK9+IaZVbQPPKc7wOTCCrItYNNtACPvw3eKwbUh+AZKOfGqh+EG8xlMAcKKHHoBYtBw2UZ0YAHn6tMsXlP6vHV5FoVYyxAAAAAElFTkSuQmCC" x="8" y="8" width="32" height="32" clip-path="url(#avatar-clip-0)"/>
+    
+    <text x="48" y="21" class="repo-name">openmrs-module-attachments</text>
+    <text x="48" y="36" class="repo-org">openmrs</text>
+    
+    <g transform="translate(295, 12)">
+      <rect width="62" height="24" rx="4" fill="#1b153f" stroke="#8b5cf6" stroke-width="1" stroke-opacity="0.3"/>
+      <text x="31" y="16" text-anchor="middle" class="pr-badge-txt">1 PRs</text>
+    </g>
+  </g>
+</svg>

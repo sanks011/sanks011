@@ -10,11 +10,66 @@ import glob
 # Make sure assets directory exists
 os.makedirs("assets", exist_ok=True)
 
+def fetch_lastfm_nowplaying(username, api_key):
+    url = f"http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user={username}&api_key={api_key}&limit=1&format=json"
+    ctx = ssl.create_default_context()
+    ctx.check_hostname = False
+    ctx.verify_mode = ssl.CERT_NONE
+    try:
+        req = urllib.request.Request(
+            url, 
+            headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'}
+        )
+        with urllib.request.urlopen(req, context=ctx, timeout=8) as response:
+            res_data = json.loads(response.read().decode())
+            tracks = res_data.get("recenttracks", {}).get("track", [])
+            if tracks:
+                track = tracks[0]
+                is_playing = track.get("@attr", {}).get("nowplaying") == "true"
+                name = track.get("name", "")
+                artist = track.get("artist", {}).get("#text", "")
+                album = track.get("album", {}).get("#text", "")
+                
+                images = track.get("image", [])
+                image_url = ""
+                for img in reversed(images):
+                    if img.get("#text"):
+                        image_url = img.get("#text")
+                        break
+                return is_playing, name, artist, album, image_url
+    except Exception as e:
+        print(f"Error fetching Last.fm track: {e}")
+    return False, "", "", "", ""
+
+def download_image_as_b64(url):
+    if not url:
+        return ""
+    ctx = ssl.create_default_context()
+    ctx.check_hostname = False
+    ctx.verify_mode = ssl.CERT_NONE
+    try:
+        req = urllib.request.Request(
+            url, 
+            headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'}
+        )
+        with urllib.request.urlopen(req, context=ctx, timeout=5) as response:
+            image_data = response.read()
+            b64_data = base64.b64encode(image_data).decode("utf-8")
+            mime_type = "image/png"
+            if ".jpg" in url or ".jpeg" in url:
+                mime_type = "image/jpeg"
+            elif ".gif" in url:
+                mime_type = "image/gif"
+            return f"data:{mime_type};base64,{b64_data}"
+    except Exception as e:
+        print(f"Error downloading album art to base64: {e}")
+    return ""
+
 # Generate a unique cache buster based on execution timestamp
 cache_buster = int(datetime.now().timestamp())
 
 # Delete all old dynamic dashboard SVG files to keep the repo clean
-for old_file in glob.glob("assets/contributions_*.svg") + glob.glob("assets/telemetry_*.svg") + glob.glob("assets/contributions.svg") + glob.glob("assets/telemetry.svg"):
+for old_file in glob.glob("assets/contributions_*.svg") + glob.glob("assets/telemetry_*.svg") + glob.glob("assets/ytmusic_*.svg") + glob.glob("assets/contributions.svg") + glob.glob("assets/telemetry.svg") + glob.glob("assets/ytmusic.svg"):
     try:
         os.remove(old_file)
         print(f"Removed stale asset: {old_file}")
@@ -304,6 +359,141 @@ telemetry_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="800" height="
 with open(f"assets/telemetry_{cache_buster}.svg", "w") as f:
     f.write(telemetry_svg)
 
+# Fetch Last.fm details for YouTube Music scrobbling
+lastfm_username = os.environ.get("LASTFM_USERNAME", "sankalpasarkar")
+lastfm_api_key = os.environ.get("LASTFM_API_KEY", "0fb784e9ef782d1cd606c15d21dee184")
+
+is_playing, song_title, artist, album, art_url = fetch_lastfm_nowplaying(lastfm_username, lastfm_api_key)
+
+# Sanitize details for XML safety
+song_title = song_title.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace('"', "&quot;")
+artist = artist.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace('"', "&quot;")
+album = album.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace('"', "&quot;")
+
+b64_art = download_image_as_b64(art_url) if is_playing else ""
+
+if is_playing:
+    status_label = "LIVE STREAM"
+    badge_color = "#ff0000"
+    badge_bg = "rgba(255, 0, 0, 0.12)"
+    badge_circle_color = "#ff0000"
+    spinning_class = "spinning-art"
+    eq_anim_1 = '<animate attributeName="height" values="6;24;10;24;6" dur="0.8s" repeatCount="indefinite"/><animate attributeName="y" values="18;0;14;0;18" dur="0.8s" repeatCount="indefinite"/>'
+    eq_anim_2 = '<animate attributeName="height" values="12;24;6;24;12" dur="0.5s" repeatCount="indefinite"/><animate attributeName="y" values="12;0;18;0;12" dur="0.5s" repeatCount="indefinite"/>'
+    eq_anim_3 = '<animate attributeName="height" values="8;24;16;24;8" dur="1.1s" repeatCount="indefinite"/><animate attributeName="y" values="16;0;8;0;16" dur="1.1s" repeatCount="indefinite"/>'
+    eq_anim_4 = '<animate attributeName="height" values="16;24;8;24;16" dur="0.7s" repeatCount="indefinite"/><animate attributeName="y" values="8;0;16;0;8" dur="0.7s" repeatCount="indefinite"/>'
+    eq_anim_5 = '<animate attributeName="height" values="4;18;8;18;4" dur="1.3s" repeatCount="indefinite"/><animate attributeName="y" values="20;6;16;6;20" dur="1.3s" repeatCount="indefinite"/>'
+    eq_color = "#ff0000"
+else:
+    status_label = "DEV FOCUS MODE"
+    badge_color = "#a78bfa"
+    badge_bg = "rgba(167, 139, 250, 0.12)"
+    badge_circle_color = "#a78bfa"
+    spinning_class = ""
+    song_title = "Caffeine &amp; Neural Networks"
+    artist = "Sankalpa Sarkar — Dev Focus Vibe"
+    eq_anim_1 = ""
+    eq_anim_2 = ""
+    eq_anim_3 = ""
+    eq_anim_4 = ""
+    eq_anim_5 = ""
+    eq_color = "#64748b"
+
+if is_playing and b64_art:
+    album_art_rendering = f'''
+    <g class="{spinning_class}">
+      <clipPath id="circle-art-clip">
+        <circle cx="70" cy="70" r="48" />
+      </clipPath>
+      <image href="{b64_art}" x="22" y="22" width="96" height="96" clip-path="url(#circle-art-clip)"/>
+      <circle cx="70" cy="70" r="8" fill="#0d0b21" stroke="#ff0000" stroke-width="0.5"/>
+      <circle cx="70" cy="70" r="2.5" fill="#ffffff" />
+    </g>
+    <circle cx="70" cy="70" r="48" fill="none" stroke="#1e1b4b" stroke-width="1.5" pointer-events="none"/>'''
+else:
+    album_art_rendering = f'''
+    <g class="{spinning_class}">
+      <circle cx="70" cy="70" r="48" fill="#110e2e" stroke="#1e1b4b" stroke-width="1" />
+      <circle cx="70" cy="70" r="38" fill="#08051a" stroke="#221c54" stroke-width="0.5" />
+      <circle cx="70" cy="70" r="28" fill="none" stroke="#221c54" stroke-width="0.5" stroke-dasharray="4 2" />
+      <circle cx="70" cy="70" r="16" fill="{badge_circle_color}" />
+      <circle cx="70" cy="70" r="4" fill="#0d0b21" />
+    </g>
+    <circle cx="70" cy="70" r="48" fill="none" stroke="#1e1b4b" stroke-width="1.5" pointer-events="none"/>'''
+
+ytmusic_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="480" height="140" viewBox="0 0 480 140" fill="none">
+  <style>
+    .song-title {{ font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, sans-serif; font-weight: 700; font-size: 14px; fill: #ffffff; }}
+    .artist {{ font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, sans-serif; font-weight: 500; font-size: 11.5px; fill: #a78bfa; }}
+    .badge-txt {{ font-family: 'SFMono-Regular', Consolas, monospace; font-size: 8.5px; font-weight: bold; fill: {badge_color}; letter-spacing: 0.8px; }}
+    .spinning-art {{ transform-origin: 70px 70px; animation: spin 12s linear infinite; }}
+    @keyframes spin {{ 0% {{ transform: rotate(0deg); }} 100% {{ transform: rotate(360deg); }} }}
+  </style>
+
+  <!-- Player Frame -->
+  <rect x="1" y="1" width="478" height="138" rx="12" fill="#0d0b21" stroke="#1e1b4b" stroke-width="1.5"/>
+
+  <!-- Album Art Cover -->
+  {album_art_rendering}
+
+  <!-- Track Details -->
+  <g transform="translate(136, 28)">
+    <!-- Dynamic Playing Badge -->
+    <rect x="0" y="0" width="125" height="18" rx="4" fill="{badge_bg}" stroke="{badge_color}" stroke-opacity="0.2" stroke-width="1" />
+    <circle cx="10" cy="9" r="3.5" fill="{badge_circle_color}">
+      <animate attributeName="opacity" values="0.4;1;0.4" dur="2s" repeatCount="indefinite" />
+    </circle>
+    <text x="20" y="12.5" class="badge-txt">{status_label}</text>
+
+    <!-- Song Title -->
+    <text x="0" y="38" class="song-title">{song_title}</text>
+    
+    <!-- Artist Info -->
+    <text x="0" y="55" class="artist">{artist}</text>
+  </g>
+
+  <!-- Interactive Control Icons -->
+  <g transform="translate(136, 96)" stroke="#64748b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <!-- Skip Back -->
+    <path d="M 0 6 L 0 16 M 8 6 L 2 11 L 8 16" />
+    <!-- Play/Pause Button -->
+    <circle cx="22" cy="11" r="9" fill="{badge_color}" fill-opacity="0.05" stroke="{badge_color}" />
+    <path d="M 20 8 V 14 M 24 8 V 14" stroke="{badge_color}" stroke-width="1.8" />
+    <!-- Skip Forward -->
+    <path d="M 36 6 L 42 11 L 36 16" />
+    <path d="M 44 6 L 44 16" />
+  </g>
+
+  <!-- Equalizer Visualizer (Jumping bars) -->
+  <g transform="translate(425, 88)">
+    <rect x="0" y="0" width="3" height="24" fill="{eq_color}" rx="1.2">
+      {eq_anim_1}
+    </rect>
+    <rect x="5" y="0" width="3" height="24" fill="{eq_color}" rx="1.2">
+      {eq_anim_2}
+    </rect>
+    <rect x="10" y="0" width="3" height="24" fill="{eq_color}" rx="1.2">
+      {eq_anim_3}
+    </rect>
+    <rect x="15" y="0" width="3" height="24" fill="{eq_color}" rx="1.2">
+      {eq_anim_4}
+    </rect>
+    <rect x="20" y="0" width="3" height="24" fill="{eq_color}" rx="1.2">
+      {eq_anim_5}
+    </rect>
+  </g>
+
+  <!-- YT Music Brand Accent Icon -->
+  <g transform="translate(440, 16)">
+    <circle cx="12" cy="12" r="11" fill="#ff0000" />
+    <circle cx="12" cy="12" r="7" fill="#0d0b21" stroke="#ff0000" stroke-width="1.2" />
+    <path d="M 10 9 L 15.5 12 L 10 15 Z" fill="#ffffff" />
+  </g>
+</svg>'''
+
+with open(f"assets/ytmusic_{cache_buster}.svg", "w") as f:
+    f.write(ytmusic_svg)
+
 # Update README
 with open("README.md") as f:
     content = f.read()
@@ -331,7 +521,19 @@ updated = re.sub(
     flags=re.DOTALL
 )
 
+# Replace music block with beautiful YouTube Music SVG
+music_start = "<!-- MUSIC_START -->"
+music_end = "<!-- MUSIC_END -->"
+new_music_block = f"{music_start}\n<!-- auto-updated by .github/workflows/update-contributions.yml -->\n\n<p align=\"center\">\n  <img src=\"./assets/ytmusic_{cache_buster}.svg\" alt=\"YouTube Music Player\" width=\"480\" />\n</p>\n\n{music_end}"
+
+updated = re.sub(
+    rf"{re.escape(music_start)}.*?{re.escape(music_end)}",
+    new_music_block,
+    updated,
+    flags=re.DOTALL
+)
+
 with open("README.md", "w") as f:
     f.write(updated)
 
-print(f"Successfully compiled contributions SVG and terminal telemetry SVG! Cache buster: {cache_buster}")
+print(f"Successfully compiled contributions, telemetry, and YT Music SVGs! Cache buster: {cache_buster}")

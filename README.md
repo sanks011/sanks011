@@ -1,10 +1,6 @@
-<div align="center">
-
-# Hi, I'm Sankalpa Sarkar
-
-### Full-Stack Developer | ML Engineer | Open-Source Contributor
-
-<img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=500&size=22&pause=1000&color=A78BFA&center=true&vCenter=true&width=600&lines=Building+AI+Systems+that+Ship;Contributing+to+Open+Source;Crafting+Full-Stack+Solutions;Exploring+ML+%26+Deep+Learning" alt="Typing SVG" />
+<p align="center">
+  <img src="./assets/greeting.svg" alt="Hi, I'm Sankalpa Sarkar" width="100%" />
+</p>
 
 <p align="center">
   <a href="https://www.sankalpasarkar.xyz/"><img src="https://img.shields.io/badge/Portfolio-sankalpasarkar.xyz-8B5CF6?style=for-the-badge" alt="Portfolio" /></a>
@@ -91,7 +87,7 @@ I'm a passionate developer who loves building scalable systems, developing intel
 <!-- auto-updated by .github/workflows/update-contributions.yml -->
 
 <p align="center">
-  <img src="./assets/contributions_1779528004.svg" alt="Open Source Contributions Telemetry" width="100%" />
+  <img src="./assets/contributions_1779528786.svg" alt="Open Source Contributions Telemetry" width="100%" />
 </p>
 
 <!-- OSS_CONTRIBUTIONS_END -->
@@ -171,10 +167,23 @@ I'm a passionate developer who loves building scalable systems, developing intel
 <!-- auto-updated by .github/workflows/update-contributions.yml -->
 
 <p align="center">
-  <img src="./assets/telemetry_1779528004.svg" alt="System Status Telemetry Console" width="100%" />
+  <img src="./assets/telemetry_1779528786.svg" alt="System Status Telemetry Console" width="100%" />
 </p>
 
 <!-- TELEMETRY_END -->
+
+---
+
+<img src="./assets/header-music.svg" height="45" alt="Live Music Stream" />
+
+<!-- MUSIC_START -->
+<!-- auto-updated by .github/workflows/update-contributions.yml -->
+
+<p align="center">
+  <img src="./assets/ytmusic_1779528786.svg" alt="YouTube Music Player" width="480" />
+</p>
+
+<!-- MUSIC_END -->
 
 ---
 

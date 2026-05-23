@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="150" viewBox="0 0 800 150" fill="none">
+  <style>
+    @keyframes wave {
+      0% { transform: rotate(0.0deg) }
+      10% { transform: rotate(14.0deg) }
+      20% { transform: rotate(-8.0deg) }
+      30% { transform: rotate(14.0deg) }
+      40% { transform: rotate(-4.0deg) }
+      50% { transform: rotate(10.0deg) }
+      60% { transform: rotate(0.0deg) }
+      100% { transform: rotate(0.0deg) }
+    }
+    
+    @keyframes pulse {
+      0% { opacity: 0.3; }
+      50% { opacity: 1; }
+      100% { opacity: 0.3; }
+    }
+
+    .wave-emoji {
+      animation: wave 2.5s infinite;
+      transform-origin: 70% 70%;
+      display: inline-block;
+    }
+
+    .name-title {
+      font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, sans-serif;
+      font-weight: 850;
+      font-size: 32px;
+      fill: #ffffff;
+      letter-spacing: -0.5px;
+    }
+
+    .dev-badge-bg {
+      fill: #110e2e;
+      stroke: #1e1b4b;
+      stroke-width: 1;
+    }
+
+    .dev-badge-txt {
+      font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+      font-size: 11px;
+      font-weight: 700;
+      fill: #a78bfa;
+      letter-spacing: 0.5px;
+    }
+
+    .glowing-dot {
+      fill: #a78bfa;
+      animation: pulse 2s infinite;
+    }
+  </style>
+
+  <!-- Waving Greeting Group -->
+  <g transform="translate(20, 20)">
+    <!-- Hey waving hand -->
+    <g transform="translate(0, 8)">
+      <text font-size="34" class="wave-emoji">👋</text>
+    </g>
+    
+    <!-- Title: Hi, I'm Sankalpa Sarkar -->
+    <text x="52" y="32" class="name-title">Hi, I'm Sankalpa Sarkar</text>
+    
+    <!-- Subtitle visual bar -->
+    <line x1="52" y1="48" x2="760" y2="48" stroke="#1e1b4b" stroke-width="1.5" stroke-dasharray="10 5" />
+    <circle cx="760" cy="48" r="2.5" class="glowing-dot" />
+  </g>
+
+  <!-- Badges Row -->
+  <g transform="translate(72, 86)">
+    <!-- Full-Stack Developer Badge -->
+    <g transform="translate(0, 0)">
+      <rect width="170" height="26" rx="6" class="dev-badge-bg"/>
+      <circle cx="15" cy="13" r="3.5" fill="#38bdf8"/>
+      <text x="28" y="17" class="dev-badge-txt">FULL-STACK DEVELOPER</text>
+    </g>
+
+    <!-- ML Engineer Badge -->
+    <g transform="translate(182, 0)">
+      <rect width="125" height="26" rx="6" class="dev-badge-bg"/>
+      <circle cx="15" cy="13" r="3.5" fill="#c084fc"/>
+      <text x="28" y="17" class="dev-badge-txt">ML ENGINEER</text>
+    </g>
+
+    <!-- Open-Source Contributor Badge -->
+    <g transform="translate(319, 0)">
+      <rect width="200" height="26" rx="6" class="dev-badge-bg"/>
+      <circle cx="15" cy="13" r="3.5" fill="#10b981"/>
+      <text x="28" y="17" class="dev-badge-txt">OPEN-SOURCE CONTRIBUTOR</text>
+    </g>
+  </g>
+</svg>
