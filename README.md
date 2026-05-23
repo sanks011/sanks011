@@ -70,17 +70,17 @@ I'm a passionate developer who loves building scalable systems, developing intel
 <div align="center">
   
   <!-- Row 1: Profile Overview & Top Languages (Perfect Height Alignment & Dynamic Sizing) -->
-  <img height="195" src="https://github-readme-stats-one.vercel.app/api?username=sanks011&show_icons=true&title_color=a78bfa&text_color=e2e8f0&icon_color=8b5cf6&bg_color=0d0b21&hide_border=true&include_all_commits=true&count_private=true&border_radius=10" alt="GitHub Stats" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <img height="220" src="https://github-readme-stats-one.vercel.app/api/top-langs/?username=sanks011&title_color=a78bfa&text_color=e2e8f0&icon_color=8b5cf6&bg_color=0d0b21&hide_border=true&layout=compact&langs_count=8&border_radius=10" alt="Top Languages" />
+  <img height="195" src="https://github-readme-stats-one.vercel.app/api?username=sanks011&show_icons=true&title_color=a78bfa&text_color=e2e8f0&icon_color=8b5cf6&bg_color=0d0b21&hide_border=true&include_all_commits=true&count_private=true&border_radius=10&v=2" alt="GitHub Stats" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <img height="220" src="https://github-readme-stats-one.vercel.app/api/top-langs/?username=sanks011&title_color=a78bfa&text_color=e2e8f0&icon_color=8b5cf6&bg_color=0d0b21&hide_border=true&layout=compact&langs_count=8&border_radius=10&v=2" alt="Top Languages" />
   
   <br/><br/>
   <!-- Row 2: Consistency Tracker (Balanced Layout) -->
-  <img width="85%" src="https://streak-stats.demolab.com/?user=sanks011&background=0d0b21&ring=8b5cf6&fire=a78bfa&currStreakNum=a78bfa&sideNums=e2e8f0&currStreakLabel=a78bfa&sideLabels=e2e8f0&dates=94a3b8&hide_border=true&border_radius=10" alt="GitHub Streak" />
+  <img width="85%" src="https://streak-stats.demolab.com/?user=sanks011&background=0d0b21&ring=8b5cf6&fire=a78bfa&currStreakNum=a78bfa&sideNums=e2e8f0&currStreakLabel=a78bfa&sideLabels=e2e8f0&dates=94a3b8&hide_border=true&border_radius=10&v=2" alt="GitHub Streak" />
   
   <br/><br/>
   
   <!-- Row 3: Development Velocity Timeline (Balanced Layout) -->
-  <img width="85%" src="https://github-readme-activity-graph.vercel.app/graph?username=sanks011&bg_color=0d0b21&color=e2e8f0&title_color=a78bfa&line=8b5cf6&point=a78bfa&area=true&area_color=1e1b4b&hide_border=true&border_radius=10" alt="Contribution Graph" />
+  <img width="85%" src="https://github-readme-activity-graph.vercel.app/graph?username=sanks011&bg_color=0d0b21&color=e2e8f0&title_color=a78bfa&line=8b5cf6&point=a78bfa&area=true&area_color=1e1b4b&hide_border=true&border_radius=10&v=2" alt="Contribution Graph" />
 </div>
 
 ---
