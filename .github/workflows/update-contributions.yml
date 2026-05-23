@@ -160,14 +160,14 @@ jobs:
               repo = org_name.split('/')[1]
               
               cell_html = f'''      <td width="33%" align="left" style="padding: 10px; border: none; vertical-align: middle;">
-        <a href="{info["url"]}" style="text-decoration: none;">
-          <img src="https://github.com/{owner}.png" width="28" height="28" style="border-radius: 6px; vertical-align: middle;" />
-          &nbsp;
-          <span style="color: #e2e8f0; font-weight: bold; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 13px; vertical-align: middle;">{repo}</span>
-          &nbsp;
-          <img src="https://img.shields.io/badge/{total}_PRs-8B5CF6?style=flat-square" style="vertical-align: middle;" />
-        </a>
-      </td>'''
+              <a href="{info["url"]}" style="text-decoration: none;">
+                <img src="https://github.com/{owner}.png" width="28" height="28" style="border-radius: 6px; vertical-align: middle;" />
+                &nbsp;
+                <span style="color: #e2e8f0; font-weight: bold; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 13px; vertical-align: middle;">{repo}</span>
+                &nbsp;
+                <img src="https://img.shields.io/badge/{total}_PRs-8B5CF6?style=flat-square" style="vertical-align: middle;" />
+              </a>
+            </td>'''
               cells.append(cell_html)
 
           rows = []
