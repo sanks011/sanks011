@@ -1,0 +1,94 @@
+name: Update OSS Contributions
+
+on:
+  schedule:
+    - cron: "0 0 * * 0"   # every Sunday midnight
+  workflow_dispatch:        # run manually anytime
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch merged PRs in external repos
+        id: prs
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Fetch last 100 merged PRs by sanks011 in repos they don't own
+          gh api graphql -f query='
+            {
+              user(login: "sanks011") {
+                pullRequests(
+                  first: 100
+                  states: MERGED
+                  orderBy: { field: UPDATED_AT, direction: DESC }
+                ) {
+                  nodes {
+                    title
+                    url
+                    repository {
+                      nameWithOwner
+                      owner { login }
+                    }
+                  }
+                }
+              }
+            }
+          ' > prs.json
+
+          # Filter to PRs in repos not owned by sanks011, dedupe by org/repo
+          python3 - << 'PYEOF'
+          import json, sys
+
+          with open("prs.json") as f:
+              data = json.load(f)
+
+          prs = data["data"]["user"]["pullRequests"]["nodes"]
+          seen = {}
+          for pr in prs:
+              owner = pr["repository"]["owner"]["login"]
+              if owner.lower() == "sanks011":
+                  continue
+              repo = pr["repository"]["nameWithOwner"]
+              if repo not in seen:
+                  seen[repo] = {"title": pr["title"], "url": pr["url"], "repo": repo}
+
+          rows = []
+          for repo, info in seen.items():
+              rows.append(f'| [{repo}](https://github.com/{repo}) | {info["title"]} |')
+
+          table = "| org / repo | contribution |\n|---|---|\n" + "\n".join(rows)
+
+          with open("README.md") as f:
+              content = f.read()
+
+          start = "<!-- OSS_CONTRIBUTIONS_START -->"
+          end = "<!-- OSS_CONTRIBUTIONS_END -->"
+          new_block = f"{start}\n<!-- auto-updated by .github/workflows/update-contributions.yml -->\n{table}\n{end}"
+
+          import re
+          updated = re.sub(
+              rf"{re.escape(start)}.*?{re.escape(end)}",
+              new_block,
+              content,
+              flags=re.DOTALL
+          )
+
+          with open("README.md", "w") as f:
+              f.write(updated)
+
+          print(f"Updated with {len(rows)} contribution rows.")
+          PYEOF
+
+      - name: Commit if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add README.md
+          git diff --cached --quiet || git commit -m "chore: update OSS contributions [skip ci]"
+          git push
