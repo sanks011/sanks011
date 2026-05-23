@@ -69,9 +69,9 @@ I'm a passionate developer who loves building scalable systems, developing intel
 
 <div align="center">
   
-  <!-- Row 1: Profile Overview & Top Languages (Perfect 195px Symmetrical Heights) -->
-  <img height="195" src="https://github-readme-stats-one.vercel.app/api?username=sanks011&show_icons=true&title_color=a78bfa&text_color=e2e8f0&icon_color=8b5cf6&bg_color=0d0b21&hide_border=true&include_all_commits=true&count_private=true&border_radius=10" alt="GitHub Stats" />&nbsp;
-  <img height="195" src="https://github-readme-stats-one.vercel.app/api/top-langs/?username=sanks011&title_color=a78bfa&text_color=e2e8f0&icon_color=8b5cf6&bg_color=0d0b21&hide_border=true&layout=compact&langs_count=8&border_radius=10" alt="Top Languages" />
+  <!-- Row 1: Profile Overview & Top Languages (Perfect Height Alignment & Dynamic Sizing) -->
+  <img height="195" src="https://github-readme-stats-one.vercel.app/api?username=sanks011&show_icons=true&title_color=a78bfa&text_color=e2e8f0&icon_color=8b5cf6&bg_color=0d0b21&hide_border=true&include_all_commits=true&count_private=true&border_radius=10" alt="GitHub Stats" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <img height="220" src="https://github-readme-stats-one.vercel.app/api/top-langs/?username=sanks011&title_color=a78bfa&text_color=e2e8f0&icon_color=8b5cf6&bg_color=0d0b21&hide_border=true&layout=compact&langs_count=8&border_radius=10" alt="Top Languages" />
   
   <br/><br/>
   
