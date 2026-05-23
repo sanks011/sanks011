@@ -19,27 +19,80 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          # Fetch last 500 PRs (all states) by sanks011 in external repos
-          gh api graphql -f query='
-            {
-              user(login: "sanks011") {
-                pullRequests(
-                  first: 500
-                  orderBy: { field: UPDATED_AT, direction: DESC }
-                ) {
-                  nodes {
-                    state
-                    repository {
-                      nameWithOwner
-                      owner { login }
-                      description
-                      url
+          # Fetch PRs with pagination (GitHub API limit is 100 per request)
+          echo '{"data":{"user":{"pullRequests":{"nodes":[]}}}}' > prs.json
+          
+          # Fetch up to 500 PRs in batches of 100
+          for page in 1 2 3 4 5; do
+            echo "Fetching page $page..."
+            gh api graphql -f query='
+              query($cursor: String) {
+                user(login: "sanks011") {
+                  pullRequests(
+                    first: 100
+                    after: $cursor
+                    orderBy: { field: UPDATED_AT, direction: DESC }
+                  ) {
+                    pageInfo {
+                      hasNextPage
+                      endCursor
+                    }
+                    nodes {
+                      state
+                      repository {
+                        nameWithOwner
+                        owner { login }
+                        description
+                        url
+                      }
                     }
                   }
                 }
               }
-            }
-          ' > prs.json
+            ' -f cursor="$CURSOR" > page.json
+            
+            # Merge results
+            python3 - << 'PYEOF'
+import json
+with open("prs.json") as f:
+    all_data = json.load(f)
+with open("page.json") as f:
+    page_data = json.load(f)
+
+all_data["data"]["user"]["pullRequests"]["nodes"].extend(
+    page_data["data"]["user"]["pullRequests"]["nodes"]
+)
+
+with open("prs.json", "w") as f:
+    json.dump(all_data, f)
+
+# Check if there are more pages
+page_info = page_data["data"]["user"]["pullRequests"]["pageInfo"]
+if page_info["hasNextPage"]:
+    print(f"CURSOR={page_info['endCursor']}")
+else:
+    print("DONE=true")
+PYEOF
+            
+            # Get cursor for next page
+            RESULT=$(python3 - << 'PYEOF'
+import json
+with open("page.json") as f:
+    page_data = json.load(f)
+page_info = page_data["data"]["user"]["pullRequests"]["pageInfo"]
+if page_info["hasNextPage"]:
+    print(page_info["endCursor"])
+else:
+    print("DONE")
+PYEOF
+)
+            
+            if [ "$RESULT" = "DONE" ]; then
+              echo "No more pages to fetch"
+              break
+            fi
+            CURSOR="$RESULT"
+          done
 
           # Extract unique orgs, count PRs, create cards
           python3 - << 'PYEOF'
