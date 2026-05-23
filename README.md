@@ -82,6 +82,11 @@ I'm a passionate developer who loves building scalable systems, developing intel
   
   <!-- Row 3: Development Velocity Timeline (Balanced Layout) -->
   <img width="85%" src="https://github-readme-activity-graph.vercel.app/graph?username=sanks011&bg_color=0d0b21&color=e2e8f0&title_color=a78bfa&line=8b5cf6&point=a78bfa&area=true&area_color=1e1b4b&hide_border=true&border_radius=10&v=2" alt="Contribution Graph" />
+  
+  <br/><br/>
+  
+  <!-- Row 4: Contribution Snake Animation (Interactive Retro Art) -->
+  <img width="85%" src="https://raw.githubusercontent.com/sanks011/sanks011/output/github-contribution-grid-snake-dark.svg" alt="GitHub Contribution Snake" />
 </div>
 
 ---
@@ -90,7 +95,7 @@ I'm a passionate developer who loves building scalable systems, developing intel
 
 <div align="center">
 
-<img src="https://github-profile-trophy.vercel.app/?username=sanks011&theme=aura&no-frame=true&no-bg=true&margin-w=4&column=7" alt="Achievements Trophies" />
+<img src="https://github-profile-trophy.vercel.app/?username=sanks011&theme=radical&no-frame=true&no-bg=true&margin-w=4&column=7" alt="Achievements Trophies" />
 
 </div>
 
