@@ -29,7 +29,13 @@ I'm a passionate developer who loves building scalable systems, developing intel
 
 <div align="center">
 
-<img src="https://skillicons.dev/icons?i=py,js,c,cpp,react,tailwind,nodejs,flask,fastapi,nginx,mongodb,mysql,supabase,firebase,tensorflow,pytorch,pandas,sklearn,docker,git,github,vercel,netlify,linux&perline=12" alt="My Tech Stack" />
+<!-- Core Stack & Infrastructure -->
+<img src="https://skillicons.dev/icons?i=py,js,c,cpp,react,tailwind,nodejs,flask,fastapi,postgres,mongodb,mysql,supabase,firebase,prisma,tensorflow,pytorch,aws,docker,git,github,vercel,nginx,linux&perline=12" alt="My Tech Stack" />
+<!-- Modern AI & Advanced Database Stack (Custom Symmetrical Skillicons) -->
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:inline-block; margin: 2px; vertical-align: middle;"><rect width="48" height="48" rx="10" fill="#242938"/><g transform="translate(12, 12)"><path d="M5.353 11.823a1.036 1.036 0 0 0-.395-1.422 1.063 1.063 0 0 0-1.437.399L.138 16.702a1.035 1.035 0 0 0 .395 1.422 1.063 1.063 0 0 0 1.437-.398l3.383-5.903Zm11.216 0a1.036 1.036 0 0 0-.394-1.422 1.064 1.064 0 0 0-1.438.399l-3.382 5.902a1.036 1.036 0 0 0 .394 1.422c.506.283 1.15.104 1.438-.398l3.382-5.903Zm7.293-4.525a1.036 1.036 0 0 0-.395-1.422 1.062 1.062 0 0 0-1.437.399l-3.383 5.902a1.036 1.036 0 0 0 .395 1.422 1.063 1.063 0 0 0 1.437-.399l3.383-5.902Zm-11.219 0a1.035 1.035 0 0 0-.394-1.422 1.064 1.064 0 0 0-1.438.398l-3.382 5.903a1.036 1.036 0 0 0 .394 1.422c.506.282 1.15.104 1.438-.399l3.382-5.902Z" fill="#C5F74F"/></g></svg>&nbsp;
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:inline-block; margin: 2px; vertical-align: middle;"><rect width="48" height="48" rx="10" fill="#242938"/><g transform="translate(12, 12)"><path d="M13.796 0a6.93 6.93 0 0 0-4.91 2.019L5.451 5.455l3.273 3.27 3.432-3.432a2.284 2.284 0 0 1 3.277 0 2.28 2.28 0 0 1 0 3.275L12 12.001l3.273 3.273 3.433-3.435c2.692-2.692 2.692-7.127 0-9.82A6.92 6.92 0 0 0 13.796 0m-5.07 8.728-3.433 3.434c-2.692 2.693-2.692 7.126 0 9.819A6.92 6.92 0 0 0 10.203 24a6.93 6.93 0 0 0 4.911-2.02l3.432-3.432-3.271-3.272-3.433 3.433a2.284 2.284 0 0 1-3.277 0 2.28 2.28 0 0 1 0-3.276L12 12z" fill="#FFFFFF"/></g></svg>&nbsp;
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:inline-block; margin: 2px; vertical-align: middle;"><rect width="48" height="48" rx="10" fill="#242938"/><g transform="translate(12, 12)"><path d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.504 4.504 0 0 1-4.4945 4.4944zm-9.6607-4.1254a4.4708 4.4708 0 0 1-.5346-3.0137l.142.0852 4.783 2.7582a.7712.7712 0 0 0 .7806 0l5.8428-3.3685v2.3324a.0804.0804 0 0 1-.0332.0615L9.74 19.9502a4.4992 4.4992 0 0 1-6.1408-1.6464zM2.3408 7.8956a4.485 4.485 0 0 1 2.3655-1.9728V11.6a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.0201 1.1685a.0757.0757 0 0 1-.071 0l-4.8303-2.7865A4.504 4.504 0 0 1 2.3408 7.872zm16.5963 3.8558L13.1038 8.364 15.1192 7.2a.0757.0757 0 0 1 .071 0l4.8303 2.7913a4.4944 4.4944 0 0 1-.6765 8.1042v-5.6772a.79.79 0 0 0-.407-.667zm2.0107-3.0231l-.142-.0852-4.7735-2.7818a.7759.7759 0 0 0-.7854 0L9.409 9.2297V6.8974a.0662.0662 0 0 1 .0284-.0615l4.8303-2.7866a4.4992 4.4992 0 0 1 6.6802 4.66zM8.3065 12.863l-2.02-1.1638a.0804.0804 0 0 1-.038-.0567V6.0742a4.4992 4.4992 0 0 1 7.3757-3.4537l-.142.0805L8.704 5.459a.7948.7948 0 0 0-.3927.6813zm1.0976-2.3654l2.602-1.4998 2.6069 1.4998v2.9994l-2.5974 1.4997-2.6067-1.4997Z" fill="#8B5CF6"/></g></svg>&nbsp;
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:inline-block; margin: 2px; vertical-align: middle;"><rect width="48" height="48" rx="10" fill="#242938"/><g transform="translate(12, 12)"><path d="M18.263.007c-3.121-.147-5.744 2.109-6.192 5.082-.018.138-.045.272-.067.405-.696 3.703-3.936 6.507-7.827 6.507-1.388 0-2.691-.356-3.825-.979a.2024.2024 0 0 0-.302.178V24H12v-8.999c0-1.656 1.338-3 2.987-3h2.988c3.382 0 6.103-2.817 5.97-6.244-.12-3.084-2.61-5.603-5.682-5.75" fill="#46E3B7"/></g></svg>
 
 </div>
 
@@ -59,23 +65,23 @@ I'm a passionate developer who loves building scalable systems, developing intel
 </div>
 
 ---
-
 ## 📊 GitHub Metrics & Analytics
 
 <div align="center">
-
-<img width="49%" src="https://github-readme-stats-one.vercel.app/api?username=sanks011&show_icons=true&title_color=a78bfa&text_color=e2e8f0&icon_color=8b5cf6&bg_color=0d0b21&hide_border=true&include_all_commits=true&count_private=true" alt="GitHub Stats" />
-<img width="49%" src="https://streak-stats.demolab.com/?user=sanks011&background=0d0b21&ring=8b5cf6&fire=a78bfa&currStreakNum=a78bfa&sideNums=e2e8f0&currStreakLabel=a78bfa&sideLabels=e2e8f0&dates=94a3b8&hide_border=true" alt="GitHub Streak" />
-
-</div>
-
-<br />
-
-<div align="center">
-
-<img width="49%" src="https://github-readme-stats-one.vercel.app/api/top-langs/?username=sanks011&title_color=a78bfa&text_color=e2e8f0&icon_color=8b5cf6&bg_color=0d0b21&hide_border=true&layout=compact&langs_count=8" alt="Top Languages" />
-<img width="49%" src="https://github-readme-activity-graph.vercel.app/graph?username=sanks011&bg_color=0d0b21&color=e2e8f0&title_color=a78bfa&line=8b5cf6&point=a78bfa&area=true&area_color=1e1b4b&hide_border=true" alt="Contribution Graph" />
-
+  
+  <!-- Row 1: Profile Overview & Top Languages (Perfect 195px Symmetrical Heights) -->
+  <img height="195" src="https://github-readme-stats-one.vercel.app/api?username=sanks011&show_icons=true&title_color=a78bfa&text_color=e2e8f0&icon_color=8b5cf6&bg_color=0d0b21&hide_border=true&include_all_commits=true&count_private=true&border_radius=10" alt="GitHub Stats" />&nbsp;
+  <img height="195" src="https://github-readme-stats-one.vercel.app/api/top-langs/?username=sanks011&title_color=a78bfa&text_color=e2e8f0&icon_color=8b5cf6&bg_color=0d0b21&hide_border=true&layout=compact&langs_count=8&border_radius=10" alt="Top Languages" />
+  
+  <br/><br/>
+  
+  <!-- Row 2: Consistency Tracker (Wide Panoramic Layout) -->
+  <img width="99%" src="https://streak-stats.demolab.com/?user=sanks011&background=0d0b21&ring=8b5cf6&fire=a78bfa&currStreakNum=a78bfa&sideNums=e2e8f0&currStreakLabel=a78bfa&sideLabels=e2e8f0&dates=94a3b8&hide_border=true&border_radius=10" alt="GitHub Streak" />
+  
+  <br/><br/>
+  
+  <!-- Row 3: Development Velocity Timeline (Grand Full-Width Graph) -->
+  <img width="99%" src="https://github-readme-activity-graph.vercel.app/graph?username=sanks011&bg_color=0d0b21&color=e2e8f0&title_color=a78bfa&line=8b5cf6&point=a78bfa&area=true&area_color=1e1b4b&hide_border=true&border_radius=10" alt="Contribution Graph" />
 </div>
 
 ---
