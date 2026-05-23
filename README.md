@@ -1,13 +1,13 @@
 <div align="center">
 
-# 👋 Hi, I'm Sankalpa Sarkar
+# Hi, I'm Sankalpa Sarkar
 
 ### Full-Stack Developer | ML Engineer | Open-Source Contributor
 
 <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=500&size=22&pause=1000&color=A78BFA&center=true&vCenter=true&width=600&lines=Building+AI+Systems+that+Ship;Contributing+to+Open+Source;Crafting+Full-Stack+Solutions;Exploring+ML+%26+Deep+Learning" alt="Typing SVG" />
 
 <p align="center">
-  <a href="https://www.sankalpasarkar.xyz/"><img src="https://img.shields.io/badge/🌐_Portfolio-sankalpasarkar.xyz-8B5CF6?style=for-the-badge" alt="Portfolio" /></a>
+  <a href="https://www.sankalpasarkar.xyz/"><img src="https://img.shields.io/badge/Portfolio-sankalpasarkar.xyz-8B5CF6?style=for-the-badge" alt="Portfolio" /></a>
   <a href="https://linkedin.com/in/sankalpacodes"><img src="https://img.shields.io/badge/LinkedIn-8B5CF6?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" /></a>
   <a href="https://x.com/sarkar7522"><img src="https://img.shields.io/badge/X-8B5CF6?style=for-the-badge&logo=x&logoColor=white" alt="X" /></a>
   <a href="https://youtube.com/@SankCodes"><img src="https://img.shields.io/badge/YouTube-8B5CF6?style=for-the-badge&logo=youtube&logoColor=white" alt="YouTube" /></a>
@@ -19,7 +19,7 @@
 
 ---
 
-## 🔮 About Me
+## About Me
 
 I'm a passionate developer who loves building scalable systems, developing intelligent machine learning models, and contributing back to the open-source community. My work sits at the intersection of full-stack engineering and modern AI, creating functional solutions that scale beautifully.
 
@@ -33,7 +33,7 @@ I'm a passionate developer who loves building scalable systems, developing intel
 
 ---
 
-## 🚀 Featured Ventures & Flagship Products
+## Featured Ventures & Flagship Products
 
 <div align="center">
   <table width="100%" style="border-collapse: collapse; border: none; background: transparent;">
@@ -62,7 +62,7 @@ I'm a passionate developer who loves building scalable systems, developing intel
 
 ---
 
-## 🛠️ Tech Stack & Skills
+## Tech Stack & Skills
 
 <div align="center">
 
@@ -79,7 +79,7 @@ I'm a passionate developer who loves building scalable systems, developing intel
 
 ---
 
-## 🤝 Open Source Contributions
+## Open Source Contributions
 
 <div align="center">
 
@@ -104,110 +104,15 @@ I'm a passionate developer who loves building scalable systems, developing intel
 
 ---
 
-## 🧙‍♂️ Sankalpa's Dev Spellbook & Mastery Tree
+## System Architecture & Competence Map
 
 <div align="center">
-  <table width="100%" style="border-collapse: collapse; border: none; background: transparent;">
-    <tr>
-      <td width="50%" style="border: none; padding: 15px; vertical-align: top; text-align: left;">
-        <h3>🔮 Conjuration Spells (Core Dev)</h3>
-        <ul>
-          <li><strong>✨ Spell: MERN Genesis (Lvl 99)</strong>
-            <br/>Manifests complete high-speed full-stack web architectures from pure energy. <em>Cooldown: 0s. Mana Cost: 0.</em>
-          </li>
-          <br/>
-          <li><strong>⚡ Spell: Query Annihilation (Lvl 92)</strong>
-            <br/>Accelerates Postgres/SQL queries by 500x. Obliterates server latency with index-sorcery. <em>Mana Cost: 25.</em>
-          </li>
-          <br/>
-          <li><strong>🛡️ Spell: Docker Ward (Lvl 88)</strong>
-            <br/>Shields builds from the classic "works on my machine" curse. 100% active defense against environment bugs.
-          </li>
-        </ul>
-      </td>
-      <td width="50%" style="border: none; padding: 15px; vertical-align: top; text-align: left;">
-        <h3>🧠 Evocation Spells (AI &amp; Data)</h3>
-        <ul>
-          <li><strong>🌀 Spell: Neural Manifestation (Lvl 97)</strong>
-            <br/>Deploys massive LLM Rag chains, neural nets, and PyTorch matrices to solve high-complexity data problems. <em>Mana Cost: 40.</em>
-          </li>
-          <br/>
-          <li><strong>⛓️ Spell: LangChain Tether (Lvl 94)</strong>
-            <br/>Binds complex autonomous AI agents to real-world database sources with flawless multi-step reasoning. <em>Mana Cost: 30.</em>
-          </li>
-          <br/>
-          <li><strong>🚀 Spell: Vibe Overdrive (Lvl 95)</strong>
-            <br/>Triggers intense hyper-focus mode when coding soundtrack is active. Increases output velocity by 300%. <em>Required: Spotify.</em>
-          </li>
-        </ul>
-      </td>
-    </tr>
-  </table>
+  <img src="./assets/architecture.svg" width="600" alt="Sankalpa's System Architecture" />
 </div>
 
 ---
 
-## ⚔️ Active Coding Quests & Achievements
-
-<div align="center">
-  <table width="100%" style="border-collapse: collapse; border: none; background: transparent;">
-    <tr style="background: rgba(139, 92, 246, 0.05);">
-      <th align="left" style="border: none; padding: 12px; color: #a78bfa;">Quest Objective</th>
-      <th align="center" style="border: none; padding: 12px; color: #a78bfa;">Type</th>
-      <th align="left" style="border: none; padding: 12px; color: #a78bfa;">Progress &amp; Status</th>
-      <th align="center" style="border: none; padding: 12px; color: #a78bfa;">Rewards</th>
-    </tr>
-    <tr>
-      <td style="border: none; padding: 12px; text-align: left; vertical-align: middle;">
-        <strong>🚀 Project CodeTwin Manifestation</strong>
-        <br/><small style="color: #94a3b8;">Fine-tune custom LLM models to mirror specialized developer coding styles.</small>
-      </td>
-      <td align="center" style="border: none; padding: 12px; vertical-align: middle;">
-        <span style="background: #ef4444; color: white; padding: 3px 8px; border-radius: 4px; font-size: 10px; font-weight: bold; letter-spacing: 1px;">MAIN</span>
-      </td>
-      <td style="border: none; padding: 12px; vertical-align: middle; text-align: left;">
-        <code>[██████████░░░░░] 66%</code>
-      </td>
-      <td align="center" style="border: none; padding: 12px; color: #f59e0b; font-weight: bold; vertical-align: middle;">
-        +2500 XP / AI Title
-      </td>
-    </tr>
-    <tr>
-      <td style="border: none; padding: 12px; text-align: left; vertical-align: middle;">
-        <strong>🤝 Open Source Crusader</strong>
-        <br/><small style="color: #94a3b8;">Contribute robust modules and merge high-impact PRs to OpenMRS core.</small>
-      </td>
-      <td align="center" style="border: none; padding: 12px; vertical-align: middle;">
-        <span style="background: #3b82f6; color: white; padding: 3px 8px; border-radius: 4px; font-size: 10px; font-weight: bold; letter-spacing: 1px;">SIDE</span>
-      </td>
-      <td style="border: none; padding: 12px; vertical-align: middle; text-align: left;">
-        <code>[████████████░░░] 80%</code>
-      </td>
-      <td align="center" style="border: none; padding: 12px; color: #f59e0b; font-weight: bold; vertical-align: middle;">
-        +1200 XP / OS Badge
-      </td>
-    </tr>
-    <tr>
-      <td style="border: none; padding: 12px; text-align: left; vertical-align: middle;">
-        <strong>☕ Caffeine-Induced Synthesis</strong>
-        <br/><small style="color: #94a3b8;">Consume coffee and complete high-velocity coding focus sprints.</small>
-      </td>
-      <td align="center" style="border: none; padding: 12px; vertical-align: middle;">
-        <span style="background: #10b981; color: white; padding: 3px 8px; border-radius: 4px; font-size: 10px; font-weight: bold; letter-spacing: 1px;">DAILY</span>
-      </td>
-      <td style="border: none; padding: 12px; vertical-align: middle; text-align: left;">
-        <code>[███████████████] 100%</code>
-      </td>
-      <td align="center" style="border: none; padding: 12px; color: #f59e0b; font-weight: bold; vertical-align: middle;">
-        +500 XP / Mana Boost
-      </td>
-    </tr>
-  </table>
-</div>
-
----
-
-## 📊 GitHub Metrics & Analytics
+## GitHub Metrics & Analytics
 
 <div align="center">
   
@@ -227,7 +132,7 @@ I'm a passionate developer who loves building scalable systems, developing intel
 
 ---
 
-## 🏆 Milestones & Achievements
+## Milestones & Achievements
 
 <div align="center">
 
@@ -237,7 +142,7 @@ I'm a passionate developer who loves building scalable systems, developing intel
 
 ---
 
-## 📡 Telemetry & System Status
+## Telemetry & System Status
 
 ```json
 {

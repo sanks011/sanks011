@@ -1,0 +1,91 @@
+<svg width="600" height="280" viewBox="0 0 600 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .core-text { font: 800 13px 'Inter', system-ui, sans-serif; fill: #ffffff; text-shadow: 0 0 8px rgba(139, 92, 246, 0.6); }
+    .node-title { font: 700 11px 'Inter', system-ui, sans-serif; fill: #a78bfa; }
+    .tech-label { font: 500 10px monospace; fill: #e2e8f0; }
+    .pulse-ring { animation: pulse 3s infinite ease-in-out; transform-origin: center; }
+    .signal-line { stroke-dasharray: 6 4; animation: flow 20s linear infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 0.3; transform: scale(1); } 50% { opacity: 0.7; transform: scale(1.05); } }
+    @keyframes flow { 0% { stroke-dashoffset: 100; } 100% { stroke-dashoffset: 0; } }
+  </style>
+
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="600" y2="280" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0a0817" />
+      <stop offset="100%" stop-color="#120e2e" />
+    </linearGradient>
+    <linearGradient id="coreGrad" x1="260" y1="110" x2="340" y2="170" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#a78bfa" />
+      <stop offset="100%" stop-color="#8b5cf6" />
+    </linearGradient>
+    <linearGradient id="borderGrad" x1="0" y1="0" x2="600" y2="280" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#8b5cf6" stop-opacity="0.6" />
+      <stop offset="100%" stop-color="#d946ef" stop-opacity="0.2" />
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Main Container -->
+  <rect x="5" y="5" width="590" height="270" rx="16" fill="url(#bgGrad)" stroke="url(#borderGrad)" stroke-width="1.5" />
+
+  <!-- Background Decorative Grid Lines -->
+  <path d="M 50 5 L 50 275 M 150 5 L 150 275 M 450 5 L 450 275 M 550 5 L 550 275 M 5 70 H 595 M 5 210 H 595" stroke="#1f1a3a" stroke-width="0.5" stroke-dasharray="5 5" />
+
+  <!-- Connection Lines (Core -> Clusters) -->
+  <!-- Left: Full-Stack App Tier -->
+  <path d="M 300 140 L 150 60" stroke="#8b5cf6" stroke-width="1.5" opacity="0.6" />
+  <path class="signal-line" d="M 300 140 L 150 60" stroke="#d946ef" stroke-width="1.5" />
+  
+  <!-- Right: AI & Data Intelligence -->
+  <path d="M 300 140 L 450 60" stroke="#8b5cf6" stroke-width="1.5" opacity="0.6" />
+  <path class="signal-line" d="M 300 140 L 450 60" stroke="#d946ef" stroke-width="1.5" />
+
+  <!-- Bottom: Systems & Storage -->
+  <path d="M 300 140 L 300 220" stroke="#8b5cf6" stroke-width="1.5" opacity="0.6" />
+  <path class="signal-line" d="M 300 140 L 300 220" stroke="#d946ef" stroke-width="1.5" />
+
+  <!-- CENTRAL NODE: Sankalpa Sarkar (Core Dev & AI) -->
+  <g transform="translate(250, 115)" filter="url(#glow)">
+    <rect x="0" y="0" width="100" height="50" rx="10" fill="url(#coreGrad)" stroke="#c084fc" stroke-width="1.5" />
+    <text x="50" y="22" text-anchor="middle" class="core-text">SANKALPA S.</text>
+    <text x="50" y="38" text-anchor="middle" font-family="monospace" font-size="8px" fill="#e9d5ff" letter-spacing="1.5px">CORE ENGINE</text>
+  </g>
+
+  <!-- CLUSTER 1: Full-Stack App Tier (Left) -->
+  <g transform="translate(60, 30)">
+    <rect x="0" y="0" width="130" height="60" rx="8" fill="#0d0b21" stroke="#8b5cf6" stroke-width="1" />
+    <text x="15" y="20" class="node-title">APPLICATION TIER</text>
+    <!-- Sub-Nodes -->
+    <text x="15" y="36" class="tech-label">• React &amp; Next.js</text>
+    <text x="15" y="48" class="tech-label">• Node.js &amp; Express</text>
+    <circle cx="120" cy="30" r="4" fill="#a78bfa" />
+  </g>
+
+  <!-- CLUSTER 2: AI & Data Intelligence (Right) -->
+  <g transform="translate(410, 30)">
+    <rect x="0" y="0" width="130" height="60" rx="8" fill="#0d0b21" stroke="#8b5cf6" stroke-width="1" />
+    <text x="15" y="20" class="node-title">INTELLIGENCE TIER</text>
+    <!-- Sub-Nodes -->
+    <text x="15" y="36" class="tech-label">• LLMs &amp; RAG Pipelines</text>
+    <text x="15" y="48" class="tech-label">• LangChain &amp; PyTorch</text>
+    <circle cx="10" cy="30" r="4" fill="#d946ef" />
+  </g>
+
+  <!-- CLUSTER 3: Systems & Data Storage (Bottom) -->
+  <g transform="translate(235, 195)">
+    <rect x="0" y="0" width="130" height="60" rx="8" fill="#0d0b21" stroke="#8b5cf6" stroke-width="1" />
+    <text x="15" y="20" class="node-title">DATA &amp; INFRA TIER</text>
+    <!-- Sub-Nodes -->
+    <text x="15" y="36" class="tech-label">• Postgres &amp; Drizzle</text>
+    <text x="15" y="48" class="tech-label">• Docker &amp; Cloud Apps</text>
+    <circle cx="65" cy="10" r="4" fill="#c084fc" />
+  </g>
+
+  <!-- Flow Arrows / Indicators -->
+  <polygon points="175,72 170,80 180,80" fill="#a78bfa" transform="rotate(-30 175 75)" />
+  <polygon points="425,72 420,80 430,80" fill="#d946ef" transform="rotate(30 425 75)" />
+  <polygon points="300,185 295,193 305,193" fill="#c084fc" />
+</svg>
