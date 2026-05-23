@@ -79,8 +79,9 @@ def fetch_lastfm_track_duration(username, api_key, track_name, artist_name):
     return duration_str, image_url
 
 def fetch_lastfm_recent_tracks(username, api_key, limit=5):
-    """Fetch the last N recently played tracks from Last.fm."""
-    url = f"http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user={username}&api_key={api_key}&limit={limit}&format=json"
+    """Fetch the last N unique recently played tracks from Last.fm."""
+    # Fetch 20 tracks to allow room for de-duplication
+    url = f"http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user={username}&api_key={api_key}&limit=20&format=json"
     ctx = ssl.create_default_context()
     ctx.check_hostname = False
     ctx.verify_mode = ssl.CERT_NONE
@@ -90,10 +91,19 @@ def fetch_lastfm_recent_tracks(username, api_key, limit=5):
             res_data = json.loads(response.read().decode())
             tracks = res_data.get("recenttracks", {}).get("track", [])
             result = []
+            seen = set()
             for track in tracks:
-                is_now = track.get("@attr", {}).get("nowplaying") == "true"
                 name = track.get("name", "")
                 artist = track.get("artist", {}).get("#text", "")
+                if not name or not artist:
+                    continue
+                # De-duplicate by track name and artist (case-insensitive)
+                key = (name.lower().strip(), artist.lower().strip())
+                if key in seen:
+                    continue
+                seen.add(key)
+                
+                is_now = track.get("@attr", {}).get("nowplaying") == "true"
                 album = track.get("album", {}).get("#text", "")
                 # Get timestamp
                 if is_now:
@@ -102,7 +112,7 @@ def fetch_lastfm_recent_tracks(username, api_key, limit=5):
                     uts = track.get("date", {}).get("uts", "")
                     if uts:
                         dt = datetime.fromtimestamp(int(uts), tz=__import__('datetime').timezone.utc)
-                        delta = datetime.now(tz=__import__('datetime').timezone.utc) - dt
+                        delta = datetime.now(tz=tz) if 'tz' in locals() else datetime.now(tz=__import__('datetime').timezone.utc) - dt
                         if delta.total_seconds() < 3600:
                             time_str = f"{int(delta.total_seconds()//60)}m ago"
                         elif delta.total_seconds() < 86400:
@@ -111,24 +121,29 @@ def fetch_lastfm_recent_tracks(username, api_key, limit=5):
                             time_str = f"{int(delta.total_seconds()//86400)}d ago"
                     else:
                         time_str = ""
-                # Get small album art
+                # Get small album art, filter out Last.fm default grey star
                 images = track.get("image", [])
                 image_url = ""
                 for img in images:
                     if img.get("size") == "small" and img.get("#text"):
-                        image_url = img["#text"]
+                        text_url = img["#text"]
+                        if "2a96cbd8b46e442fc41c2b86b821562f" not in text_url:
+                            image_url = text_url
                         break
                 result.append({
                     "name": name, "artist": artist, "album": album,
                     "image_url": image_url, "time": time_str, "is_now": is_now
                 })
+                # Yield up to the requested unique limit
+                if len(result) >= limit:
+                    break
             return result
     except Exception as e:
         print(f"Error fetching recent tracks: {e}")
     return []
 
 def download_image_as_b64(url):
-    if not url:
+    if not url or "2a96cbd8b46e442fc41c2b86b821562f" in url:
         return ""
     ctx = ssl.create_default_context()
     ctx.check_hostname = False
