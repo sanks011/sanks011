@@ -29,13 +29,14 @@ I'm a passionate developer who loves building scalable systems, developing intel
 
 <div align="center">
 
-<!-- Core Stack & Infrastructure -->
-<img src="https://skillicons.dev/icons?i=py,js,c,cpp,react,tailwind,nodejs,flask,fastapi,postgres,mongodb,mysql,supabase,firebase,prisma,tensorflow,pytorch,aws,docker,git,github,vercel,nginx,linux&perline=12" alt="My Tech Stack" />
-<!-- Modern AI & Advanced Database Stack (Custom Symmetrical Skillicons) -->
-<img src="https://raw.githubusercontent.com/sanks011/sanks011/main/assets/drizzle.svg" width="48" height="48" alt="Drizzle ORM" />&nbsp;
-<img src="https://raw.githubusercontent.com/sanks011/sanks011/main/assets/langchain.svg" width="48" height="48" alt="LangChain" />&nbsp;
-<img src="https://raw.githubusercontent.com/sanks011/sanks011/main/assets/openai.svg" width="48" height="48" alt="LLMs & RAG" />&nbsp;
-<img src="https://raw.githubusercontent.com/sanks011/sanks011/main/assets/render.svg" width="48" height="48" alt="Render" />
+<!-- Row 1: Core Languages & Frontend (9 Icons) -->
+<img src="https://skillicons.dev/icons?i=py,js,c,cpp,react,tailwind,nodejs,flask,fastapi&perline=9" alt="Core Languages & Frontend" />
+<br/><br/>
+<!-- Row 2: Database, Cloud & ML Infrastructure (9 Icons) -->
+<img src="https://skillicons.dev/icons?i=postgres,mongodb,mysql,supabase,firebase,prisma,tensorflow,pytorch,aws&perline=9" alt="Databases, Cloud & Machine Learning" />
+<br/><br/>
+<!-- Row 3: DevOps, Tooling & Specialized AI/Deployment (10 Icons Symmetric Grid) -->
+<img src="https://skillicons.dev/icons?i=docker,git,github,vercel,nginx,linux" alt="DevOps & Tooling" />&nbsp;<img src="https://raw.githubusercontent.com/sanks011/sanks011/main/assets/drizzle.svg" width="48" height="48" alt="Drizzle ORM" />&nbsp;<img src="https://raw.githubusercontent.com/sanks011/sanks011/main/assets/langchain.svg" width="48" height="48" alt="LangChain" />&nbsp;<img src="https://raw.githubusercontent.com/sanks011/sanks011/main/assets/openai.svg" width="48" height="48" alt="LLMs & RAG" />&nbsp;<img src="https://raw.githubusercontent.com/sanks011/sanks011/main/assets/render.svg" width="48" height="48" alt="Render" />
 
 </div>
 
