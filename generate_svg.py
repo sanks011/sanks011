@@ -78,26 +78,47 @@ def fetch_lastfm_track_duration(username, api_key, track_name, artist_name):
         print(f"Error fetching track duration: {e}")
     return duration_str, image_url
 
-def fetch_youtube_thumbnail(song_title, artist_name):
-    """Fetch official YouTube Music release thumbnail when Last.fm has no artwork."""
+def fetch_album_artwork(song_title, artist_name):
+    """Fetch official clean square album cover art using iTunes Search API, falling back to YouTube Topic thumbnail."""
     if not song_title or not artist_name:
         return ""
+    
+    # Clean the title (e.g., removing "(Title Track)" or "(feat. ...)")
     clean_title = re.sub(r'\s*[\(\[][^\)\]]+[\)\]]\s*', ' ', song_title).strip()
-    query = f"{clean_title} {artist_name} topic"
+    
+    # 1. Try iTunes Search API for clean square audio art
+    query = f"{clean_title} {artist_name}"
     safe_query = urllib.parse.quote(query)
-    url = f"https://www.youtube.com/results?search_query={safe_query}"
+    url = f"https://itunes.apple.com/search?term={safe_query}&entity=song&limit=1"
     ctx = ssl.create_default_context()
     ctx.check_hostname = False
     ctx.verify_mode = ssl.CERT_NONE
     try:
-        req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'})
-        with urllib.request.urlopen(req, context=ctx, timeout=5) as response:
+        req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+        with urllib.request.urlopen(req, context=ctx, timeout=4) as response:
+            data = json.loads(response.read().decode())
+            results = data.get("results", [])
+            if results:
+                art_100 = results[0].get("artworkUrl100", "")
+                if art_100:
+                    return art_100.replace("100x100bb.jpg", "400x400bb.jpg")
+    except Exception as e:
+        print(f"iTunes Search API failed for {song_title}: {e}")
+        
+    # 2. Fall back to YouTube Topic Search if iTunes fails
+    yt_query = f"{clean_title} {artist_name} topic"
+    safe_yt_query = urllib.parse.quote(yt_query)
+    yt_url = f"https://www.youtube.com/results?search_query={safe_yt_query}"
+    try:
+        req = urllib.request.Request(yt_url, headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'})
+        with urllib.request.urlopen(req, context=ctx, timeout=4) as response:
             html = response.read().decode('utf-8', errors='ignore')
             matches = re.findall(r'"videoId":"([a-zA-Z0-9_-]{11})"', html)
             if matches:
                 return f"https://i.ytimg.com/vi/{matches[0]}/hqdefault.jpg"
     except Exception as e:
-        print(f"Error fetching YouTube thumbnail for {song_title}: {e}")
+        print(f"YouTube fallback failed for {song_title}: {e}")
+        
     return ""
 
 def fetch_lastfm_recent_tracks(username, api_key, limit=5):
@@ -155,7 +176,7 @@ def fetch_lastfm_recent_tracks(username, api_key, limit=5):
                 
                 # YouTube Music thumbnail fallback if no valid album cover
                 if not image_url:
-                    yt_thumb = fetch_youtube_thumbnail(name, artist)
+                    yt_thumb = fetch_album_artwork(name, artist)
                     if yt_thumb:
                         image_url = yt_thumb
                         
@@ -528,10 +549,10 @@ display_artist = xml_escape(truncated_artist) if truncated_artist else "—"
 album = xml_escape(album)
 
 # If the album art URL is missing or is the generic Last.fm grey star,
-# scrape YouTube to get the actual official YouTube Music release thumbnail!
+# scrape iTunes Search API or YouTube to get the actual official clean cover art!
 if song_title_raw and artist_raw:
     if not art_url or "2a96cbd8b46e442fc41c2b86b821562f" in art_url:
-        yt_thumbnail = fetch_youtube_thumbnail(song_title_raw, artist_raw)
+        yt_thumbnail = fetch_album_artwork(song_title_raw, artist_raw)
         if yt_thumbnail:
             art_url = yt_thumbnail
 
@@ -697,7 +718,7 @@ ytmusic_svg = f'''<svg width="480" height="140" viewBox="0 0 480 140" fill="none
   </g>
 
   <!-- YT Music Brand Logo -->
-  <g transform="translate(436, 14)">
+  <g transform="translate(436, 20)">
     <image href="{ytmusic_logo_b64}" x="0" y="0" width="24" height="24" />
   </g>
 </svg>'''
