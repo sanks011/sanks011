@@ -31,6 +31,35 @@ I'm a passionate developer who loves building scalable systems, developing intel
 
 ---
 
+## 🚀 Featured Ventures & Flagship Products
+
+<div align="center">
+  <table width="100%" style="border-collapse: collapse; border: none; background: transparent;">
+    <tr>
+      <td width="50%" align="center" style="border: none; padding: 15px; vertical-align: top;">
+        <a href="https://devdirect.tech">
+          <img src="https://img.shields.io/badge/DEVDIRECT-devdirect.tech-8B5CF6?style=for-the-badge&logo=rocket&logoColor=white" alt="Devdirect" />
+        </a>
+        <br/><br/>
+        <strong>Founder &amp; Principal Architect</strong>
+        <br/><br/>
+        Building high-performance custom MERN applications, production AI integration pipelines, and scalable enterprise systems.
+      </td>
+      <td width="50%" align="center" style="border: none; padding: 15px; vertical-align: top;">
+        <a href="https://www.sankalpasarkar.xyz/">
+          <img src="https://img.shields.io/badge/CODETWIN_AI-Active_Beta-d946ef?style=for-the-badge&logo=openai&logoColor=white" alt="CodeTwin AI" />
+        </a>
+        <br/><br/>
+        <strong>Creator &amp; Lead AI Engineer</strong>
+        <br/><br/>
+        Developing developer-focused AI systems that learn your specific coding habits and automate routine pair-programming workflows.
+      </td>
+    </tr>
+  </table>
+</div>
+
+---
+
 ## 🛠️ Tech Stack & Skills
 
 <div align="center">
