@@ -45,26 +45,38 @@ def fetch_lastfm_nowplaying(username, api_key):
     return False, "", "", "", ""
 
 def fetch_lastfm_track_duration(username, api_key, track_name, artist_name):
-    """Fetch actual track duration from Last.fm track.getInfo API."""
+    """Fetch actual track duration and optional album image from Last.fm track.getInfo API."""
     safe_track = urllib.parse.quote(track_name)
     safe_artist = urllib.parse.quote(artist_name)
     url = f"http://ws.audioscrobbler.com/2.0/?method=track.getInfo&api_key={api_key}&artist={safe_artist}&track={safe_track}&username={username}&format=json"
     ctx = ssl.create_default_context()
     ctx.check_hostname = False
     ctx.verify_mode = ssl.CERT_NONE
+    duration_str = "3:30"
+    image_url = ""
     try:
         req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
         with urllib.request.urlopen(req, context=ctx, timeout=5) as response:
             data = json.loads(response.read().decode())
-            duration_ms = int(data.get("track", {}).get("duration", "0"))
+            track_info = data.get("track", {})
+            duration_ms = int(track_info.get("duration", "0"))
             if duration_ms > 0:
                 total_sec = duration_ms // 1000
                 mins = total_sec // 60
                 secs = total_sec % 60
-                return f"{mins}:{secs:02d}"
+                duration_str = f"{mins}:{secs:02d}"
+            
+            # Try to get album image from track.getInfo
+            album_info = track_info.get("album", {})
+            if album_info:
+                images = album_info.get("image", [])
+                for img in reversed(images):
+                    if img.get("#text"):
+                        image_url = img.get("#text")
+                        break
     except Exception as e:
         print(f"Error fetching track duration: {e}")
-    return "3:30"
+    return duration_str, image_url
 
 def fetch_lastfm_recent_tracks(username, api_key, limit=5):
     """Fetch the last N recently played tracks from Last.fm."""
@@ -442,9 +454,11 @@ is_playing, song_title_raw, artist_raw, album, art_url = fetch_lastfm_nowplaying
 # Always show the last played track — no fallback placeholder needed
 # Last.fm always returns the most recent track (playing or recently played)
 
-# Fetch actual track duration from Last.fm
+# Fetch actual track duration and optional high-res fallback image from Last.fm
 if song_title_raw and artist_raw:
-    track_duration = fetch_lastfm_track_duration(lastfm_username, lastfm_api_key, song_title_raw, artist_raw)
+    track_duration, fallback_art_url = fetch_lastfm_track_duration(lastfm_username, lastfm_api_key, song_title_raw, artist_raw)
+    if not art_url and fallback_art_url:
+        art_url = fallback_art_url
 else:
     track_duration = "3:30"
 
@@ -472,16 +486,16 @@ album = xml_escape(album)
 # Always try to get album art (whether playing or recently played)
 b64_art = download_image_as_b64(art_url) if art_url else ""
 
-# Green theme color — consistent with profile aesthetic
-theme_color = "#1db954"
+# YouTube Music theme color — vibrant premium red
+theme_color = "#ff0033"
 
 if is_playing:
     status_label = "NOW PLAYING"
     spinning_class = "vinyl-record"
-    progress_bar_animate = f'<animate attributeName="width" from="0" to="240" dur="{duration_secs}s" repeatCount="indefinite"/>'
-    progress_dot_animate = f'<animate attributeName="cx" from="20" to="260" dur="{duration_secs}s" repeatCount="indefinite"/>'
-    badge_bg_color = "rgba(29, 185, 84, 0.15)"
-    badge_txt_color = "#1db954"
+    progress_bar_animate = f'<animate attributeName="width" from="0" to="260" dur="{duration_secs}s" repeatCount="indefinite"/>'
+    progress_dot_animate = f'<animate attributeName="cx" from="0" to="260" dur="{duration_secs}s" repeatCount="indefinite"/>'
+    badge_bg_color = "rgba(255, 0, 51, 0.15)"
+    badge_txt_color = "#ff0033"
     pulse_anim = '<animate attributeName="opacity" values="0.4;1;0.4" dur="1.5s" repeatCount="indefinite" />'
 else:
     status_label = "RECENTLY PLAYED"
@@ -513,7 +527,7 @@ if b64_art:
     album_art_rendering = f'''
     <g class="{spinning_class}">
       <circle cx="60" cy="70" r="42" fill="#18142c" stroke="{theme_color}" stroke-width="1.5" />
-      <circle cx="60" cy="70" r="35" fill="#0d0a1b" stroke="#1a3a2a" stroke-width="0.5" />
+      <circle cx="60" cy="70" r="35" fill="#0d0a1b" stroke="#3a1a20" stroke-width="0.5" />
       <clipPath id="circle-art-clip">
         <circle cx="60" cy="70" r="28" />
       </clipPath>
@@ -527,7 +541,7 @@ else:
     album_art_rendering = f'''
     <g class="{spinning_class}">
       <circle cx="60" cy="70" r="42" fill="#18142c" stroke="{theme_color}" stroke-width="1.5" />
-      <circle cx="60" cy="70" r="35" fill="#0d0a1b" stroke="#1a3a2a" stroke-width="0.5" />
+      <circle cx="60" cy="70" r="35" fill="#0d0a1b" stroke="#3a1a20" stroke-width="0.5" />
       <circle cx="60" cy="70" r="24" fill="none" stroke="#2e2b42" stroke-width="0.5" stroke-dasharray="8 4" />
       <circle cx="60" cy="70" r="16" fill="none" stroke="#2e2b42" stroke-width="0.3" stroke-dasharray="3 3" />
       <circle cx="60" cy="70" r="10" fill="{theme_color}" opacity="0.8" />
@@ -542,7 +556,7 @@ if os.path.exists(logo_path):
         from PIL import Image
         import io
         img = Image.open(logo_path)
-        img = img.resize((28, 28), Image.LANCZOS)
+        img = img.resize((24, 24), Image.LANCZOS)
         buf = io.BytesIO()
         img.save(buf, format='PNG', optimize=True)
         ytmusic_logo_b64 = f"data:image/png;base64,{base64.b64encode(buf.getvalue()).decode()}"
@@ -553,22 +567,22 @@ if os.path.exists(logo_path):
 
 ytmusic_svg = f'''<svg width="480" height="140" viewBox="0 0 480 140" fill="none" xmlns="http://www.w3.org/2000/svg">
   <style>
-    .song-title {{ font: 700 14px 'Inter', system-ui, sans-serif; fill: #ffffff; }}
-    .artist {{ font: 500 11.5px 'Inter', system-ui, sans-serif; fill: #a78bfa; }}
-    .time {{ font: 500 9px monospace; fill: #94a3b8; }}
-    .badge {{ font: 600 8.5px monospace; fill: {badge_txt_color}; letter-spacing: 1px; }}
-    .vinyl-record {{ transform-origin: 60px 70px; animation: spin 8s linear infinite; }}
+    .song-title {{ font: 700 15px 'Inter', system-ui, sans-serif; fill: #ffffff; }}
+    .artist {{ font: 500 12px 'Inter', system-ui, sans-serif; fill: #a78bfa; }}
+    .time {{ font: 500 10px monospace; fill: #94a3b8; }}
+    .badge {{ font: 600 9px monospace; fill: {badge_txt_color}; letter-spacing: 1px; }}
+    .vinyl-record {{ transform-origin: 60px 70px; animation: spin 4s linear infinite; }}
     @keyframes spin {{ 0% {{ transform: rotate(0deg); }} 100% {{ transform: rotate(360deg); }} }}
   </style>
 
   <defs>
     <linearGradient id="bgGrad" x1="0" y1="0" x2="480" y2="140" gradientUnits="userSpaceOnUse">
       <stop offset="0%" stop-color="#0a0817" />
-      <stop offset="100%" stop-color="#0e1a12" />
+      <stop offset="100%" stop-color="#1a050d" />
     </linearGradient>
     <linearGradient id="borderGrad" x1="0" y1="0" x2="480" y2="140" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#1db954" stop-opacity="0.7" />
-      <stop offset="100%" stop-color="#8b5cf6" stop-opacity="0.3" />
+      <stop offset="0%" stop-color="#ff0033" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#8b5cf6" stop-opacity="0.4" />
     </linearGradient>
     <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
       <feGaussianBlur stdDeviation="6" result="blur" />
@@ -576,8 +590,8 @@ ytmusic_svg = f'''<svg width="480" height="140" viewBox="0 0 480 140" fill="none
     </filter>
   </defs>
 
-  <!-- Glowing background shadow -->
-  <rect x="8" y="8" width="464" height="124" rx="16" fill="#1db954" opacity="0.08" filter="url(#glow)" />
+  <!-- Glowing background drop shadow -->
+  <rect x="8" y="8" width="464" height="124" rx="16" fill="#ff0033" opacity="0.1" filter="url(#glow)" />
 
   <!-- Main Player Container -->
   <rect x="8" y="8" width="464" height="124" rx="16" fill="url(#bgGrad)" stroke="url(#borderGrad)" stroke-width="1.5" />
@@ -585,40 +599,54 @@ ytmusic_svg = f'''<svg width="480" height="140" viewBox="0 0 480 140" fill="none
   {album_art_rendering}
 
   <!-- Track Information -->
-  <g transform="translate(118, 26)">
-    <!-- Status Badge -->
-    <rect x="0" y="0" width="120" height="17" rx="8" fill="{badge_bg_color}" />
-    <circle cx="10" cy="8.5" r="3" fill="{badge_txt_color}">
+  <g transform="translate(120, 28)">
+    <!-- Dynamic Playing Badge -->
+    <rect x="0" y="0" width="120" height="18" rx="9" fill="{badge_bg_color}" />
+    <circle cx="11" cy="9" r="3.5" fill="{badge_txt_color}">
       {pulse_anim}
     </circle>
-    <text x="20" y="9" dominant-baseline="middle" class="badge">{status_label}</text>
+    <text x="22" y="10" dominant-baseline="middle" class="badge">{status_label}</text>
 
-    <!-- Song and Artist Details -->
-    <text x="0" y="34" class="song-title">{display_title}</text>
-    <text x="0" y="50" class="artist">{display_artist}</text>
+    <!-- Song Title -->
+    <text x="0" y="36" class="song-title">{display_title}</text>
+
+    <!-- Artist Info -->
+    <text x="0" y="52" class="artist">{display_artist}</text>
   </g>
 
-  <!-- Progress Bar -->
-  <g transform="translate(118, 95)">
-    <rect x="20" y="6" width="240" height="3" rx="1.5" fill="#1e293b" />
-    <rect x="20" y="6" width="0" height="3" rx="1.5" fill="{theme_color}">
+  <!-- Player Controls (Bottom Progress Section) -->
+  <g transform="translate(120, 95)">
+    <!-- Progress Bar Background -->
+    <rect x="0" y="6" width="260" height="4" rx="2" fill="#334155" />
+    <!-- Active Progress Bar -->
+    <rect x="0" y="6" width="0" height="4" rx="2" fill="{theme_color}">
       {progress_bar_animate}
     </rect>
-    <circle cx="20" cy="7.5" r="4" fill="#ffffff" opacity="0.9">
+    <!-- Active slider node -->
+    <circle cx="0" cy="8" r="5" fill="#ffffff">
       {progress_dot_animate}
     </circle>
-    <text x="20" y="22" class="time">0:00</text>
-    <text x="260" y="22" text-anchor="end" class="time">{track_duration}</text>
+
+    <!-- Track Timers -->
+    <text x="0" y="24" class="time">0:00</text>
+    <text x="260" y="24" text-anchor="end" class="time">{track_duration}</text>
   </g>
 
-  <!-- Equalizer Visualizer -->
-  <g transform="translate(0, 96)">
-    {eq_bars}
+  <!-- Interactive Control Icons -->
+  <g transform="translate(395, 78)" stroke="#94a3b8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <!-- Skip Back -->
+    <path d="M 4 6 L 4 18 M 12 6 L 6 12 L 12 18" stroke="#94a3b8" />
+    <!-- Play/Pause Button -->
+    <circle cx="28" cy="12" r="10" fill="{theme_color}" fill-opacity="0.1" stroke="{theme_color}" />
+    <path d="M 25 8 V 16 M 31 8 V 16" stroke="{theme_color}" stroke-width="2" />
+    <!-- Skip Forward -->
+    <path d="M 44 6 L 50 12 L 44 18" />
+    <path d="M 52 6 L 52 18" />
   </g>
 
   <!-- YT Music Brand Logo -->
-  <g transform="translate(436, 16)">
-    <image href="{ytmusic_logo_b64}" x="0" y="0" width="28" height="28" />
+  <g transform="translate(444, 14)">
+    <image href="{ytmusic_logo_b64}" x="0" y="0" width="24" height="24" />
   </g>
 </svg>'''
 
@@ -654,8 +682,8 @@ for i, t in enumerate(recent_tracks[:5]):
 
     # Playing indicator for currently playing track
     if t["is_now"]:
-        now_dot = f'<circle cx="58" cy="{y + 10}" r="3" fill="#1db954"><animate attributeName="opacity" values="0.4;1;0.4" dur="1.5s" repeatCount="indefinite" /></circle>'
-        time_color = "#1db954"
+        now_dot = f'<circle cx="58" cy="{y + 10}" r="3" fill="#ff0033"><animate attributeName="opacity" values="0.4;1;0.4" dur="1.5s" repeatCount="indefinite" /></circle>'
+        time_color = "#ff0033"
     else:
         now_dot = ""
         time_color = "#64748b"
@@ -678,10 +706,10 @@ recent_svg = f'''<svg width="480" height="{total_height}" viewBox="0 0 480 {tota
   <defs>
     <linearGradient id="rcBg" x1="0" y1="0" x2="480" y2="{total_height}" gradientUnits="userSpaceOnUse">
       <stop offset="0%" stop-color="#0a0817" />
-      <stop offset="100%" stop-color="#0e1a12" />
+      <stop offset="100%" stop-color="#1a050d" />
     </linearGradient>
     <linearGradient id="rcBorder" x1="0" y1="0" x2="480" y2="{total_height}" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#1db954" stop-opacity="0.4" />
+      <stop offset="0%" stop-color="#ff0033" stop-opacity="0.4" />
       <stop offset="100%" stop-color="#8b5cf6" stop-opacity="0.2" />
     </linearGradient>
   </defs>
@@ -690,7 +718,7 @@ recent_svg = f'''<svg width="480" height="{total_height}" viewBox="0 0 480 {tota
   <rect x="4" y="4" width="472" height="{total_height - 8}" rx="14" fill="url(#rcBg)" stroke="url(#rcBorder)" stroke-width="1" />
 
   <!-- Header -->
-  <text x="24" y="30" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="700" fill="#1db954" letter-spacing="1">&#9835; RECENTLY PLAYED</text>
+  <text x="24" y="30" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="700" fill="#ff0033" letter-spacing="1">&#9835; RECENTLY PLAYED</text>
   <line x1="20" y1="40" x2="460" y2="40" stroke="#1e293b" stroke-width="0.5" />
 
   <!-- Track Rows -->
