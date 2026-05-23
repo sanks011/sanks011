@@ -39,21 +39,27 @@ Tools       →  Git · GitHub · JWT
 <!-- OSS_CONTRIBUTIONS_START -->
 <!-- auto-updated by .github/workflows/update-contributions.yml -->
 
-<a href="https://github.com/openmrs/openmrs-esm-patient-management">
-  <img src="https://img.shields.io/badge/openmrs%2Fopenmrs--esm--patient--management-PRs-blue?style=for-the-badge&logo=github" alt="openmrs/openmrs-esm-patient-management" />
-</a>
+<a href="https://github.com/openmrs/openmrs-module-attachments"><img src="https://img.shields.io/badge/openmrs%2Fopenmrs-module-attachments-2_PRs-blue?style=for-the-badge&logo=github" alt="openmrs/openmrs-module-attachments" /></a>
 
-<a href="https://github.com/openmrs/openmrs-esm-core">
-  <img src="https://img.shields.io/badge/openmrs%2Fopenmrs--esm--core-PRs-blue?style=for-the-badge&logo=github" alt="openmrs/openmrs-esm-core" />
-</a>
+<a href="https://github.com/openmrs/openmrs-module-queue"><img src="https://img.shields.io/badge/openmrs%2Fopenmrs-module-queue-5_PRs-blue?style=for-the-badge&logo=github" alt="openmrs/openmrs-module-queue" /></a>
 
-<a href="https://github.com/AutoMQ/automq">
-  <img src="https://img.shields.io/badge/AutoMQ%2Fautomq-PRs-blue?style=for-the-badge&logo=github" alt="AutoMQ/automq" />
-</a>
+<a href="https://github.com/XAMPPRocky/octocrab"><img src="https://img.shields.io/badge/XAMPPRocky%2Foctocrab-1_PRs-blue?style=for-the-badge&logo=github" alt="XAMPPRocky/octocrab" /></a>
 
-<a href="https://github.com/TheAlgorithms/Python">
-  <img src="https://img.shields.io/badge/TheAlgorithms%2FPython-PRs-blue?style=for-the-badge&logo=github" alt="TheAlgorithms/Python" />
-</a>
+<a href="https://github.com/openmrs/openmrs-esm-core"><img src="https://img.shields.io/badge/openmrs%2Fopenmrs-esm-core-3_PRs-blue?style=for-the-badge&logo=github" alt="openmrs/openmrs-esm-core" /></a>
+
+<a href="https://github.com/openmrs/openmrs-esm-patient-management"><img src="https://img.shields.io/badge/openmrs%2Fopenmrs-esm-patient-management-6_PRs-blue?style=for-the-badge&logo=github" alt="openmrs/openmrs-esm-patient-management" /></a>
+
+<a href="https://github.com/openmrs/openmrs-esm-cohortbuilder-app"><img src="https://img.shields.io/badge/openmrs%2Fopenmrs-esm-cohortbuilder-app-3_PRs-blue?style=for-the-badge&logo=github" alt="openmrs/openmrs-esm-cohortbuilder-app" /></a>
+
+<a href="https://github.com/FalkorDB/FalkorDB"><img src="https://img.shields.io/badge/FalkorDB%2FFalkorDB-1_PRs-blue?style=for-the-badge&logo=github" alt="FalkorDB/FalkorDB" /></a>
+
+<a href="https://github.com/sugarlabs/speak"><img src="https://img.shields.io/badge/sugarlabs%2Fspeak-1_PRs-blue?style=for-the-badge&logo=github" alt="sugarlabs/speak" /></a>
+
+<a href="https://github.com/openmrs/openmrs-module-patientdocuments"><img src="https://img.shields.io/badge/openmrs%2Fopenmrs-module-patientdocuments-1_PRs-blue?style=for-the-badge&logo=github" alt="openmrs/openmrs-module-patientdocuments" /></a>
+
+<a href="https://github.com/AutoMQ/automq"><img src="https://img.shields.io/badge/AutoMQ%2Fautomq-2_PRs-blue?style=for-the-badge&logo=github" alt="AutoMQ/automq" /></a>
+
+<a href="https://github.com/TheAlgorithms/Python"><img src="https://img.shields.io/badge/TheAlgorithms%2FPython-1_PRs-blue?style=for-the-badge&logo=github" alt="TheAlgorithms/Python" /></a>
 
 <!-- OSS_CONTRIBUTIONS_END -->
 
