@@ -24,9 +24,14 @@ I'm a passionate developer who loves building scalable systems, developing intel
 <img src="./assets/header-terminal.svg" height="45" alt="Terminal Session" />
 
 <div align="center">
-  <img src="./assets/terminal.svg?v=12" width="550" alt="Sankalpa's Terminal Stats" />
+
+<!-- MUSIC_START -->
+<!-- auto-updated by .github/workflows/update-contributions.yml -->
+<img src="./assets/ytmusic_1779529336.svg" width="480" alt="Coding Soundtrack" />
+<!-- MUSIC_END -->
+
   <br/><br/>
-  <img src="./assets/spotify-v2.svg" width="480" alt="Coding Soundtrack" />
+  <img src="./assets/terminal.svg?v=12" width="550" alt="Sankalpa's Terminal Stats" />
 </div>
 
 ---
@@ -171,19 +176,6 @@ I'm a passionate developer who loves building scalable systems, developing intel
 </p>
 
 <!-- TELEMETRY_END -->
-
----
-
-<img src="./assets/header-music.svg" height="45" alt="Live Music Stream" />
-
-<!-- MUSIC_START -->
-<!-- auto-updated by .github/workflows/update-contributions.yml -->
-
-<p align="center">
-  <img src="./assets/ytmusic_1779529336.svg" alt="YouTube Music Player" width="480" />
-</p>
-
-<!-- MUSIC_END -->
 
 ---
 
