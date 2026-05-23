@@ -28,7 +28,7 @@ I'm a passionate developer who loves building scalable systems, developing intel
 <div align="center">
   <img src="./assets/terminal.svg?v=12" width="550" alt="Sankalpa's Terminal Stats" />
   <br/><br/>
-  <img src="./assets/spotify.svg?v=12" width="480" alt="Coding Soundtrack" />
+  <img src="./assets/spotify-v2.svg" width="480" alt="Coding Soundtrack" />
 </div>
 
 ---
