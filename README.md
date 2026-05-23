@@ -23,7 +23,9 @@
 
 I'm a passionate developer who loves building scalable systems, developing intelligent machine learning models, and contributing back to the open-source community. My work sits at the intersection of full-stack engineering and modern AI, creating functional solutions that scale beautifully.
 
-<br/>
+---
+
+<img src="./assets/header-terminal.svg" height="45" alt="Terminal Session" />
 
 <div align="center">
   <img src="./assets/terminal.svg?v=12" width="550" alt="Sankalpa's Terminal Stats" />
@@ -173,11 +175,12 @@ I'm a passionate developer who loves building scalable systems, developing intel
 
 <img src="./assets/header-telemetry.svg" height="45" alt="System Telemetry" />
 
+<!-- TELEMETRY_START -->
 ```json
 {
   "system": {
     "status": "fully_operational",
-    "uptime": "8035_days",
+    "uptime": "7723_days",
     "energy_source": "caffeine_latte",
     "active_neural_threads": 42
   },
@@ -193,6 +196,7 @@ I'm a passionate developer who loves building scalable systems, developing intel
   }
 }
 ```
+<!-- TELEMETRY_END -->
 
 ---
 

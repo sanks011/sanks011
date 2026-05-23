@@ -1,8 +1,8 @@
-name: Update OSS Contributions
+name: Daily System Telemetry & OSS Update
 
 on:
   schedule:
-    - cron: "0 0 * * 0"   # every Sunday midnight
+    - cron: "0 0 * * *"   # every day at midnight
   workflow_dispatch:        # run manually anytime
 
 jobs:
@@ -178,10 +178,34 @@ jobs:
               flags=re.DOTALL
           )
 
+          # Calculate uptime days since March 31, 2005
+          from datetime import datetime
+          birthday = datetime(2005, 3, 31)
+          today = datetime.now()
+          days_delta = (today - birthday).days
+          
+          # Replace uptime in the markdown telemetry block
+          telemetry_start = "<!-- TELEMETRY_START -->"
+          telemetry_end = "<!-- TELEMETRY_END -->"
+          
+          telemetry_match = re.search(
+              rf"{re.escape(telemetry_start)}(.*?){re.escape(telemetry_end)}",
+              updated,
+              flags=re.DOTALL
+          )
+          if telemetry_match:
+              old_telemetry = telemetry_match.group(1)
+              new_telemetry = re.sub(
+                  r'"uptime":\s*"[^"]*"',
+                  f'"uptime": "{days_delta}_days"',
+                  old_telemetry
+              )
+              updated = updated.replace(old_telemetry, new_telemetry)
+
           with open("README.md", "w") as f:
               f.write(updated)
 
-          print(f"Updated with {len(orgs)} organizations.")
+          print(f"Updated with {len(orgs)} organizations and dynamic uptime: {days_delta} days.")
           PYEOF
 
       - name: Commit if changed
