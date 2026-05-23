@@ -7,6 +7,9 @@ import ssl
 from datetime import datetime
 import glob
 
+# Music Provider configuration: set to "ytmusic" or "spotify"
+MUSIC_PROVIDER = os.environ.get("MUSIC_PROVIDER", "ytmusic")
+
 # Make sure assets directory exists
 os.makedirs("assets", exist_ok=True)
 
@@ -359,7 +362,7 @@ telemetry_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="800" height="
 with open(f"assets/telemetry_{cache_buster}.svg", "w") as f:
     f.write(telemetry_svg)
 
-# Fetch Last.fm details for YouTube Music scrobbling
+# Fetch Last.fm details for music scrobbling
 lastfm_username = os.environ.get("LASTFM_USERNAME", "sankalpasarkar")
 lastfm_api_key = os.environ.get("LASTFM_API_KEY", "0fb784e9ef782d1cd606c15d21dee184")
 
@@ -372,123 +375,164 @@ album = album.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").re
 
 b64_art = download_image_as_b64(art_url) if is_playing else ""
 
+# Set brand-specific styling variables based on MUSIC_PROVIDER configuration
+if MUSIC_PROVIDER == "spotify":
+    theme_color = "#1db954"
+    brand_badge_text = "SPOTIFY SESSION"
+    badge_bg_color = "rgba(29, 185, 84, 0.12)"
+    badge_txt_color = "#1db954"
+    shadow_fill = "#1db954"
+    border_stop1 = "#1db954"
+    border_stop2 = "#8b5cf6"
+    brand_logo_svg = '''
+    <g transform="translate(415, 20)">
+      <circle cx="15" cy="15" r="14" fill="#1db954" />
+      <path d="M 7.5 11 C 12 8.5, 18 8.5, 22.5 11" stroke="#0a0817" stroke-width="2.5" stroke-linecap="round" fill="none" />
+      <path d="M 9 15 C 13 13, 17 13, 21 15" stroke="#0a0817" stroke-width="2" stroke-linecap="round" fill="none" />
+      <path d="M 10.5 19 C 13.5 17.5, 16.5 17.5, 19.5 19" stroke="#0a0817" stroke-width="1.8" stroke-linecap="round" fill="none" />
+    </g>'''
+else:  # Default: "ytmusic"
+    theme_color = "#ff0000"
+    brand_badge_text = "YOUTUBE MUSIC"
+    badge_bg_color = "rgba(255, 0, 0, 0.12)"
+    badge_txt_color = "#ff0000"
+    shadow_fill = "#ff0000"
+    border_stop1 = "#ff0000"
+    border_stop2 = "#8b5cf6"
+    brand_logo_svg = '''
+    <g transform="translate(415, 20)">
+      <circle cx="15" cy="15" r="14" fill="#ff0000" />
+      <circle cx="15" cy="15" r="9" fill="#0a0817" stroke="#ff0000" stroke-width="1" />
+      <path d="M 13 11 L 19 15 L 13 19 Z" fill="#ffffff" />
+    </g>'''
+
 if is_playing:
-    status_label = "LIVE STREAM"
-    badge_color = "#ff0000"
-    badge_bg = "rgba(255, 0, 0, 0.12)"
-    badge_circle_color = "#ff0000"
-    spinning_class = "spinning-art"
-    eq_anim_1 = '<animate attributeName="height" values="6;24;10;24;6" dur="0.8s" repeatCount="indefinite"/><animate attributeName="y" values="18;0;14;0;18" dur="0.8s" repeatCount="indefinite"/>'
-    eq_anim_2 = '<animate attributeName="height" values="12;24;6;24;12" dur="0.5s" repeatCount="indefinite"/><animate attributeName="y" values="12;0;18;0;12" dur="0.5s" repeatCount="indefinite"/>'
-    eq_anim_3 = '<animate attributeName="height" values="8;24;16;24;8" dur="1.1s" repeatCount="indefinite"/><animate attributeName="y" values="16;0;8;0;16" dur="1.1s" repeatCount="indefinite"/>'
-    eq_anim_4 = '<animate attributeName="height" values="16;24;8;24;16" dur="0.7s" repeatCount="indefinite"/><animate attributeName="y" values="8;0;16;0;8" dur="0.7s" repeatCount="indefinite"/>'
-    eq_anim_5 = '<animate attributeName="height" values="4;18;8;18;4" dur="1.3s" repeatCount="indefinite"/><animate attributeName="y" values="20;6;16;6;20" dur="1.3s" repeatCount="indefinite"/>'
-    eq_color = "#ff0000"
+    status_label = brand_badge_text
+    spinning_class = "vinyl-record"
+    progress_bar_animate = '<animate attributeName="width" from="0" to="260" dur="240s" repeatCount="indefinite"/>'
+    progress_dot_animate = '<animate attributeName="cx" from="0" to="260" dur="240s" repeatCount="indefinite"/>'
+    active_play_stroke = theme_color
+    timer_right = "04:20"
+    progress_bar_color = theme_color
 else:
     status_label = "DEV FOCUS MODE"
-    badge_color = "#a78bfa"
-    badge_bg = "rgba(167, 139, 250, 0.12)"
-    badge_circle_color = "#a78bfa"
     spinning_class = ""
+    progress_bar_animate = ""
+    progress_dot_animate = ""
+    active_play_stroke = "#64748b"
+    timer_right = "--:--"
+    progress_bar_color = "#475569"
     song_title = "Caffeine &amp; Neural Networks"
     artist = "Sankalpa Sarkar — Dev Focus Vibe"
-    eq_anim_1 = ""
-    eq_anim_2 = ""
-    eq_anim_3 = ""
-    eq_anim_4 = ""
-    eq_anim_5 = ""
-    eq_color = "#64748b"
 
 if is_playing and b64_art:
     album_art_rendering = f'''
+    <!-- Album Art: Glowing Spinning Vinyl Record -->
     <g class="{spinning_class}">
+      <circle cx="60" cy="70" r="42" fill="#18142c" stroke="{theme_color}" stroke-width="1.5" />
+      <circle cx="60" cy="70" r="32" fill="#0d0a1b" stroke="#3b0764" stroke-width="1" />
+      
       <clipPath id="circle-art-clip">
-        <circle cx="70" cy="70" r="48" />
+        <circle cx="60" cy="70" r="28" />
       </clipPath>
-      <image href="{b64_art}" x="22" y="22" width="96" height="96" clip-path="url(#circle-art-clip)"/>
-      <circle cx="70" cy="70" r="8" fill="#0d0b21" stroke="#ff0000" stroke-width="0.5"/>
-      <circle cx="70" cy="70" r="2.5" fill="#ffffff" />
-    </g>
-    <circle cx="70" cy="70" r="48" fill="none" stroke="#1e1b4b" stroke-width="1.5" pointer-events="none"/>'''
+      <image href="{b64_art}" x="32" y="42" width="56" height="56" clip-path="url(#circle-art-clip)"/>
+      
+      <circle cx="60" cy="70" r="28" fill="none" stroke="#2e2b42" stroke-width="0.5" stroke-dasharray="10 5" />
+      <circle cx="60" cy="70" r="18" fill="none" stroke="#2e2b42" stroke-width="0.5" stroke-dasharray="4 2" />
+      <circle cx="60" cy="70" r="6" fill="#0d0a1b" stroke="{theme_color}" stroke-width="0.5" />
+      <circle cx="60" cy="70" r="1.5" fill="#ffffff" />
+    </g>'''
 else:
     album_art_rendering = f'''
+    <!-- Album Art: Glowing Spinning Vinyl Record -->
     <g class="{spinning_class}">
-      <circle cx="70" cy="70" r="48" fill="#110e2e" stroke="#1e1b4b" stroke-width="1" />
-      <circle cx="70" cy="70" r="38" fill="#08051a" stroke="#221c54" stroke-width="0.5" />
-      <circle cx="70" cy="70" r="28" fill="none" stroke="#221c54" stroke-width="0.5" stroke-dasharray="4 2" />
-      <circle cx="70" cy="70" r="16" fill="{badge_circle_color}" />
-      <circle cx="70" cy="70" r="4" fill="#0d0b21" />
-    </g>
-    <circle cx="70" cy="70" r="48" fill="none" stroke="#1e1b4b" stroke-width="1.5" pointer-events="none"/>'''
+      <circle cx="60" cy="70" r="42" fill="#18142c" stroke="{theme_color}" stroke-width="1.5" />
+      <circle cx="60" cy="70" r="32" fill="#0d0a1b" stroke="#3b0764" stroke-width="1" />
+      <circle cx="60" cy="70" r="24" fill="none" stroke="#2e2b42" stroke-width="0.5" stroke-dasharray="10 5" />
+      <circle cx="60" cy="70" r="16" fill="none" stroke="#2e2b42" stroke-width="0.5" stroke-dasharray="4 2" />
+      <circle cx="60" cy="70" r="12" fill="{theme_color}" />
+      <circle cx="60" cy="70" r="3" fill="#0d0a1b" />
+    </g>'''
 
-ytmusic_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="480" height="140" viewBox="0 0 480 140" fill="none">
+ytmusic_svg = f'''<svg width="480" height="140" viewBox="0 0 480 140" fill="none" xmlns="http://www.w3.org/2000/svg">
   <style>
-    .song-title {{ font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, sans-serif; font-weight: 700; font-size: 14px; fill: #ffffff; }}
-    .artist {{ font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, sans-serif; font-weight: 500; font-size: 11.5px; fill: #a78bfa; }}
-    .badge-txt {{ font-family: 'SFMono-Regular', Consolas, monospace; font-size: 8.5px; font-weight: bold; fill: {badge_color}; letter-spacing: 0.8px; }}
-    .spinning-art {{ transform-origin: 70px 70px; animation: spin 12s linear infinite; }}
+    .song-title {{ font: 700 15px 'Inter', system-ui, sans-serif; fill: #ffffff; }}
+    .artist {{ font: 500 12px 'Inter', system-ui, sans-serif; fill: #a78bfa; }}
+    .time {{ font: 500 10px monospace; fill: #94a3b8; }}
+    .badge {{ font: 600 9px monospace; fill: {badge_txt_color}; letter-spacing: 1px; }}
+    .vinyl-record {{ transform-origin: 60px 70px; animation: spin 8s linear infinite; }}
     @keyframes spin {{ 0% {{ transform: rotate(0deg); }} 100% {{ transform: rotate(360deg); }} }}
   </style>
 
-  <!-- Player Frame -->
-  <rect x="1" y="1" width="478" height="138" rx="12" fill="#0d0b21" stroke="#1e1b4b" stroke-width="1.5"/>
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="480" y2="140" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0a0817" />
+      <stop offset="100%" stop-color="#120e2e" />
+    </linearGradient>
+    <linearGradient id="borderGrad" x1="0" y1="0" x2="480" y2="140" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="{border_stop1}" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="{border_stop2}" stop-opacity="0.4" />
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
 
-  <!-- Album Art Cover -->
+  <!-- Glowing background drop shadow -->
+  <rect x="8" y="8" width="464" height="124" rx="16" fill="{shadow_fill}" opacity="0.1" filter="url(#glow)" />
+
+  <!-- Main Player Container -->
+  <rect x="8" y="8" width="464" height="124" rx="16" fill="url(#bgGrad)" stroke="url(#borderGrad)" stroke-width="1.5" />
+
   {album_art_rendering}
 
-  <!-- Track Details -->
-  <g transform="translate(136, 28)">
+  <!-- Track Information -->
+  <g transform="translate(120, 28)">
     <!-- Dynamic Playing Badge -->
-    <rect x="0" y="0" width="125" height="18" rx="4" fill="{badge_bg}" stroke="{badge_color}" stroke-opacity="0.2" stroke-width="1" />
-    <circle cx="10" cy="9" r="3.5" fill="{badge_circle_color}">
+    <rect x="0" y="0" width="125" height="18" rx="9" fill="{badge_bg_color}" />
+    <circle cx="11" cy="9" r="3.5" fill="{badge_txt_color}">
       <animate attributeName="opacity" values="0.4;1;0.4" dur="2s" repeatCount="indefinite" />
     </circle>
-    <text x="20" y="12.5" class="badge-txt">{status_label}</text>
+    <text x="22" y="10" dominant-baseline="middle" class="badge">{status_label}</text>
 
-    <!-- Song Title -->
-    <text x="0" y="38" class="song-title">{song_title}</text>
+    <!-- Song & Artist Details -->
+    <text x="0" y="36" class="song-title">{song_title}</text>
+    <text x="0" y="54" class="artist">{artist}</text>
+  </g>
+
+  <!-- Player Controls (Bottom Progress Section) -->
+  <g transform="translate(120, 95)">
+    <!-- Progress Bar Background -->
+    <rect x="0" y="6" width="260" height="4" rx="2" fill="#334155" />
+    <!-- Active Progress Bar -->
+    <rect x="0" y="6" width="0" height="4" rx="2" fill="{progress_bar_color}">
+      {progress_bar_animate}
+    </rect>
+    <!-- Active slider node -->
+    <circle cx="0" cy="8" r="5" fill="#ffffff">
+      {progress_dot_animate}
+    </circle>
     
-    <!-- Artist Info -->
-    <text x="0" y="55" class="artist">{artist}</text>
+    <!-- Track Timers -->
+    <text x="0" y="24" class="time">00:00</text>
+    <text x="260" y="24" text-anchor="end" class="time">{timer_right}</text>
   </g>
 
   <!-- Interactive Control Icons -->
-  <g transform="translate(136, 96)" stroke="#64748b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none">
+  <g transform="translate(395, 78)" stroke="#94a3b8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none">
     <!-- Skip Back -->
-    <path d="M 0 6 L 0 16 M 8 6 L 2 11 L 8 16" />
+    <path d="M 4 6 L 4 18 M 12 6 L 6 12 L 12 18" stroke="#94a3b8" />
     <!-- Play/Pause Button -->
-    <circle cx="22" cy="11" r="9" fill="{badge_color}" fill-opacity="0.05" stroke="{badge_color}" />
-    <path d="M 20 8 V 14 M 24 8 V 14" stroke="{badge_color}" stroke-width="1.8" />
+    <circle cx="28" cy="12" r="10" fill="{theme_color}" fill-opacity="0.1" stroke="{theme_color}" />
+    <path d="M 25 8 V 16 M 31 8 V 16" stroke="{active_play_stroke}" stroke-width="2" />
     <!-- Skip Forward -->
-    <path d="M 36 6 L 42 11 L 36 16" />
-    <path d="M 44 6 L 44 16" />
+    <path d="M 44 6 L 50 12 L 44 18" />
+    <path d="M 52 6 L 52 18" />
   </g>
 
-  <!-- Equalizer Visualizer (Jumping bars) -->
-  <g transform="translate(425, 88)">
-    <rect x="0" y="0" width="3" height="24" fill="{eq_color}" rx="1.2">
-      {eq_anim_1}
-    </rect>
-    <rect x="5" y="0" width="3" height="24" fill="{eq_color}" rx="1.2">
-      {eq_anim_2}
-    </rect>
-    <rect x="10" y="0" width="3" height="24" fill="{eq_color}" rx="1.2">
-      {eq_anim_3}
-    </rect>
-    <rect x="15" y="0" width="3" height="24" fill="{eq_color}" rx="1.2">
-      {eq_anim_4}
-    </rect>
-    <rect x="20" y="0" width="3" height="24" fill="{eq_color}" rx="1.2">
-      {eq_anim_5}
-    </rect>
-  </g>
-
-  <!-- YT Music Brand Accent Icon -->
-  <g transform="translate(440, 16)">
-    <circle cx="12" cy="12" r="11" fill="#ff0000" />
-    <circle cx="12" cy="12" r="7" fill="#0d0b21" stroke="#ff0000" stroke-width="1.2" />
-    <path d="M 10 9 L 15.5 12 L 10 15 Z" fill="#ffffff" />
-  </g>
+  <!-- Brand Accent Icon -->
+  {brand_logo_svg}
 </svg>'''
 
 with open(f"assets/ytmusic_{cache_buster}.svg", "w") as f:
