@@ -3,7 +3,7 @@
     .song-title { font: 700 15px 'Inter', system-ui, sans-serif; fill: #ffffff; }
     .artist { font: 500 12px 'Inter', system-ui, sans-serif; fill: #a78bfa; }
     .time { font: 500 10px monospace; fill: #94a3b8; }
-    .badge { font: 600 9px monospace; fill: #94a3b8; letter-spacing: 1px; }
+    .badge { font: 600 9px monospace; fill: #ff0033; letter-spacing: 1px; }
     .vinyl-record { transform-origin: 60px 70px; animation: spin 4s linear infinite; }
     @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
   </style>
@@ -30,7 +30,7 @@
   <rect x="8" y="8" width="464" height="124" rx="16" fill="url(#bgGrad)" stroke="url(#borderGrad)" stroke-width="1.5" />
 
   
-    <g class="">
+    <g class="vinyl-record">
       <circle cx="60" cy="70" r="42" fill="#18142c" stroke="#ff0033" stroke-width="1.5" />
       <circle cx="60" cy="70" r="35" fill="#0d0a1b" stroke="#3a1a20" stroke-width="0.5" />
       <clipPath id="circle-art-clip">
@@ -46,11 +46,11 @@
   <!-- Track Information -->
   <g transform="translate(120, 28)">
     <!-- Dynamic Playing Badge -->
-    <rect x="0" y="0" width="120" height="18" rx="9" fill="rgba(148, 163, 184, 0.1)" />
-    <circle cx="11" cy="9" r="3.5" fill="#94a3b8">
-      
+    <rect x="0" y="0" width="120" height="18" rx="9" fill="rgba(255, 0, 51, 0.15)" />
+    <circle cx="11" cy="9" r="3.5" fill="#ff0033">
+      <animate attributeName="opacity" values="0.4;1;0.4" dur="1.5s" repeatCount="indefinite" />
     </circle>
-    <text x="22" y="10" dominant-baseline="middle" class="badge">RECENTLY PLAYED</text>
+    <text x="22" y="10" dominant-baseline="middle" class="badge">NOW PLAYING</text>
 
     <!-- Song Title -->
     <text x="0" y="36" class="song-title">Chand Mera Dil (Title Track)</text>
@@ -65,11 +65,11 @@
     <rect x="0" y="6" width="260" height="4" rx="2" fill="#334155" />
     <!-- Active Progress Bar -->
     <rect x="0" y="6" width="0" height="4" rx="2" fill="#ff0033">
-      
+      <animate attributeName="width" from="0" to="260" dur="210s" repeatCount="indefinite"/>
     </rect>
     <!-- Active slider node -->
     <circle cx="0" cy="8" r="5" fill="#ffffff">
-      
+      <animate attributeName="cx" from="0" to="260" dur="210s" repeatCount="indefinite"/>
     </circle>
 
     <!-- Track Timers -->
