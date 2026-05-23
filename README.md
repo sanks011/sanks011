@@ -79,10 +79,17 @@ I'm a passionate developer who loves building scalable applications and contribu
 <!-- OSS_CONTRIBUTIONS_START -->
 <!-- auto-updated by .github/workflows/update-contributions.yml -->
 
-<a href="https://github.com/openmrs/openmrs-esm-patient-management"><img src="https://img.shields.io/badge/openmrs--openmrs--esm--patient--management-PRs-blue?style=for-the-badge&logo=github&logoColor=white" alt="openmrs/openmrs-esm-patient-management" /></a>
-<a href="https://github.com/openmrs/openmrs-esm-core"><img src="https://img.shields.io/badge/openmrs--openmrs--esm--core-PRs-blue?style=for-the-badge&logo=github&logoColor=white" alt="openmrs/openmrs-esm-core" /></a>
-<a href="https://github.com/AutoMQ/automq"><img src="https://img.shields.io/badge/AutoMQ--automq-PRs-blue?style=for-the-badge&logo=github&logoColor=white" alt="AutoMQ/automq" /></a>
-<a href="https://github.com/TheAlgorithms/Python"><img src="https://img.shields.io/badge/TheAlgorithms--Python-PRs-blue?style=for-the-badge&logo=github&logoColor=white" alt="TheAlgorithms/Python" /></a>
+<a href="https://github.com/openmrs/openmrs-module-attachments"><img src="https://img.shields.io/badge/openmrs----openmrs--module--attachments-2_PRs-blue?style=for-the-badge&logo=github&logoColor=white" alt="openmrs/openmrs-module-attachments" /></a>
+<a href="https://github.com/openmrs/openmrs-module-queue"><img src="https://img.shields.io/badge/openmrs----openmrs--module--queue-5_PRs-blue?style=for-the-badge&logo=github&logoColor=white" alt="openmrs/openmrs-module-queue" /></a>
+<a href="https://github.com/XAMPPRocky/octocrab"><img src="https://img.shields.io/badge/XAMPPRocky----octocrab-1_PRs-blue?style=for-the-badge&logo=github&logoColor=white" alt="XAMPPRocky/octocrab" /></a>
+<a href="https://github.com/openmrs/openmrs-esm-core"><img src="https://img.shields.io/badge/openmrs----openmrs--esm--core-3_PRs-blue?style=for-the-badge&logo=github&logoColor=white" alt="openmrs/openmrs-esm-core" /></a>
+<a href="https://github.com/openmrs/openmrs-esm-patient-management"><img src="https://img.shields.io/badge/openmrs----openmrs--esm--patient--management-6_PRs-blue?style=for-the-badge&logo=github&logoColor=white" alt="openmrs/openmrs-esm-patient-management" /></a>
+<a href="https://github.com/openmrs/openmrs-esm-cohortbuilder-app"><img src="https://img.shields.io/badge/openmrs----openmrs--esm--cohortbuilder--app-3_PRs-blue?style=for-the-badge&logo=github&logoColor=white" alt="openmrs/openmrs-esm-cohortbuilder-app" /></a>
+<a href="https://github.com/FalkorDB/FalkorDB"><img src="https://img.shields.io/badge/FalkorDB----FalkorDB-1_PRs-blue?style=for-the-badge&logo=github&logoColor=white" alt="FalkorDB/FalkorDB" /></a>
+<a href="https://github.com/sugarlabs/speak"><img src="https://img.shields.io/badge/sugarlabs----speak-1_PRs-blue?style=for-the-badge&logo=github&logoColor=white" alt="sugarlabs/speak" /></a>
+<a href="https://github.com/openmrs/openmrs-module-patientdocuments"><img src="https://img.shields.io/badge/openmrs----openmrs--module--patientdocuments-1_PRs-blue?style=for-the-badge&logo=github&logoColor=white" alt="openmrs/openmrs-module-patientdocuments" /></a>
+<a href="https://github.com/AutoMQ/automq"><img src="https://img.shields.io/badge/AutoMQ----automq-2_PRs-blue?style=for-the-badge&logo=github&logoColor=white" alt="AutoMQ/automq" /></a>
+<a href="https://github.com/TheAlgorithms/Python"><img src="https://img.shields.io/badge/TheAlgorithms----Python-1_PRs-blue?style=for-the-badge&logo=github&logoColor=white" alt="TheAlgorithms/Python" /></a>
 
 <!-- OSS_CONTRIBUTIONS_END -->
 
