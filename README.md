@@ -26,7 +26,7 @@ I'm a passionate developer who loves building scalable systems, developing intel
 <br/>
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/sanks011/sanks011/main/assets/terminal.svg" width="550" alt="Sankalpa's Terminal Stats" />
+  <img src="https://raw.githubusercontent.com/sanks011/sanks011/main/assets/terminal.svg?v=1" width="550" alt="Sankalpa's Terminal Stats" />
 </div>
 
 ---
