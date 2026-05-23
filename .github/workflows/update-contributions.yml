@@ -14,12 +14,36 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Fetch merged PRs in external repos
+      - name: Fetch PRs with pagination
         id: prs
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          # Fetch PRs with pagination (GitHub API limit is 100 per request)
+          # Create merge script
+          cat > merge_prs.py << 'EOF'
+          import json
+          import sys
+          
+          with open('prs.json') as f:
+              all_data = json.load(f)
+          with open('page.json') as f:
+              page_data = json.load(f)
+          
+          all_data['data']['user']['pullRequests']['nodes'].extend(
+              page_data['data']['user']['pullRequests']['nodes']
+          )
+          
+          with open('prs.json', 'w') as f:
+              json.dump(all_data, f)
+          
+          page_info = page_data['data']['user']['pullRequests']['pageInfo']
+          if page_info['hasNextPage']:
+              print(page_info['endCursor'])
+          else:
+              print('DONE')
+          EOF
+          
+          # Initialize empty result
           echo '{"data":{"user":{"pullRequests":{"nodes":[]}}}}' > prs.json
           
           CURSOR=""
@@ -79,32 +103,7 @@ jobs:
               ' -f cursor="$CURSOR" > page.json
             fi
             
-            python3 -c "
-import json
-with open('prs.json') as f:
-    all_data = json.load(f)
-with open('page.json') as f:
-    page_data = json.load(f)
-all_data['data']['user']['pullRequests']['nodes'].extend(page_data['data']['user']['pullRequests']['nodes'])
-with open('prs.json', 'w') as f:
-    json.dump(all_data, f)
-page_info = page_data['data']['user']['pullRequests']['pageInfo']
-if page_info['hasNextPage']:
-    print(page_info['endCursor'])
-else:
-    print('DONE')
-"
-            
-            RESULT=$(python3 -c "
-import json
-with open('page.json') as f:
-    page_data = json.load(f)
-page_info = page_data['data']['user']['pullRequests']['pageInfo']
-if page_info['hasNextPage']:
-    print(page_info['endCursor'])
-else:
-    print('DONE')
-")
+            RESULT=$(python3 merge_prs.py)
             
             if [ "$RESULT" = "DONE" ]; then
               echo "No more pages to fetch"
@@ -113,7 +112,8 @@ else:
             CURSOR="$RESULT"
           done
 
-          # Extract unique orgs, count PRs, create cards
+      - name: Process PRs and update README
+        run: |
           python3 - << 'PYEOF'
           import json, sys
 
