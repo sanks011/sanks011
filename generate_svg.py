@@ -350,9 +350,11 @@ with open("assets/telemetry.svg", "w") as f:
 with open("README.md") as f:
     content = f.read()
 
+cache_buster = int(today.timestamp())
+
 start = "<!-- OSS_CONTRIBUTIONS_START -->"
 end = "<!-- OSS_CONTRIBUTIONS_END -->"
-new_block = f"{start}\n<!-- auto-updated by .github/workflows/update-contributions.yml -->\n\n<p align=\"center\">\n  <img src=\"./assets/contributions.svg\" alt=\"Open Source Contributions Telemetry\" width=\"100%\" />\n</p>\n\n{end}"
+new_block = f"{start}\n<!-- auto-updated by .github/workflows/update-contributions.yml -->\n\n<p align=\"center\">\n  <img src=\"./assets/contributions.svg?v={cache_buster}\" alt=\"Open Source Contributions Telemetry\" width=\"100%\" />\n</p>\n\n{end}"
 
 updated = re.sub(
     rf"{re.escape(start)}.*?{re.escape(end)}",
@@ -364,7 +366,7 @@ updated = re.sub(
 # Replace telemetry block with beautiful terminal console SVG
 telemetry_start = "<!-- TELEMETRY_START -->"
 telemetry_end = "<!-- TELEMETRY_END -->"
-new_telemetry_block = f"{telemetry_start}\n<!-- auto-updated by .github/workflows/update-contributions.yml -->\n\n<p align=\"center\">\n  <img src=\"./assets/telemetry.svg\" alt=\"System Status Telemetry Console\" width=\"100%\" />\n</p>\n\n{telemetry_end}"
+new_telemetry_block = f"{telemetry_start}\n<!-- auto-updated by .github/workflows/update-contributions.yml -->\n\n<p align=\"center\">\n  <img src=\"./assets/telemetry.svg?v={cache_buster}\" alt=\"System Status Telemetry Console\" width=\"100%\" />\n</p>\n\n{telemetry_end}"
 
 updated = re.sub(
     rf"{re.escape(telemetry_start)}.*?{re.escape(telemetry_end)}",
@@ -376,4 +378,4 @@ updated = re.sub(
 with open("README.md", "w") as f:
     f.write(updated)
 
-print(f"Successfully compiled contributions SVG and terminal telemetry SVG! Dynamic uptime: {days_delta} days.")
+print(f"Successfully compiled contributions SVG and terminal telemetry SVG! Cache buster: {cache_buster}")
