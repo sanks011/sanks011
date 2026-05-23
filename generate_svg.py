@@ -363,8 +363,8 @@ with open(f"assets/telemetry_{cache_buster}.svg", "w") as f:
     f.write(telemetry_svg)
 
 # Fetch Last.fm details for music scrobbling
-lastfm_username = os.environ.get("LASTFM_USERNAME", "sankalpasarkar")
-lastfm_api_key = os.environ.get("LASTFM_API_KEY", "0fb784e9ef782d1cd606c15d21dee184")
+lastfm_username = os.environ.get("LASTFM_USERNAME") or "sankalpasarkar"
+lastfm_api_key = os.environ.get("LASTFM_API_KEY") or "0fb784e9ef782d1cd606c15d21dee184"
 
 is_playing, song_title, artist, album, art_url = fetch_lastfm_nowplaying(lastfm_username, lastfm_api_key)
 

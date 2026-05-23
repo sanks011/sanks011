@@ -129,4 +129,5 @@ jobs:
           git add README.md assets/
           git diff --cached --quiet || git commit -m "chore: update OSS contributions and telemetry dashboard [skip ci]"
           git remote set-url origin "https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}"
+          git pull --rebase origin main
           git push
