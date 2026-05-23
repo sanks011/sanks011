@@ -54,7 +54,7 @@ I'm a passionate developer who loves building scalable systems, developing intel
         <br/><br/>
         <strong>Creator &amp; Lead AI Engineer</strong>
         <br/><br/>
-        AI assistant that twins your coding habits &amp; automates workflows.
+        AI assistant that twins your coding habits.
       </td>
     </tr>
   </table>
