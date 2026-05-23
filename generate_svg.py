@@ -645,7 +645,7 @@ ytmusic_svg = f'''<svg width="480" height="140" viewBox="0 0 480 140" fill="none
   </g>
 
   <!-- YT Music Brand Logo -->
-  <g transform="translate(444, 14)">
+  <g transform="translate(436, 14)">
     <image href="{ytmusic_logo_b64}" x="0" y="0" width="24" height="24" />
   </g>
 </svg>'''
