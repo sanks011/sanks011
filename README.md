@@ -19,7 +19,7 @@
 
 ---
 
-## About Me
+<img src="./assets/header-about.svg" height="45" alt="About Me" />
 
 I'm a passionate developer who loves building scalable systems, developing intelligent machine learning models, and contributing back to the open-source community. My work sits at the intersection of full-stack engineering and modern AI, creating functional solutions that scale beautifully.
 
@@ -33,7 +33,7 @@ I'm a passionate developer who loves building scalable systems, developing intel
 
 ---
 
-## Featured Ventures & Flagship Products
+<img src="./assets/header-ventures.svg" height="45" alt="Featured Ventures" />
 
 <div align="center">
   <table width="100%" style="border-collapse: collapse; border: none; background: transparent;">
@@ -62,7 +62,7 @@ I'm a passionate developer who loves building scalable systems, developing intel
 
 ---
 
-## Tech Stack & Skills
+<img src="./assets/header-skills.svg" height="45" alt="Tech Stack" />
 
 <div align="center">
 
@@ -79,7 +79,7 @@ I'm a passionate developer who loves building scalable systems, developing intel
 
 ---
 
-## Open Source Contributions
+<img src="./assets/header-contributions.svg" height="45" alt="Open Source Contributions" />
 
 <div align="center">
 
@@ -104,15 +104,42 @@ I'm a passionate developer who loves building scalable systems, developing intel
 
 ---
 
-## System Architecture & Competence Map
+<img src="./assets/header-specs.svg" height="45" alt="Core API Telemetry" />
 
 <div align="center">
-  <img src="./assets/architecture.svg" width="600" alt="Sankalpa's System Architecture" />
+  <table width="100%" style="border-collapse: collapse; border: none; background: transparent; font-family: monospace; font-size: 13px;">
+    <tr style="background: rgba(139, 92, 246, 0.05);">
+      <th align="left" style="border: none; padding: 12px; color: #a78bfa;">API Endpoint</th>
+      <th align="center" style="border: none; padding: 12px; color: #a78bfa;">Status</th>
+      <th align="left" style="border: none; padding: 12px; color: #a78bfa;">Response Payload</th>
+    </tr>
+    <tr>
+      <td style="border: none; padding: 12px; color: #38bdf8; text-align: left;"><code>GET /sankalpa/focus</code></td>
+      <td align="center" style="border: none; padding: 12px; color: #10b981;"><code>200 OK</code></td>
+      <td style="border: none; padding: 12px; color: #e2e8f0; text-align: left;">
+        <code>{ "state": "hyper_focused", "caffeine": "active", "soundtrack": "lofi_beats" }</code>
+      </td>
+    </tr>
+    <tr>
+      <td style="border: none; padding: 12px; color: #38bdf8; text-align: left;"><code>POST /sankalpa/deploy</code></td>
+      <td align="center" style="border: none; padding: 12px; color: #10b981;"><code>201 CREATED</code></td>
+      <td style="border: none; padding: 12px; color: #e2e8f0; text-align: left;">
+        <code>{ "system": "MERN_stack", "latency": "&lt;15ms", "uptime": "99.99%" }</code>
+      </td>
+    </tr>
+    <tr>
+      <td style="border: none; padding: 12px; color: #38bdf8; text-align: left;"><code>GET /sankalpa/ai-stack</code></td>
+      <td align="center" style="border: none; padding: 12px; color: #10b981;"><code>200 OK</code></td>
+      <td style="border: none; padding: 12px; color: #e2e8f0; text-align: left;">
+        <code>{ "frameworks": ["LangChain", "PyTorch"], "models": ["LLM_FineTune", "RAG"] }</code>
+      </td>
+    </tr>
+  </table>
 </div>
 
 ---
 
-## GitHub Metrics & Analytics
+<img src="./assets/header-metrics.svg" height="45" alt="System Metrics" />
 
 <div align="center">
   
@@ -132,7 +159,7 @@ I'm a passionate developer who loves building scalable systems, developing intel
 
 ---
 
-## Milestones & Achievements
+<img src="./assets/header-milestones.svg" height="45" alt="Achievements" />
 
 <div align="center">
 
@@ -142,7 +169,7 @@ I'm a passionate developer who loves building scalable systems, developing intel
 
 ---
 
-## Telemetry & System Status
+<img src="./assets/header-telemetry.svg" height="45" alt="System Telemetry" />
 
 ```json
 {
