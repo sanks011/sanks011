@@ -45,7 +45,7 @@ I'm a passionate developer who loves building scalable systems, developing intel
         <br/><br/>
         <strong>Founder &amp; Principal Architect</strong>
         <br/><br/>
-        <span style="white-space: nowrap;">Helping Businesses to scale with custom Software &amp; AI Solutions.</span>
+        Helping&nbsp;Businesses&nbsp;scale&nbsp;with&nbsp;custom&nbsp;Software&nbsp;Solutions.
       </td>
       <td width="50%" align="center" style="border: none; padding: 15px; vertical-align: top;">
         <a href="https://www.sankalpasarkar.xyz/">
