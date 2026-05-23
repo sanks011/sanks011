@@ -45,7 +45,7 @@ I'm a passionate developer who loves building scalable systems, developing intel
         <br/><br/>
         <strong>Founder &amp; Principal Architect</strong>
         <br/><br/>
-        Building high-performance custom MERN applications, production AI integration pipelines, and scalable enterprise systems.
+        Building high-performance MERN apps &amp; scalable AI systems.
       </td>
       <td width="50%" align="center" style="border: none; padding: 15px; vertical-align: top;">
         <a href="https://www.sankalpasarkar.xyz/">
@@ -54,7 +54,7 @@ I'm a passionate developer who loves building scalable systems, developing intel
         <br/><br/>
         <strong>Creator &amp; Lead AI Engineer</strong>
         <br/><br/>
-        Developing developer-focused AI systems that learn your specific coding habits and automate routine pair-programming workflows.
+        AI assistant that twins your coding habits &amp; automates workflows.
       </td>
     </tr>
   </table>
