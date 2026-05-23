@@ -13,6 +13,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Fetch PRs with pagination
         id: prs
@@ -117,6 +119,7 @@ jobs:
           LASTFM_USERNAME: ${{ secrets.LASTFM_USERNAME }}
           LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
         run: |
+          git pull origin main
           python3 generate_svg.py
 
 
@@ -129,5 +132,5 @@ jobs:
           git add README.md assets/
           git diff --cached --quiet || git commit -m "chore: update OSS contributions and telemetry dashboard [skip ci]"
           git remote set-url origin "https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}"
-          git pull --rebase origin main
+          git pull --rebase -X theirs origin main
           git push
