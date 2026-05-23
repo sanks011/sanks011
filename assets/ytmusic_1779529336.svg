@@ -51,7 +51,7 @@
 
     <!-- Song & Artist Details -->
     <text x="0" y="36" class="song-title">Caffeine &amp; Neural Networks</text>
-    <text x="0" y="54" class="artist">Sankalpa Sarkar — Dev Focus Vibe</text>
+    <text x="0" y="54" class="artist">Sankalpa Sarkar â€” Dev Focus Vibe</text>
   </g>
 
   <!-- Player Controls (Bottom Progress Section) -->
