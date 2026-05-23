@@ -156,11 +156,12 @@ jobs:
           cards = []
           for org_name, info in orgs.items():
               total = info["open"] + info["closed"] + info["merged"]
-              org_encoded = org_name.replace('/', '%2F')
-              card = f'<a href="{info["url"]}"><img src="https://img.shields.io/badge/{org_encoded}-{total}_PRs-blue?style=for-the-badge&logo=github" alt="{org_name}" /></a>'
+              # Properly encode org name for shields.io badge
+              badge_text = org_name.replace('/', '--').replace('_', '__').replace('-', '--')
+              card = f'<a href="{info["url"]}"><img src="https://img.shields.io/badge/{badge_text}-{total}_PRs-blue?style=for-the-badge&logo=github&logoColor=white" alt="{org_name}" /></a>'
               cards.append(card)
 
-          cards_html = "\n\n".join(cards)
+          cards_html = "\n".join(cards)
 
           with open("README.md") as f:
               content = f.read()
