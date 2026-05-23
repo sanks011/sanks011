@@ -2,7 +2,7 @@ name: Daily System Telemetry & OSS Update
 
 on:
   schedule:
-    - cron: "0 0 * * *"   # every day at midnight
+    - cron: "0 * * * *"   # run hourly
   workflow_dispatch:        # run manually anytime
 
 jobs:
