@@ -39,6 +39,7 @@ I'm a passionate developer who loves building scalable systems, developing intel
   <table width="100%" style="border-collapse: collapse; border: none; background: transparent;">
     <tr>
       <td width="50%" align="center" style="border: none; padding: 15px; vertical-align: top;">
+        <br/>
         <a href="https://devdirect.tech">
           <img src="https://img.shields.io/badge/DEVDIRECT-devdirect.tech-8B5CF6?style=for-the-badge&logo=rocket&logoColor=white" alt="Devdirect" />
         </a>
@@ -48,6 +49,7 @@ I'm a passionate developer who loves building scalable systems, developing intel
         Helping&nbsp;Businesses&nbsp;scale&nbsp;with&nbsp;custom&nbsp;Software&nbsp;Solutions.
       </td>
       <td width="50%" align="center" style="border: none; padding: 15px; vertical-align: top;">
+        <br/>
         <a href="https://www.sankalpasarkar.xyz/">
           <img src="https://img.shields.io/badge/CODETWIN_AI-Active_Beta-d946ef?style=for-the-badge&logo=openai&logoColor=white" alt="CodeTwin AI" />
         </a>
