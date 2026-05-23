@@ -80,7 +80,7 @@ jobs:
                     }
                   }
                 }
-              ' > page.json
+              ' > page.json || { echo "Failed to fetch page $page, continuing with what we have"; break; }
             else
               gh api graphql -f query='
                 query($cursor: String!) {
@@ -106,7 +106,7 @@ jobs:
                     }
                   }
                 }
-              ' -f cursor="$CURSOR" > page.json
+              ' -f cursor="$CURSOR" > page.json || { echo "Failed to fetch page $page, continuing with what we have"; break; }
             fi
             
             RESULT=$(python3 merge_prs.py)
