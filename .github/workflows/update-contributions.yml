@@ -158,7 +158,7 @@ jobs:
               total = info["open"] + info["closed"] + info["merged"]
               # Properly encode org name for shields.io badge
               badge_text = org_name.replace('/', '--').replace('_', '__').replace('-', '--')
-              card = f'<a href="{info["url"]}"><img src="https://img.shields.io/badge/{badge_text}-{total}_PRs-blue?style=for-the-badge&logo=github&logoColor=white" alt="{org_name}" /></a>'
+              card = f'<a href="{info["url"]}"><img src="https://img.shields.io/badge/{badge_text}-{total}_PRs-8B5CF6?style=for-the-badge&logo=github&logoColor=white" alt="{org_name}" /></a>'
               cards.append(card)
 
           cards_html = "\n".join(cards)
