@@ -26,9 +26,9 @@ I'm a passionate developer who loves building scalable systems, developing intel
 <br/>
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/sanks011/sanks011/main/assets/terminal.svg?v=1" width="550" alt="Sankalpa's Terminal Stats" />
+  <img src="./assets/terminal.svg" width="550" alt="Sankalpa's Terminal Stats" />
   <br/><br/>
-  <img src="https://raw.githubusercontent.com/sanks011/sanks011/main/assets/spotify.svg?v=2" width="480" alt="Coding Soundtrack" />
+  <img src="./assets/spotify.svg" width="480" alt="Coding Soundtrack" />
 </div>
 
 ---
@@ -73,7 +73,7 @@ I'm a passionate developer who loves building scalable systems, developing intel
 <img src="https://skillicons.dev/icons?i=postgres,mongodb,mysql,supabase,firebase,prisma,tensorflow,pytorch,aws&perline=9" alt="Databases, Cloud & Machine Learning" />
 <br/><br/>
 <!-- Row 3: DevOps, Tooling & Specialized AI/Deployment (10 Icons Symmetric Grid) -->
-<img src="https://skillicons.dev/icons?i=docker,git,github,vercel,nginx,linux" alt="DevOps & Tooling" />&nbsp;<img src="https://raw.githubusercontent.com/sanks011/sanks011/main/assets/drizzle.svg" width="48" height="48" alt="Drizzle ORM" />&nbsp;<img src="https://raw.githubusercontent.com/sanks011/sanks011/main/assets/langchain.svg" width="48" height="48" alt="LangChain" />&nbsp;<img src="https://raw.githubusercontent.com/sanks011/sanks011/main/assets/openai.svg" width="48" height="48" alt="LLMs & RAG" />&nbsp;<img src="https://raw.githubusercontent.com/sanks011/sanks011/main/assets/render.svg" width="48" height="48" alt="Render" />
+<img src="https://skillicons.dev/icons?i=docker,git,github,vercel,nginx,linux" alt="DevOps & Tooling" />&nbsp;<img src="./assets/drizzle.svg" width="48" height="48" alt="Drizzle ORM" />&nbsp;<img src="./assets/langchain.svg" width="48" height="48" alt="LangChain" />&nbsp;<img src="./assets/openai.svg" width="48" height="48" alt="LLMs & RAG" />&nbsp;<img src="./assets/render.svg" width="48" height="48" alt="Render" />
 
 </div>
 
