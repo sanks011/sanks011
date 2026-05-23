@@ -24,12 +24,21 @@ I'm a passionate developer who loves building scalable systems, developing intel
 <img src="./assets/header-terminal.svg" height="45" alt="Terminal Session" />
 
 <div align="center">
+  <br/>
+  <img src="./assets/terminal.svg?v=12" width="550" alt="Sankalpa's Terminal Stats" />
+</div>
+
+---
+
+<img src="./assets/header-music.svg" height="45" alt="Music Session" />
+
+<div align="center">
 
 <!-- MUSIC_START -->
 <!-- auto-updated by .github/workflows/update-contributions.yml -->
 
 <p align="center">
-  <img src="./assets/ytmusic_1779536685.svg" alt="YouTube Music Player" width="480" />
+  <img src="./assets/ytmusic_1779536966.svg" alt="YouTube Music Player" width="480" />
 </p>
 
 <!-- MUSIC_END -->
@@ -38,13 +47,11 @@ I'm a passionate developer who loves building scalable systems, developing intel
 <!-- auto-updated by .github/workflows/update-contributions.yml -->
 
 <p align="center">
-  <img src="./assets/recent_1779536685.svg" alt="Recently Played Tracks" width="480" />
+  <img src="./assets/recent_1779536966.svg" alt="Recently Played Tracks" width="480" />
 </p>
 
 <!-- RECENT_TRACKS_END -->
 
-  <br/><br/>
-  <img src="./assets/terminal.svg?v=12" width="550" alt="Sankalpa's Terminal Stats" />
 </div>
 
 ---
@@ -105,7 +112,7 @@ I'm a passionate developer who loves building scalable systems, developing intel
 <!-- auto-updated by .github/workflows/update-contributions.yml -->
 
 <p align="center">
-  <img src="./assets/contributions_1779536685.svg" alt="Open Source Contributions Telemetry" width="100%" />
+  <img src="./assets/contributions_1779536966.svg" alt="Open Source Contributions Telemetry" width="100%" />
 </p>
 
 <!-- OSS_CONTRIBUTIONS_END -->
@@ -185,7 +192,7 @@ I'm a passionate developer who loves building scalable systems, developing intel
 <!-- auto-updated by .github/workflows/update-contributions.yml -->
 
 <p align="center">
-  <img src="./assets/telemetry_1779536685.svg" alt="System Status Telemetry Console" width="100%" />
+  <img src="./assets/telemetry_1779536966.svg" alt="System Status Telemetry Console" width="100%" />
 </p>
 
 <!-- TELEMETRY_END -->
