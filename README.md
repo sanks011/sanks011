@@ -27,7 +27,11 @@ I'm a passionate developer who loves building scalable systems, developing intel
 
 <!-- MUSIC_START -->
 <!-- auto-updated by .github/workflows/update-contributions.yml -->
-<img src="./assets/ytmusic_1779529336.svg" width="480" alt="Coding Soundtrack" />
+
+<p align="center">
+  <img src="./assets/ytmusic_1779529805.svg" alt="YouTube Music Player" width="480" />
+</p>
+
 <!-- MUSIC_END -->
 
   <br/><br/>
@@ -92,7 +96,7 @@ I'm a passionate developer who loves building scalable systems, developing intel
 <!-- auto-updated by .github/workflows/update-contributions.yml -->
 
 <p align="center">
-  <img src="./assets/contributions_1779529336.svg" alt="Open Source Contributions Telemetry" width="100%" />
+  <img src="./assets/contributions_1779529805.svg" alt="Open Source Contributions Telemetry" width="100%" />
 </p>
 
 <!-- OSS_CONTRIBUTIONS_END -->
@@ -172,7 +176,7 @@ I'm a passionate developer who loves building scalable systems, developing intel
 <!-- auto-updated by .github/workflows/update-contributions.yml -->
 
 <p align="center">
-  <img src="./assets/telemetry_1779529336.svg" alt="System Status Telemetry Console" width="100%" />
+  <img src="./assets/telemetry_1779529805.svg" alt="System Status Telemetry Console" width="100%" />
 </p>
 
 <!-- TELEMETRY_END -->
