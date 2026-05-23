@@ -1,72 +1,58 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="800" height="340" viewBox="0 0 800 340" fill="none">
-  <defs>
-    <linearGradient id="terminal-bg" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#0a0d1a"/>
-      <stop offset="100%" stop-color="#04060d"/>
-    </linearGradient>
-    <linearGradient id="header-grad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#141829"/>
-      <stop offset="100%" stop-color="#0d101e"/>
-    </linearGradient>
-    <filter id="term-glow" x="-5%" y="-5%" width="110%" height="110%">
-      <feDropShadow dx="0" dy="0" stdDeviation="4" flood-color="#8b5cf6" flood-opacity="0.15"/>
-    </filter>
-  </defs>
-
   <style>
     .term-title { font-family: 'SFMono-Regular', Consolas, monospace; font-size: 11px; fill: #94a3b8; font-weight: 600; }
     .log-tag { font-family: 'SFMono-Regular', Consolas, monospace; font-size: 11.5px; font-weight: bold; }
     .log-val { font-family: 'SFMono-Regular', Consolas, monospace; font-size: 11.5px; fill: #e2e8f0; }
     .chart-label { font-family: 'SFMono-Regular', Consolas, monospace; font-size: 10px; fill: #64748b; font-weight: bold; }
-    .chart-bar-bg { fill: #0f172a; stroke: #1e293b; stroke-width: 1; }
+    .chart-bar-bg { fill: #070514; stroke: #1e1b4b; stroke-width: 1; }
   </style>
 
   <!-- Outer shell -->
-  <rect x="2" y="2" width="796" height="336" rx="10" fill="url(#terminal-bg)" stroke="#8b5cf6" stroke-width="1.5" stroke-opacity="0.25" filter="url(#term-glow)"/>
+  <rect x="1" y="1" width="798" height="338" rx="10" fill="#0d0b21" stroke="#1e1b4b" stroke-width="1.5"/>
   
   <!-- Terminal Top Bar -->
-  <rect x="3" y="3" width="794" height="28" rx="8" fill="url(#header-grad)" stroke="#1e293b" stroke-width="1"/>
+  <rect x="2" y="2" width="796" height="28" rx="8" fill="#110e2e" stroke="#1e1b4b" stroke-width="1"/>
   
   <!-- Colored Window Controls -->
-  <circle cx="16" cy="17" r="4.5" fill="#ef4444"/>
-  <circle cx="30" cy="17" r="4.5" fill="#eab308"/>
-  <circle cx="44" cy="17" r="4.5" fill="#22c55e"/>
+  <circle cx="16" cy="16" r="4.5" fill="#ef4444"/>
+  <circle cx="30" cy="16" r="4.5" fill="#eab308"/>
+  <circle cx="44" cy="16" r="4.5" fill="#22c55e"/>
   
-  <text x="400" y="20" text-anchor="middle" class="term-title">sankalpa@telemetry: ~ (v2.1.0-live)</text>
+  <text x="400" y="19" text-anchor="middle" class="term-title">sankalpa@telemetry: ~ (v2.1.0-live)</text>
 
   <!-- Grid Separator Line -->
-  <line x1="390" y1="45" x2="390" y2="320" stroke="#1e293b" stroke-dasharray="4 4"/>
+  <line x1="390" y1="45" x2="390" y2="320" stroke="#1e1b4b" stroke-dasharray="4 4"/>
 
   <!-- LEFT PANEL: Core Node Telemetry -->
   <g transform="translate(25, 55)">
     <!-- System Status -->
     <g transform="translate(0, 0)">
-      <text x="0" y="15" class="log-tag" fill="#818cf8">SYS_STATUS:</text>
+      <text x="0" y="15" class="log-tag" fill="#a78bfa">SYS_STATUS:</text>
       <rect x="110" y="2" width="135" height="18" rx="4" fill="#064e3b" stroke="#10b981" stroke-width="1" stroke-opacity="0.4"/>
       <text x="120" y="14" font-family="monospace" font-size="10.5" font-weight="bold" fill="#34d399">FULLY_OPERATIONAL</text>
     </g>
 
     <!-- Uptime -->
     <g transform="translate(0, 32)">
-      <text x="0" y="15" class="log-tag" fill="#818cf8">SYS_UPTIME:</text>
+      <text x="0" y="15" class="log-tag" fill="#a78bfa">SYS_UPTIME:</text>
       <text x="110" y="15" class="log-val">7723 days (since 31.03.2005)</text>
     </g>
 
     <!-- Energy Source -->
     <g transform="translate(0, 64)">
-      <text x="0" y="15" class="log-tag" fill="#818cf8">POWER_SRC:</text>
+      <text x="0" y="15" class="log-tag" fill="#a78bfa">POWER_SRC:</text>
       <text x="110" y="15" class="log-val" fill="#fb7185">Caffeine Latte [100% active]</text>
     </g>
 
     <!-- Neural Correlation Threads -->
     <g transform="translate(0, 96)">
-      <text x="0" y="15" class="log-tag" fill="#818cf8">SYS_THREADS:</text>
+      <text x="0" y="15" class="log-tag" fill="#a78bfa">SYS_THREADS:</text>
       <text x="110" y="15" class="log-val">42 active neural subthreads</text>
     </g>
     
     <!-- Focus Matrix state -->
     <g transform="translate(0, 128)">
-      <text x="0" y="15" class="log-tag" fill="#818cf8">FOCUS_MODE:</text>
+      <text x="0" y="15" class="log-tag" fill="#a78bfa">FOCUS_MODE:</text>
       <text x="110" y="15" class="log-val" fill="#c084fc">Hyper-Focus [Soundtrack: Active]</text>
     </g>
   </g>
@@ -105,7 +91,7 @@
     <text x="0" y="12" font-family="monospace" font-size="11" font-weight="bold" fill="#94a3b8">RUNNING PROCESS DAEMON:</text>
     
     <!-- Logging Terminal Box -->
-    <rect x="0" y="22" width="360" height="235" rx="6" fill="#070a13" stroke="#1e293b" stroke-width="1"/>
+    <rect x="0" y="22" width="360" height="235" rx="6" fill="#070514" stroke="#1e1b4b" stroke-width="1"/>
     
     <!-- Console Logs -->
     <g transform="translate(15, 45)">

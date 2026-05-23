@@ -91,7 +91,7 @@ I'm a passionate developer who loves building scalable systems, developing intel
 <!-- auto-updated by .github/workflows/update-contributions.yml -->
 
 <p align="center">
-  <img src="./assets/contributions.svg?v=1779527695" alt="Open Source Contributions Telemetry" width="100%" />
+  <img src="./assets/contributions_1779527964.svg" alt="Open Source Contributions Telemetry" width="100%" />
 </p>
 
 <!-- OSS_CONTRIBUTIONS_END -->
@@ -171,7 +171,7 @@ I'm a passionate developer who loves building scalable systems, developing intel
 <!-- auto-updated by .github/workflows/update-contributions.yml -->
 
 <p align="center">
-  <img src="./assets/telemetry.svg?v=1779527695" alt="System Status Telemetry Console" width="100%" />
+  <img src="./assets/telemetry_1779527964.svg" alt="System Status Telemetry Console" width="100%" />
 </p>
 
 <!-- TELEMETRY_END -->
