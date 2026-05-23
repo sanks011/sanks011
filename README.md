@@ -27,6 +27,8 @@ I'm a passionate developer who loves building scalable systems, developing intel
 
 <div align="center">
   <img src="https://raw.githubusercontent.com/sanks011/sanks011/main/assets/terminal.svg?v=1" width="550" alt="Sankalpa's Terminal Stats" />
+  <br/><br/>
+  <img src="https://raw.githubusercontent.com/sanks011/sanks011/main/assets/spotify.svg?v=1" width="480" alt="Coding Soundtrack" />
 </div>
 
 ---
@@ -101,6 +103,50 @@ I'm a passionate developer who loves building scalable systems, developing intel
 </div>
 
 ---
+
+## 🧙‍♂️ Sankalpa's Dev Spellbook & Mastery Tree
+
+<div align="center">
+  <table width="100%" style="border-collapse: collapse; border: none; background: transparent;">
+    <tr>
+      <td width="50%" style="border: none; padding: 15px; vertical-align: top; text-align: left;">
+        <h3>🔮 Conjuration Spells (Core Dev)</h3>
+        <ul>
+          <li><strong>✨ Spell: MERN Genesis (Lvl 99)</strong>
+            <br/>Manifests complete high-speed full-stack web architectures from pure energy. <em>Cooldown: 0s. Mana Cost: 0.</em>
+          </li>
+          <br/>
+          <li><strong>⚡ Spell: Query Annihilation (Lvl 92)</strong>
+            <br/>Accelerates Postgres/SQL queries by 500x. Obliterates server latency with index-sorcery. <em>Mana Cost: 25.</em>
+          </li>
+          <br/>
+          <li><strong>🛡️ Spell: Docker Ward (Lvl 88)</strong>
+            <br/>Shields builds from the classic "works on my machine" curse. 100% active defense against environment bugs.
+          </li>
+        </ul>
+      </td>
+      <td width="50%" style="border: none; padding: 15px; vertical-align: top; text-align: left;">
+        <h3>🧠 Evocation Spells (AI &amp; Data)</h3>
+        <ul>
+          <li><strong>🌀 Spell: Neural Manifestation (Lvl 97)</strong>
+            <br/>Deploys massive LLM Rag chains, neural nets, and PyTorch matrices to solve high-complexity data problems. <em>Mana Cost: 40.</em>
+          </li>
+          <br/>
+          <li><strong>⛓️ Spell: LangChain Tether (Lvl 94)</strong>
+            <br/>Binds complex autonomous AI agents to real-world database sources with flawless multi-step reasoning. <em>Mana Cost: 30.</em>
+          </li>
+          <br/>
+          <li><strong>🚀 Spell: Vibe Overdrive (Lvl 95)</strong>
+            <br/>Triggers intense hyper-focus mode when coding soundtrack is active. Increases output velocity by 300%. <em>Required: Spotify.</em>
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </table>
+</div>
+
+---
+
 ## 📊 GitHub Metrics & Analytics
 
 <div align="center">
