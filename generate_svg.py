@@ -66,6 +66,55 @@ def fetch_lastfm_track_duration(username, api_key, track_name, artist_name):
         print(f"Error fetching track duration: {e}")
     return "3:30"
 
+def fetch_lastfm_recent_tracks(username, api_key, limit=5):
+    """Fetch the last N recently played tracks from Last.fm."""
+    url = f"http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user={username}&api_key={api_key}&limit={limit}&format=json"
+    ctx = ssl.create_default_context()
+    ctx.check_hostname = False
+    ctx.verify_mode = ssl.CERT_NONE
+    try:
+        req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'})
+        with urllib.request.urlopen(req, context=ctx, timeout=8) as response:
+            res_data = json.loads(response.read().decode())
+            tracks = res_data.get("recenttracks", {}).get("track", [])
+            result = []
+            for track in tracks:
+                is_now = track.get("@attr", {}).get("nowplaying") == "true"
+                name = track.get("name", "")
+                artist = track.get("artist", {}).get("#text", "")
+                album = track.get("album", {}).get("#text", "")
+                # Get timestamp
+                if is_now:
+                    time_str = "Now"
+                else:
+                    uts = track.get("date", {}).get("uts", "")
+                    if uts:
+                        dt = datetime.fromtimestamp(int(uts), tz=__import__('datetime').timezone.utc)
+                        delta = datetime.now(tz=__import__('datetime').timezone.utc) - dt
+                        if delta.total_seconds() < 3600:
+                            time_str = f"{int(delta.total_seconds()//60)}m ago"
+                        elif delta.total_seconds() < 86400:
+                            time_str = f"{int(delta.total_seconds()//3600)}h ago"
+                        else:
+                            time_str = f"{int(delta.total_seconds()//86400)}d ago"
+                    else:
+                        time_str = ""
+                # Get small album art
+                images = track.get("image", [])
+                image_url = ""
+                for img in images:
+                    if img.get("size") == "small" and img.get("#text"):
+                        image_url = img["#text"]
+                        break
+                result.append({
+                    "name": name, "artist": artist, "album": album,
+                    "image_url": image_url, "time": time_str, "is_now": is_now
+                })
+            return result
+    except Exception as e:
+        print(f"Error fetching recent tracks: {e}")
+    return []
+
 def download_image_as_b64(url):
     if not url:
         return ""
@@ -485,6 +534,22 @@ else:
       <circle cx="60" cy="70" r="3" fill="#0d0a1b" />
     </g>'''
 
+# Load YT Music logo as base64 for embedding
+ytmusic_logo_b64 = ""
+logo_path = os.path.join("assets", "image.png")
+if os.path.exists(logo_path):
+    try:
+        from PIL import Image
+        import io
+        img = Image.open(logo_path)
+        img = img.resize((28, 28), Image.LANCZOS)
+        buf = io.BytesIO()
+        img.save(buf, format='PNG', optimize=True)
+        ytmusic_logo_b64 = f"data:image/png;base64,{base64.b64encode(buf.getvalue()).decode()}"
+    except ImportError:
+        # Fallback: embed the raw file (may be large)
+        with open(logo_path, "rb") as lf:
+            ytmusic_logo_b64 = f"data:image/png;base64,{base64.b64encode(lf.read()).decode()}"
 
 ytmusic_svg = f'''<svg width="480" height="140" viewBox="0 0 480 140" fill="none" xmlns="http://www.w3.org/2000/svg">
   <style>
@@ -552,15 +617,93 @@ ytmusic_svg = f'''<svg width="480" height="140" viewBox="0 0 480 140" fill="none
   </g>
 
   <!-- YT Music Brand Logo -->
-  <g transform="translate(440, 18)">
-    <circle cx="12" cy="12" r="11" fill="#ff0000" />
-    <circle cx="12" cy="12" r="7" fill="#0a0817" stroke="#ff0000" stroke-width="0.8" />
-    <path d="M 10.5 9 L 15.5 12 L 10.5 15 Z" fill="#ffffff" />
+  <g transform="translate(436, 16)">
+    <image href="{ytmusic_logo_b64}" x="0" y="0" width="28" height="28" />
   </g>
 </svg>'''
 
 with open(f"assets/ytmusic_{cache_buster}.svg", "w") as f:
     f.write(ytmusic_svg)
+
+# --- Recent Tracks SVG ---
+recent_tracks = fetch_lastfm_recent_tracks(lastfm_username, lastfm_api_key, limit=5)
+
+# Build recent tracks rows
+track_rows = ""
+row_height = 44
+for i, t in enumerate(recent_tracks[:5]):
+    y = 48 + i * row_height
+    # Truncate and escape
+    t_name = t["name"][:28] + "..." if len(t["name"]) > 28 else t["name"]
+    t_artist = t["artist"][:32] + "..." if len(t["artist"]) > 32 else t["artist"]
+    t_name = xml_escape(t_name)
+    t_artist = xml_escape(t_artist)
+    t_time = xml_escape(t["time"])
+
+    # Download small album art
+    t_art_b64 = download_image_as_b64(t["image_url"]) if t["image_url"] else ""
+
+    # Album art circle or placeholder
+    if t_art_b64:
+        art_svg = f'''<clipPath id="art-clip-{i}"><circle cx="34" cy="{y + 16}" r="14" /></clipPath>
+        <image href="{t_art_b64}" x="20" y="{y + 2}" width="28" height="28" clip-path="url(#art-clip-{i})"/>
+        <circle cx="34" cy="{y + 16}" r="14" fill="none" stroke="#1e293b" stroke-width="1" />'''
+    else:
+        art_svg = f'''<circle cx="34" cy="{y + 16}" r="14" fill="#1e293b" stroke="#334155" stroke-width="0.5" />
+        <text x="34" y="{y + 20}" text-anchor="middle" font-size="10" fill="#64748b">&#9835;</text>'''
+
+    # Playing indicator for currently playing track
+    if t["is_now"]:
+        now_dot = f'<circle cx="58" cy="{y + 10}" r="3" fill="#1db954"><animate attributeName="opacity" values="0.4;1;0.4" dur="1.5s" repeatCount="indefinite" /></circle>'
+        time_color = "#1db954"
+    else:
+        now_dot = ""
+        time_color = "#64748b"
+
+    # Row separator (except last)
+    separator = f'<line x1="20" y1="{y + row_height - 2}" x2="460" y2="{y + row_height - 2}" stroke="#1e293b" stroke-width="0.5" />' if i < 4 else ""
+
+    track_rows += f'''
+    {art_svg}
+    {now_dot}
+    <text x="58" y="{y + 12}" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="600" fill="#e2e8f0">{t_name}</text>
+    <text x="58" y="{y + 27}" font-family="Inter, system-ui, sans-serif" font-size="10" fill="#94a3b8">{t_artist}</text>
+    <text x="455" y="{y + 18}" text-anchor="end" font-family="monospace" font-size="9" fill="{time_color}">{t_time}</text>
+    {separator}
+'''
+
+total_height = 48 + len(recent_tracks[:5]) * row_height + 16
+
+recent_svg = f'''<svg width="480" height="{total_height}" viewBox="0 0 480 {total_height}" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="rcBg" x1="0" y1="0" x2="480" y2="{total_height}" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0a0817" />
+      <stop offset="100%" stop-color="#0e1a12" />
+    </linearGradient>
+    <linearGradient id="rcBorder" x1="0" y1="0" x2="480" y2="{total_height}" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#1db954" stop-opacity="0.4" />
+      <stop offset="100%" stop-color="#8b5cf6" stop-opacity="0.2" />
+    </linearGradient>
+  </defs>
+
+  <!-- Container -->
+  <rect x="4" y="4" width="472" height="{total_height - 8}" rx="14" fill="url(#rcBg)" stroke="url(#rcBorder)" stroke-width="1" />
+
+  <!-- Header -->
+  <text x="24" y="30" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="700" fill="#1db954" letter-spacing="1">&#9835; RECENTLY PLAYED</text>
+  <line x1="20" y1="40" x2="460" y2="40" stroke="#1e293b" stroke-width="0.5" />
+
+  <!-- Track Rows -->
+  {track_rows}
+</svg>'''
+
+# Clean up stale recent tracks SVGs
+for old in glob.glob("assets/recent_*.svg"):
+    os.remove(old)
+    print(f"Removed stale asset: {old}")
+
+with open(f"assets/recent_{cache_buster}.svg", "w") as f:
+    f.write(recent_svg)
 
 # Update README
 with open("README.md") as f:
@@ -589,7 +732,7 @@ updated = re.sub(
     flags=re.DOTALL
 )
 
-# Replace music block with beautiful YouTube Music SVG
+# Replace music block with YouTube Music SVG
 music_start = "<!-- MUSIC_START -->"
 music_end = "<!-- MUSIC_END -->"
 new_music_block = f"{music_start}\n<!-- auto-updated by .github/workflows/update-contributions.yml -->\n\n<p align=\"center\">\n  <img src=\"./assets/ytmusic_{cache_buster}.svg\" alt=\"YouTube Music Player\" width=\"480\" />\n</p>\n\n{music_end}"
@@ -601,7 +744,19 @@ updated = re.sub(
     flags=re.DOTALL
 )
 
+# Replace recent tracks block
+recent_start = "<!-- RECENT_TRACKS_START -->"
+recent_end = "<!-- RECENT_TRACKS_END -->"
+new_recent_block = f"{recent_start}\n<!-- auto-updated by .github/workflows/update-contributions.yml -->\n\n<p align=\"center\">\n  <img src=\"./assets/recent_{cache_buster}.svg\" alt=\"Recently Played Tracks\" width=\"480\" />\n</p>\n\n{recent_end}"
+
+updated = re.sub(
+    rf"{re.escape(recent_start)}.*?{re.escape(recent_end)}",
+    new_recent_block,
+    updated,
+    flags=re.DOTALL
+)
+
 with open("README.md", "w") as f:
     f.write(updated)
 
-print(f"Successfully compiled contributions, telemetry, and YT Music SVGs! Cache buster: {cache_buster}")
+print(f"Successfully compiled contributions, telemetry, YT Music, and Recent Tracks SVGs! Cache buster: {cache_buster}")

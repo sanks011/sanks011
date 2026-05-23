@@ -100,9 +100,7 @@
   </g>
 
   <!-- YT Music Brand Logo -->
-  <g transform="translate(440, 18)">
-    <circle cx="12" cy="12" r="11" fill="#ff0000" />
-    <circle cx="12" cy="12" r="7" fill="#0a0817" stroke="#ff0000" stroke-width="0.8" />
-    <path d="M 10.5 9 L 15.5 12 L 10.5 15 Z" fill="#ffffff" />
+  <g transform="translate(436, 16)">
+    <image href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAACe0lEQVR42u3Uz4uVVRgH8M9573vHm+MwONlUixYTzFWkXOTG0BKKlJKKVi0yKfuBZQZBREPBbKOoRa7yH5CENkFCBBJJ/lhEUJAuzIIQCmYRZBP3x/s+Le4Zu3ONXMTs7hde3vec832f5/s9zzkPY4wxxgjS8CAoVj4TsWZZhxINzzVitaCGf3gpj9MNQl/PuZasKMTUVLvTbN4TW7bcfONY/8dhWe6oOFvRC6JiqeL9YGKRYnEg6n5sy4rvwIOYQpmdl3mtzE8T+7ExO22iEOvXb6+4GnffFb1Dh6J75JW62v9UxLp1UaV0XEpeHJCX8WPWeHSwObb9h4+bcAZbV7tL6auYn4/OwkK3125HRfR27ay7rx7pRkoRrdZ9uRgX8Atm8Cn+xEN4HptxGLfgbbyJyTy3AQ/jHbQF3d7BZ+pqejr6770b/ZOfRTUzE50DT/fizrkqWJSSJudwGgdwEt/hOVzBk1nMRziFz3Oyy3gC3+d/vh0cmNSg36fRoFGSklTVFMXI+fINHsOv+C3Xbgnd7PgLtPEJTuAv3Jpr+gJeKqR0vjzzdeoffrnnw6OKvXvVc3NhdjZc/qnQap0SkepB4c9jFy7hag4Ev2MaZ/E6FrEjiyiGBE+XWq3XXLj45cTk5GRv3yPqVESxvJzKY8eadcTHjU7n9FY2/MAsLmbFl7AnB9yIZ/EH3jLg/Yz5vHYlJzx+7U5GWd4bnAt6UZYRLAUfrFyL3QMnj+eDsA+bsDsH3JO3eWdO9kau7QQeRQsPYAG3jVz8ic1dtkf79k1SWrteGhSJerS1oR7qqQ0DTvEv7xXUmQfVCCfludVt7sT1PXSMMcZYW/wNLn7PQDTAYR4AAAAASUVORK5CYII=" x="0" y="0" width="28" height="28" />
   </g>
 </svg>
