@@ -78,6 +78,28 @@ def fetch_lastfm_track_duration(username, api_key, track_name, artist_name):
         print(f"Error fetching track duration: {e}")
     return duration_str, image_url
 
+def fetch_youtube_thumbnail(song_title, artist_name):
+    """Fetch official YouTube Music release thumbnail when Last.fm has no artwork."""
+    if not song_title or not artist_name:
+        return ""
+    clean_title = re.sub(r'\s*[\(\[][^\)\]]+[\)\]]\s*', ' ', song_title).strip()
+    query = f"{clean_title} {artist_name} topic"
+    safe_query = urllib.parse.quote(query)
+    url = f"https://www.youtube.com/results?search_query={safe_query}"
+    ctx = ssl.create_default_context()
+    ctx.check_hostname = False
+    ctx.verify_mode = ssl.CERT_NONE
+    try:
+        req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'})
+        with urllib.request.urlopen(req, context=ctx, timeout=5) as response:
+            html = response.read().decode('utf-8', errors='ignore')
+            matches = re.findall(r'"videoId":"([a-zA-Z0-9_-]{11})"', html)
+            if matches:
+                return f"https://i.ytimg.com/vi/{matches[0]}/hqdefault.jpg"
+    except Exception as e:
+        print(f"Error fetching YouTube thumbnail for {song_title}: {e}")
+    return ""
+
 def fetch_lastfm_recent_tracks(username, api_key, limit=5):
     """Fetch the last N unique recently played tracks from Last.fm."""
     # Fetch 20 tracks to allow room for de-duplication
@@ -130,6 +152,13 @@ def fetch_lastfm_recent_tracks(username, api_key, limit=5):
                         if "2a96cbd8b46e442fc41c2b86b821562f" not in text_url:
                             image_url = text_url
                         break
+                
+                # YouTube Music thumbnail fallback if no valid album cover
+                if not image_url:
+                    yt_thumb = fetch_youtube_thumbnail(name, artist)
+                    if yt_thumb:
+                        image_url = yt_thumb
+                        
                 result.append({
                     "name": name, "artist": artist, "album": album,
                     "image_url": image_url, "time": time_str, "is_now": is_now
@@ -497,6 +526,14 @@ def xml_escape(s):
 display_title = xml_escape(truncated_title) if truncated_title else "Loading..."
 display_artist = xml_escape(truncated_artist) if truncated_artist else "—"
 album = xml_escape(album)
+
+# If the album art URL is missing or is the generic Last.fm grey star,
+# scrape YouTube to get the actual official YouTube Music release thumbnail!
+if song_title_raw and artist_raw:
+    if not art_url or "2a96cbd8b46e442fc41c2b86b821562f" in art_url:
+        yt_thumbnail = fetch_youtube_thumbnail(song_title_raw, artist_raw)
+        if yt_thumbnail:
+            art_url = yt_thumbnail
 
 # Always try to get album art (whether playing or recently played)
 b64_art = download_image_as_b64(art_url) if art_url else ""
