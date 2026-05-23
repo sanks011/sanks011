@@ -41,18 +41,21 @@ jobs:
             }
           ' > prs.json
 
-          # Filter to PRs in repos not owned by sanks011, dedupe by org/repo
+          # Filter to PRs in repos not owned by sanks011 or friends, dedupe by org/repo
           python3 - << 'PYEOF'
           import json, sys
 
           with open("prs.json") as f:
               data = json.load(f)
 
+          # Exclude personal repos and friends' repos
+          excluded_owners = ["sanks011", "sahnik0", "shovon0004", "abhijit5996", "shreyas0017"]
+
           prs = data["data"]["user"]["pullRequests"]["nodes"]
           seen = {}
           for pr in prs:
               owner = pr["repository"]["owner"]["login"]
-              if owner.lower() == "sanks011":
+              if owner.lower() in [e.lower() for e in excluded_owners]:
                   continue
               repo = pr["repository"]["nameWithOwner"]
               if repo not in seen:

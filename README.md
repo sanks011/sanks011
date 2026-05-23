@@ -37,28 +37,12 @@ Tools       →  Git · GitHub · JWT
 ## 🤝 Open Source Contributions
 
 <!-- OSS_CONTRIBUTIONS_START -->
-<!-- auto-updated weekly by .github/workflows/update-contributions.yml -->
+<!-- auto-updated by .github/workflows/update-contributions.yml -->
 | org / repo | contribution |
 |---|---|
 | [openmrs/openmrs-esm-patient-management](https://github.com/openmrs/openmrs-esm-patient-management) | (fix) O3-5565: Fix showToast and showSnackbar called during render in queue table components |
-| [Sahnik0/CodeTwin](https://github.com/Sahnik0/CodeTwin) | feat(pairing): add QR code generation for mobile app pairing flow |
-| [Shreyas0017/Waddle](https://github.com/Shreyas0017/Waddle) | chore: remove package-lock.json file |
-| [abhijit5996/Final-NutriOrder](https://github.com/abhijit5996/Final-NutriOrder) | checkout fixed |
 | [openmrs/openmrs-esm-core](https://github.com/openmrs/openmrs-esm-core) | (fix): O3-5298 Fix localStorage iteration bug causing items to be skipped during removal |
-| [abhijit5996/FitEats-Food-Recommendation-and-Delivery-Partner](https://github.com/abhijit5996/FitEats-Food-Recommendation-and-Delivery-Partner) | fixed enum issues |
-| [Sahnik0/noToll-0.2](https://github.com/Sahnik0/noToll-0.2) | Fixed |
-| [abhijit5996/NutriOrder3](https://github.com/abhijit5996/NutriOrder3) | Fixed order history and details |
-| [Sahnik0/Aptiview](https://github.com/Sahnik0/Aptiview) | video demo |
-| [Shreyas0017/Aptiview](https://github.com/Shreyas0017/Aptiview) | Remove unused frontend assets and configuration files |
-| [Sahnik0/CampusCogni](https://github.com/Sahnik0/CampusCogni) | added table view, fixed recruiter modal |
-| [Shreyas0017/Adhyayan_AI](https://github.com/Shreyas0017/Adhyayan_AI) | Update README.md |
 | [AutoMQ/automq](https://github.com/AutoMQ/automq) | feat: Added consumer percentage control for catch-up reading in perf test |
-| [Sahnik0/Kaaj](https://github.com/Sahnik0/Kaaj) | feat: Fixes UI a bit - Sidebar - Message - Job find search - application - notification..  |
-| [Shovon0004/Oral](https://github.com/Shovon0004/Oral) | fixed report generation layout and made some nominal changes |
-| [Sahnik0/Semicolon-VS](https://github.com/Sahnik0/Semicolon-VS) | Merge it |
-| [Sahnik0/Influence-IQ](https://github.com/Sahnik0/Influence-IQ) | fixed |
-| [Sahnik0/adiVote](https://github.com/Sahnik0/adiVote) | improved ui ux |
-| [Sahnik0/Team-Up](https://github.com/Sahnik0/Team-Up) | Deleted Some Lame Pics |
 | [TheAlgorithms/Python](https://github.com/TheAlgorithms/Python) | fixes join.py and split.py action and requirements error |
 <!-- OSS_CONTRIBUTIONS_END -->
 
