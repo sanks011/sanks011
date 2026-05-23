@@ -147,6 +147,66 @@ I'm a passionate developer who loves building scalable systems, developing intel
 
 ---
 
+## ⚔️ Active Coding Quests & Achievements
+
+<div align="center">
+  <table width="100%" style="border-collapse: collapse; border: none; background: transparent;">
+    <tr style="background: rgba(139, 92, 246, 0.05);">
+      <th align="left" style="border: none; padding: 12px; color: #a78bfa;">Quest Objective</th>
+      <th align="center" style="border: none; padding: 12px; color: #a78bfa;">Type</th>
+      <th align="left" style="border: none; padding: 12px; color: #a78bfa;">Progress &amp; Status</th>
+      <th align="center" style="border: none; padding: 12px; color: #a78bfa;">Rewards</th>
+    </tr>
+    <tr>
+      <td style="border: none; padding: 12px; text-align: left; vertical-align: middle;">
+        <strong>🚀 Project CodeTwin Manifestation</strong>
+        <br/><small style="color: #94a3b8;">Fine-tune custom LLM models to mirror specialized developer coding styles.</small>
+      </td>
+      <td align="center" style="border: none; padding: 12px; vertical-align: middle;">
+        <span style="background: #ef4444; color: white; padding: 3px 8px; border-radius: 4px; font-size: 10px; font-weight: bold; letter-spacing: 1px;">MAIN</span>
+      </td>
+      <td style="border: none; padding: 12px; vertical-align: middle; text-align: left;">
+        <code>[██████████░░░░░] 66%</code>
+      </td>
+      <td align="center" style="border: none; padding: 12px; color: #f59e0b; font-weight: bold; vertical-align: middle;">
+        +2500 XP / AI Title
+      </td>
+    </tr>
+    <tr>
+      <td style="border: none; padding: 12px; text-align: left; vertical-align: middle;">
+        <strong>🤝 Open Source Crusader</strong>
+        <br/><small style="color: #94a3b8;">Contribute robust modules and merge high-impact PRs to OpenMRS core.</small>
+      </td>
+      <td align="center" style="border: none; padding: 12px; vertical-align: middle;">
+        <span style="background: #3b82f6; color: white; padding: 3px 8px; border-radius: 4px; font-size: 10px; font-weight: bold; letter-spacing: 1px;">SIDE</span>
+      </td>
+      <td style="border: none; padding: 12px; vertical-align: middle; text-align: left;">
+        <code>[████████████░░░] 80%</code>
+      </td>
+      <td align="center" style="border: none; padding: 12px; color: #f59e0b; font-weight: bold; vertical-align: middle;">
+        +1200 XP / OS Badge
+      </td>
+    </tr>
+    <tr>
+      <td style="border: none; padding: 12px; text-align: left; vertical-align: middle;">
+        <strong>☕ Caffeine-Induced Synthesis</strong>
+        <br/><small style="color: #94a3b8;">Consume coffee and complete high-velocity coding focus sprints.</small>
+      </td>
+      <td align="center" style="border: none; padding: 12px; vertical-align: middle;">
+        <span style="background: #10b981; color: white; padding: 3px 8px; border-radius: 4px; font-size: 10px; font-weight: bold; letter-spacing: 1px;">DAILY</span>
+      </td>
+      <td style="border: none; padding: 12px; vertical-align: middle; text-align: left;">
+        <code>[███████████████] 100%</code>
+      </td>
+      <td align="center" style="border: none; padding: 12px; color: #f59e0b; font-weight: bold; vertical-align: middle;">
+        +500 XP / Mana Boost
+      </td>
+    </tr>
+  </table>
+</div>
+
+---
+
 ## 📊 GitHub Metrics & Analytics
 
 <div align="center">
@@ -174,6 +234,31 @@ I'm a passionate developer who loves building scalable systems, developing intel
 <img src="https://github-profile-trophy.vercel.app/?username=sanks011&theme=radical&no-frame=true&no-bg=true&margin-w=4&column=7" alt="Achievements Trophies" />
 
 </div>
+
+---
+
+## 📡 Telemetry & System Status
+
+```json
+{
+  "system": {
+    "status": "fully_operational",
+    "uptime": "8035_days",
+    "energy_source": "caffeine_latte",
+    "active_neural_threads": 42
+  },
+  "current_processes": [
+    "indexing_brain_database",
+    "compiling_future_ventures",
+    "fine_tuning_personality_matrices"
+  ],
+  "technical_load": {
+    "ai_models": "high",
+    "mern_databases": "peak",
+    "git_merges": "continuous"
+  }
+}
+```
 
 ---
 
