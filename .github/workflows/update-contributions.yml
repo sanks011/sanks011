@@ -152,23 +152,39 @@ jobs:
               elif state == "MERGED":
                   orgs[repo_name]["merged"] += 1
 
-          # Create cards for each org
-          cards = []
+          # Create professional grid of org cards
+          cells = []
           for org_name, info in orgs.items():
               total = info["open"] + info["closed"] + info["merged"]
-              # Properly encode org name for shields.io badge
-              badge_text = org_name.replace('/', '--').replace('_', '__').replace('-', '--')
-              card = f'<a href="{info["url"]}"><img src="https://img.shields.io/badge/{badge_text}-{total}_PRs-8B5CF6?style=for-the-badge&logo=github&logoColor=white" alt="{org_name}" /></a>'
-              cards.append(card)
+              owner = org_name.split('/')[0]
+              repo = org_name.split('/')[1]
+              
+              cell_html = f'''      <td width="33%" align="left" style="padding: 10px; border: none; vertical-align: middle;">
+        <a href="{info["url"]}" style="text-decoration: none;">
+          <img src="https://github.com/{owner}.png" width="28" height="28" style="border-radius: 6px; vertical-align: middle;" />
+          &nbsp;
+          <span style="color: #e2e8f0; font-weight: bold; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 13px; vertical-align: middle;">{repo}</span>
+          &nbsp;
+          <img src="https://img.shields.io/badge/{total}_PRs-8B5CF6?style=flat-square" style="vertical-align: middle;" />
+        </a>
+      </td>'''
+              cells.append(cell_html)
 
-          cards_html = "\n".join(cards)
+          rows = []
+          for i in range(0, len(cells), 3):
+              row_cells = cells[i:i+3]
+              if len(row_cells) < 3:
+                  row_cells += ['      <td width="33%" style="border: none;"></td>'] * (3 - len(row_cells))
+              rows.append("    <tr>\n" + "\n".join(row_cells) + "\n    </tr>")
+
+          table_html = '<table width="100%" style="border-collapse: collapse; border: none; background: transparent;">\n' + "\n".join(rows) + '\n</table>'
 
           with open("README.md") as f:
               content = f.read()
 
           start = "<!-- OSS_CONTRIBUTIONS_START -->"
           end = "<!-- OSS_CONTRIBUTIONS_END -->"
-          new_block = f"{start}\n<!-- auto-updated by .github/workflows/update-contributions.yml -->\n\n{cards_html}\n\n{end}"
+          new_block = f"{start}\n<!-- auto-updated by .github/workflows/update-contributions.yml -->\n\n<div align=\"center\">\n{table_html}\n</div>\n\n{end}"
 
           import re
           updated = re.sub(

@@ -90,17 +90,118 @@ I'm a passionate developer who loves building scalable systems, developing intel
 <!-- OSS_CONTRIBUTIONS_START -->
 <!-- auto-updated by .github/workflows/update-contributions.yml -->
 
-<a href="https://github.com/openmrs/openmrs-module-attachments"><img src="https://img.shields.io/badge/openmrs----openmrs--module--attachments-2_PRs-8B5CF6?style=for-the-badge&logo=github&logoColor=white" alt="openmrs/openmrs-module-attachments" /></a>
-<a href="https://github.com/openmrs/openmrs-module-queue"><img src="https://img.shields.io/badge/openmrs----openmrs--module--queue-5_PRs-8B5CF6?style=for-the-badge&logo=github&logoColor=white" alt="openmrs/openmrs-module-queue" /></a>
-<a href="https://github.com/XAMPPRocky/octocrab"><img src="https://img.shields.io/badge/XAMPPRocky----octocrab-1_PRs-8B5CF6?style=for-the-badge&logo=github&logoColor=white" alt="XAMPPRocky/octocrab" /></a>
-<a href="https://github.com/openmrs/openmrs-esm-core"><img src="https://img.shields.io/badge/openmrs----openmrs--esm--core-3_PRs-8B5CF6?style=for-the-badge&logo=github&logoColor=white" alt="openmrs/openmrs-esm-core" /></a>
-<a href="https://github.com/openmrs/openmrs-esm-patient-management"><img src="https://img.shields.io/badge/openmrs----openmrs--esm--patient--management-6_PRs-8B5CF6?style=for-the-badge&logo=github&logoColor=white" alt="openmrs/openmrs-esm-patient-management" /></a>
-<a href="https://github.com/openmrs/openmrs-esm-cohortbuilder-app"><img src="https://img.shields.io/badge/openmrs----openmrs--esm--cohortbuilder--app-3_PRs-8B5CF6?style=for-the-badge&logo=github&logoColor=white" alt="openmrs/openmrs-esm-cohortbuilder-app" /></a>
-<a href="https://github.com/FalkorDB/FalkorDB"><img src="https://img.shields.io/badge/FalkorDB----FalkorDB-1_PRs-8B5CF6?style=for-the-badge&logo=github&logoColor=white" alt="FalkorDB/FalkorDB" /></a>
-<a href="https://github.com/sugarlabs/speak"><img src="https://img.shields.io/badge/sugarlabs----speak-1_PRs-8B5CF6?style=for-the-badge&logo=github&logoColor=white" alt="sugarlabs/speak" /></a>
-<a href="https://github.com/openmrs/openmrs-module-patientdocuments"><img src="https://img.shields.io/badge/openmrs----openmrs--module--patientdocuments-1_PRs-8B5CF6?style=for-the-badge&logo=github&logoColor=white" alt="openmrs/openmrs-module-patientdocuments" /></a>
-<a href="https://github.com/AutoMQ/automq"><img src="https://img.shields.io/badge/AutoMQ----automq-2_PRs-8B5CF6?style=for-the-badge&logo=github&logoColor=white" alt="AutoMQ/automq" /></a>
-<a href="https://github.com/TheAlgorithms/Python"><img src="https://img.shields.io/badge/TheAlgorithms----Python-1_PRs-8B5CF6?style=for-the-badge&logo=github&logoColor=white" alt="TheAlgorithms/Python" /></a>
+<div align="center">
+<table width="100%" style="border-collapse: collapse; border: none; background: transparent;">
+  <tr>
+    <td width="33%" align="left" style="padding: 10px; border: none; vertical-align: middle;">
+      <a href="https://github.com/openmrs/openmrs-module-attachments" style="text-decoration: none;">
+        <img src="https://github.com/openmrs.png" width="28" height="28" style="border-radius: 6px; vertical-align: middle;" />
+        &nbsp;
+        <span style="color: #e2e8f0; font-weight: bold; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 13px; vertical-align: middle;">openmrs-module-attachments</span>
+        &nbsp;
+        <img src="https://img.shields.io/badge/2_PRs-8B5CF6?style=flat-square" style="vertical-align: middle;" />
+      </a>
+    </td>
+    <td width="33%" align="left" style="padding: 10px; border: none; vertical-align: middle;">
+      <a href="https://github.com/openmrs/openmrs-module-queue" style="text-decoration: none;">
+        <img src="https://github.com/openmrs.png" width="28" height="28" style="border-radius: 6px; vertical-align: middle;" />
+        &nbsp;
+        <span style="color: #e2e8f0; font-weight: bold; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 13px; vertical-align: middle;">openmrs-module-queue</span>
+        &nbsp;
+        <img src="https://img.shields.io/badge/5_PRs-8B5CF6?style=flat-square" style="vertical-align: middle;" />
+      </a>
+    </td>
+    <td width="33%" align="left" style="padding: 10px; border: none; vertical-align: middle;">
+      <a href="https://github.com/XAMPPRocky/octocrab" style="text-decoration: none;">
+        <img src="https://github.com/XAMPPRocky.png" width="28" height="28" style="border-radius: 6px; vertical-align: middle;" />
+        &nbsp;
+        <span style="color: #e2e8f0; font-weight: bold; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 13px; vertical-align: middle;">octocrab</span>
+        &nbsp;
+        <img src="https://img.shields.io/badge/1_PR-8B5CF6?style=flat-square" style="vertical-align: middle;" />
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td width="33%" align="left" style="padding: 10px; border: none; vertical-align: middle;">
+      <a href="https://github.com/openmrs/openmrs-esm-core" style="text-decoration: none;">
+        <img src="https://github.com/openmrs.png" width="28" height="28" style="border-radius: 6px; vertical-align: middle;" />
+        &nbsp;
+        <span style="color: #e2e8f0; font-weight: bold; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 13px; vertical-align: middle;">openmrs-esm-core</span>
+        &nbsp;
+        <img src="https://img.shields.io/badge/3_PRs-8B5CF6?style=flat-square" style="vertical-align: middle;" />
+      </a>
+    </td>
+    <td width="33%" align="left" style="padding: 10px; border: none; vertical-align: middle;">
+      <a href="https://github.com/openmrs/openmrs-esm-patient-management" style="text-decoration: none;">
+        <img src="https://github.com/openmrs.png" width="28" height="28" style="border-radius: 6px; vertical-align: middle;" />
+        &nbsp;
+        <span style="color: #e2e8f0; font-weight: bold; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 13px; vertical-align: middle;">openmrs-esm-patient-mgmt</span>
+        &nbsp;
+        <img src="https://img.shields.io/badge/6_PRs-8B5CF6?style=flat-square" style="vertical-align: middle;" />
+      </a>
+    </td>
+    <td width="33%" align="left" style="padding: 10px; border: none; vertical-align: middle;">
+      <a href="https://github.com/openmrs/openmrs-esm-cohortbuilder-app" style="text-decoration: none;">
+        <img src="https://github.com/openmrs.png" width="28" height="28" style="border-radius: 6px; vertical-align: middle;" />
+        &nbsp;
+        <span style="color: #e2e8f0; font-weight: bold; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 13px; vertical-align: middle;">cohortbuilder-app</span>
+        &nbsp;
+        <img src="https://img.shields.io/badge/3_PRs-8B5CF6?style=flat-square" style="vertical-align: middle;" />
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td width="33%" align="left" style="padding: 10px; border: none; vertical-align: middle;">
+      <a href="https://github.com/FalkorDB/FalkorDB" style="text-decoration: none;">
+        <img src="https://github.com/FalkorDB.png" width="28" height="28" style="border-radius: 6px; vertical-align: middle;" />
+        &nbsp;
+        <span style="color: #e2e8f0; font-weight: bold; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 13px; vertical-align: middle;">FalkorDB</span>
+        &nbsp;
+        <img src="https://img.shields.io/badge/1_PR-8B5CF6?style=flat-square" style="vertical-align: middle;" />
+      </a>
+    </td>
+    <td width="33%" align="left" style="padding: 10px; border: none; vertical-align: middle;">
+      <a href="https://github.com/sugarlabs/speak" style="text-decoration: none;">
+        <img src="https://github.com/sugarlabs.png" width="28" height="28" style="border-radius: 6px; vertical-align: middle;" />
+        &nbsp;
+        <span style="color: #e2e8f0; font-weight: bold; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 13px; vertical-align: middle;">speak</span>
+        &nbsp;
+        <img src="https://img.shields.io/badge/1_PR-8B5CF6?style=flat-square" style="vertical-align: middle;" />
+      </a>
+    </td>
+    <td width="33%" align="left" style="padding: 10px; border: none; vertical-align: middle;">
+      <a href="https://github.com/openmrs/openmrs-module-patientdocuments" style="text-decoration: none;">
+        <img src="https://github.com/openmrs.png" width="28" height="28" style="border-radius: 6px; vertical-align: middle;" />
+        &nbsp;
+        <span style="color: #e2e8f0; font-weight: bold; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 13px; vertical-align: middle;">patientdocuments</span>
+        &nbsp;
+        <img src="https://img.shields.io/badge/1_PR-8B5CF6?style=flat-square" style="vertical-align: middle;" />
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td width="33%" align="left" style="padding: 10px; border: none; vertical-align: middle;">
+      <a href="https://github.com/AutoMQ/automq" style="text-decoration: none;">
+        <img src="https://github.com/AutoMQ.png" width="28" height="28" style="border-radius: 6px; vertical-align: middle;" />
+        &nbsp;
+        <span style="color: #e2e8f0; font-weight: bold; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 13px; vertical-align: middle;">automq</span>
+        &nbsp;
+        <img src="https://img.shields.io/badge/2_PRs-8B5CF6?style=flat-square" style="vertical-align: middle;" />
+      </a>
+    </td>
+    <td width="33%" align="left" style="padding: 10px; border: none; vertical-align: middle;">
+      <a href="https://github.com/TheAlgorithms/Python" style="text-decoration: none;">
+        <img src="https://github.com/TheAlgorithms.png" width="28" height="28" style="border-radius: 6px; vertical-align: middle;" />
+        &nbsp;
+        <span style="color: #e2e8f0; font-weight: bold; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 13px; vertical-align: middle;">Python</span>
+        &nbsp;
+        <img src="https://img.shields.io/badge/1_PR-8B5CF6?style=flat-square" style="vertical-align: middle;" />
+      </a>
+    </td>
+    <td width="33%" style="border: none;"></td>
+  </tr>
+</table>
+</div>
 
 <!-- OSS_CONTRIBUTIONS_END -->
 
