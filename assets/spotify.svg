@@ -44,9 +44,9 @@
   <!-- Track Information -->
   <g transform="translate(120, 28)">
     <!-- Dynamic Playing Badge -->
-    <rect x="0" y="0" width="85" height="16" rx="8" fill="#1db954" fill-opacity="0.12" />
-    <circle cx="10" cy="8" r="3.5" fill="#1db954" />
-    <text x="22" y="11" class="badge">CODING VIBE</text>
+    <rect x="0" y="0" width="95" height="18" rx="9" fill="#1db954" fill-opacity="0.12" />
+    <circle cx="11" cy="9" r="3.5" fill="#1db954" />
+    <text x="22" y="10" dominant-baseline="middle" class="badge">CODING VIBE</text>
 
     <!-- Song Title -->
     <text x="0" y="36" class="song-title">Caffeine &amp; Neural Networks</text>
@@ -80,14 +80,15 @@
     <path d="M 10.5 19 C 13.5 17.5, 16.5 17.5, 19.5 19" stroke="#0a0817" stroke-width="1.8" stroke-linecap="round" fill="none" />
   </g>
 
-  <!-- Interactive Control Icons Overlay (Play / Skip / Shuffle) -->
-  <g transform="translate(400, 78)" stroke="#94a3b8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none">
+  <!-- Interactive Control Icons Overlay (Play / Skip / Symmetrical Spacing) -->
+  <g transform="translate(395, 78)" stroke="#94a3b8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none">
     <!-- Skip Back -->
-    <path d="M 5 6 L 5 18 M 15 6 L 9 12 L 15 18" stroke="#94a3b8" />
+    <path d="M 4 6 L 4 18 M 12 6 L 6 12 L 12 18" stroke="#94a3b8" />
     <!-- Play/Pause Button -->
-    <circle cx="28" cy="12" r="9" fill="#1db954" fill-opacity="0.1" stroke="#1db954" />
-    <path d="M 26 9 V 15 M 30 9 V 15" stroke="#1db954" stroke-width="2" />
+    <circle cx="28" cy="12" r="10" fill="#1db954" fill-opacity="0.1" stroke="#1db954" />
+    <path d="M 25 8 V 16 M 31 8 V 16" stroke="#1db954" stroke-width="2" />
     <!-- Skip Forward -->
-    <path d="M 45 6 L 45 18 M 35 6 L 41 12 L 35 18" />
+    <path d="M 44 6 L 50 12 L 44 18" />
+    <path d="M 52 6 L 52 18" />
   </g>
 </svg>
