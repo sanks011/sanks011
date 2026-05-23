@@ -114,120 +114,8 @@ jobs:
 
       - name: Process PRs and update README
         run: |
-          python3 - << 'PYEOF'
-          import json, sys
+          python3 generate_svg.py
 
-          with open("prs.json") as f:
-              data = json.load(f)
-
-          # Exclude personal repos and friends' repos
-          excluded_owners = ["sanks011", "sahnik0", "shovon0004", "abhijit5996", "shreyas0017"]
-
-          prs = data["data"]["user"]["pullRequests"]["nodes"]
-          orgs = {}
-          
-          for pr in prs:
-              repo = pr["repository"]
-              owner = repo["owner"]["login"]
-              
-              if owner.lower() in [e.lower() for e in excluded_owners]:
-                  continue
-              
-              repo_name = repo["nameWithOwner"]
-              if repo_name not in orgs:
-                  orgs[repo_name] = {
-                      "name": repo_name,
-                      "url": repo["url"],
-                      "description": repo.get("description", ""),
-                      "open": 0,
-                      "closed": 0,
-                      "merged": 0
-                  }
-              
-              state = pr["state"]
-              if state == "OPEN":
-                  orgs[repo_name]["open"] += 1
-              elif state == "CLOSED":
-                  orgs[repo_name]["closed"] += 1
-              elif state == "MERGED":
-                  orgs[repo_name]["merged"] += 1
-
-          # Create a premium 2-column contributions ledger table
-          rows = []
-          for org_name, info in orgs.items():
-              total = info["open"] + info["closed"] + info["merged"]
-              owner = org_name.split('/')[0]
-              
-              row_html = f'''              <tr style="border-bottom: 1px solid rgba(139, 92, 246, 0.1);">
-                <td align="left" style="vertical-align: middle; padding: 10px 0;">
-                  <img src="https://github.com/{owner}.png" width="22" height="22" style="border-radius: 4px; vertical-align: middle;" />
-                  &nbsp;&nbsp;
-                  <a href="{info["url"]}" style="font-weight: 600; color: #e2e8f0; text-decoration: none; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 13.5px; vertical-align: middle;">{org_name}</a>
-                </td>
-                <td align="right" style="vertical-align: middle; padding: 10px 0;">
-                  <a href="{info["url"]}" style="text-decoration: none;">
-                    <img src="https://img.shields.io/badge/{total}_PRs-8B5CF6?style=flat-square" style="vertical-align: middle;" />
-                  </a>
-                </td>
-              </tr>'''
-              rows.append(row_html)
-
-          table_html = f'''<table width="100%" style="border-collapse: collapse; background: transparent;">
-            <thead>
-              <tr style="border-bottom: 2px solid rgba(139, 92, 246, 0.3);">
-                <th align="left" style="padding: 8px 0; color: #a78bfa; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 13px; font-weight: bold; letter-spacing: 0.5px;">REPOSITORY</th>
-                <th align="right" style="padding: 8px 0; color: #a78bfa; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 13px; font-weight: bold; letter-spacing: 0.5px;">CONTRIBUTIONS</th>
-              </tr>
-            </thead>
-            <tbody>
-          {chr(10).join(rows)}
-            </tbody>
-          </table>'''
-
-          with open("README.md") as f:
-              content = f.read()
-
-          start = "<!-- OSS_CONTRIBUTIONS_START -->"
-          end = "<!-- OSS_CONTRIBUTIONS_END -->"
-          new_block = f"{start}\n<!-- auto-updated by .github/workflows/update-contributions.yml -->\n\n{table_html}\n\n{end}"
-
-          import re
-          updated = re.sub(
-              rf"{re.escape(start)}.*?{re.escape(end)}",
-              new_block,
-              content,
-              flags=re.DOTALL
-          )
-
-          # Calculate uptime days since March 31, 2005
-          from datetime import datetime
-          birthday = datetime(2005, 3, 31)
-          today = datetime.now()
-          days_delta = (today - birthday).days
-          
-          # Replace uptime in the markdown telemetry block
-          telemetry_start = "<!-- TELEMETRY_START -->"
-          telemetry_end = "<!-- TELEMETRY_END -->"
-          
-          telemetry_match = re.search(
-              rf"{re.escape(telemetry_start)}(.*?){re.escape(telemetry_end)}",
-              updated,
-              flags=re.DOTALL
-          )
-          if telemetry_match:
-              old_telemetry = telemetry_match.group(1)
-              new_telemetry = re.sub(
-                  r'"uptime":\s*"[^"]*"',
-                  f'"uptime": "{days_delta}_days"',
-                  old_telemetry
-              )
-              updated = updated.replace(old_telemetry, new_telemetry)
-
-          with open("README.md", "w") as f:
-              f.write(updated)
-
-          print(f"Updated with {len(orgs)} organizations and dynamic uptime: {days_delta} days.")
-          PYEOF
 
       - name: Commit if changed
         env:
@@ -235,7 +123,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add README.md
-          git diff --cached --quiet || git commit -m "chore: update OSS contributions [skip ci]"
+          git add README.md assets/contributions.svg assets/telemetry.svg
+          git diff --cached --quiet || git commit -m "chore: update OSS contributions and telemetry dashboard [skip ci]"
           git remote set-url origin "https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}"
           git push
