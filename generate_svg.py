@@ -3,17 +3,17 @@ import os
 import re
 import base64
 import urllib.request
+import urllib.parse
 import ssl
 from datetime import datetime
 import glob
-
-# Music Provider configuration: set to "ytmusic" or "spotify"
-MUSIC_PROVIDER = os.environ.get("MUSIC_PROVIDER", "ytmusic")
 
 # Make sure assets directory exists
 os.makedirs("assets", exist_ok=True)
 
 def fetch_lastfm_nowplaying(username, api_key):
+    """Fetch the most recent track from Last.fm. Always returns the latest track
+    regardless of whether it's currently playing or was recently played."""
     url = f"http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user={username}&api_key={api_key}&limit=1&format=json"
     ctx = ssl.create_default_context()
     ctx.check_hostname = False
@@ -30,8 +30,8 @@ def fetch_lastfm_nowplaying(username, api_key):
                 track = tracks[0]
                 is_playing = track.get("@attr", {}).get("nowplaying") == "true"
                 name = track.get("name", "")
-                artist = track.get("artist", {}).get("#text", "")
-                album = track.get("album", {}).get("#text", "")
+                artist_name = track.get("artist", {}).get("#text", "")
+                album_name = track.get("album", {}).get("#text", "")
                 
                 images = track.get("image", [])
                 image_url = ""
@@ -39,10 +39,32 @@ def fetch_lastfm_nowplaying(username, api_key):
                     if img.get("#text"):
                         image_url = img.get("#text")
                         break
-                return is_playing, name, artist, album, image_url
+                return is_playing, name, artist_name, album_name, image_url
     except Exception as e:
         print(f"Error fetching Last.fm track: {e}")
     return False, "", "", "", ""
+
+def fetch_lastfm_track_duration(username, api_key, track_name, artist_name):
+    """Fetch actual track duration from Last.fm track.getInfo API."""
+    safe_track = urllib.parse.quote(track_name)
+    safe_artist = urllib.parse.quote(artist_name)
+    url = f"http://ws.audioscrobbler.com/2.0/?method=track.getInfo&api_key={api_key}&artist={safe_artist}&track={safe_track}&username={username}&format=json"
+    ctx = ssl.create_default_context()
+    ctx.check_hostname = False
+    ctx.verify_mode = ssl.CERT_NONE
+    try:
+        req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+        with urllib.request.urlopen(req, context=ctx, timeout=5) as response:
+            data = json.loads(response.read().decode())
+            duration_ms = int(data.get("track", {}).get("duration", "0"))
+            if duration_ms > 0:
+                total_sec = duration_ms // 1000
+                mins = total_sec // 60
+                secs = total_sec % 60
+                return f"{mins}:{secs:02d}"
+    except Exception as e:
+        print(f"Error fetching track duration: {e}")
+    return "3:30"
 
 def download_image_as_b64(url):
     if not url:
@@ -366,100 +388,106 @@ with open(f"assets/telemetry_{cache_buster}.svg", "w") as f:
 lastfm_username = os.environ.get("LASTFM_USERNAME") or "sankalpasarkar"
 lastfm_api_key = os.environ.get("LASTFM_API_KEY") or "0fb784e9ef782d1cd606c15d21dee184"
 
-is_playing, song_title, artist, album, art_url = fetch_lastfm_nowplaying(lastfm_username, lastfm_api_key)
+is_playing, song_title_raw, artist_raw, album, art_url = fetch_lastfm_nowplaying(lastfm_username, lastfm_api_key)
+
+# Always show the last played track — no fallback placeholder needed
+# Last.fm always returns the most recent track (playing or recently played)
+
+# Fetch actual track duration from Last.fm
+if song_title_raw and artist_raw:
+    track_duration = fetch_lastfm_track_duration(lastfm_username, lastfm_api_key, song_title_raw, artist_raw)
+else:
+    track_duration = "3:30"
+
+# Calculate duration in seconds for progress bar animation
+try:
+    parts = track_duration.split(":")
+    duration_secs = int(parts[0]) * 60 + int(parts[1])
+except:
+    duration_secs = 210
 
 # Sanitize details for XML safety
-song_title = song_title.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace('"', "&quot;")
-artist = artist.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace('"', "&quot;")
+song_title = song_title_raw.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace('"', "&quot;") if song_title_raw else "Loading..."
+artist = artist_raw.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace('"', "&quot;") if artist_raw else "—"
 album = album.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace('"', "&quot;")
 
-b64_art = download_image_as_b64(art_url) if is_playing else ""
+# Always try to get album art (whether playing or recently played)
+b64_art = download_image_as_b64(art_url) if art_url else ""
 
-# Set brand-specific styling variables based on MUSIC_PROVIDER configuration
-if MUSIC_PROVIDER == "spotify":
-    theme_color = "#1db954"
-    brand_badge_text = "SPOTIFY SESSION"
-    badge_bg_color = "rgba(29, 185, 84, 0.12)"
-    badge_txt_color = "#1db954"
-    shadow_fill = "#1db954"
-    border_stop1 = "#1db954"
-    border_stop2 = "#8b5cf6"
-    brand_logo_svg = '''
-    <g transform="translate(415, 20)">
-      <circle cx="15" cy="15" r="14" fill="#1db954" />
-      <path d="M 7.5 11 C 12 8.5, 18 8.5, 22.5 11" stroke="#0a0817" stroke-width="2.5" stroke-linecap="round" fill="none" />
-      <path d="M 9 15 C 13 13, 17 13, 21 15" stroke="#0a0817" stroke-width="2" stroke-linecap="round" fill="none" />
-      <path d="M 10.5 19 C 13.5 17.5, 16.5 17.5, 19.5 19" stroke="#0a0817" stroke-width="1.8" stroke-linecap="round" fill="none" />
-    </g>'''
-else:  # Default: "ytmusic"
-    theme_color = "#ff0000"
-    brand_badge_text = "YOUTUBE MUSIC"
-    badge_bg_color = "rgba(255, 0, 0, 0.12)"
-    badge_txt_color = "#ff0000"
-    shadow_fill = "#ff0000"
-    border_stop1 = "#ff0000"
-    border_stop2 = "#8b5cf6"
-    brand_logo_svg = '''
-    <g transform="translate(415, 20)">
-      <circle cx="15" cy="15" r="14" fill="#ff0000" />
-      <circle cx="15" cy="15" r="9" fill="#0a0817" stroke="#ff0000" stroke-width="1" />
-      <path d="M 13 11 L 19 15 L 13 19 Z" fill="#ffffff" />
-    </g>'''
+# Green theme color — consistent with profile aesthetic
+theme_color = "#1db954"
 
 if is_playing:
-    status_label = brand_badge_text
+    status_label = "NOW PLAYING"
     spinning_class = "vinyl-record"
-    progress_bar_animate = '<animate attributeName="width" from="0" to="260" dur="240s" repeatCount="indefinite"/>'
-    progress_dot_animate = '<animate attributeName="cx" from="0" to="260" dur="240s" repeatCount="indefinite"/>'
-    active_play_stroke = theme_color
-    timer_right = "04:20"
-    progress_bar_color = theme_color
+    progress_bar_animate = f'<animate attributeName="width" from="0" to="240" dur="{duration_secs}s" repeatCount="indefinite"/>'
+    progress_dot_animate = f'<animate attributeName="cx" from="20" to="260" dur="{duration_secs}s" repeatCount="indefinite"/>'
+    badge_bg_color = "rgba(29, 185, 84, 0.15)"
+    badge_txt_color = "#1db954"
+    pulse_anim = '<animate attributeName="opacity" values="0.4;1;0.4" dur="1.5s" repeatCount="indefinite" />'
 else:
-    status_label = "DEV FOCUS MODE"
+    status_label = "RECENTLY PLAYED"
     spinning_class = ""
     progress_bar_animate = ""
     progress_dot_animate = ""
-    active_play_stroke = "#64748b"
-    timer_right = "--:--"
-    progress_bar_color = "#475569"
-    song_title = "Caffeine &amp; Neural Networks"
-    artist = "Sankalpa Sarkar — Dev Focus Vibe"
+    badge_bg_color = "rgba(148, 163, 184, 0.1)"
+    badge_txt_color = "#94a3b8"
+    pulse_anim = ""
 
-if is_playing and b64_art:
+# Equalizer visualizer bars (animated when playing, static when not)
+eq_bars = ""
+bar_heights = [14, 20, 10, 18, 8, 22, 12, 16]
+bar_durations = [0.8, 0.5, 1.1, 0.7, 1.3, 0.6, 0.9, 0.75]
+for i, (h, dur) in enumerate(zip(bar_heights, bar_durations)):
+    x = 420 + i * 6
+    if is_playing:
+        anim = f'''<animate attributeName="height" values="{h};24;{h//2};24;{h}" dur="{dur}s" repeatCount="indefinite"/>
+          <animate attributeName="y" values="{24-h};0;{24-h//2};0;{24-h}" dur="{dur}s" repeatCount="indefinite"/>'''
+    else:
+        anim = ""
+    eq_bars += f'''
+    <rect x="{x}" y="{24-h}" width="3.5" height="{h}" fill="{theme_color}" rx="1.5" opacity="0.7">
+      {anim}
+    </rect>'''
+
+# Album art rendering
+if b64_art:
     album_art_rendering = f'''
-    <!-- Album Art: Glowing Spinning Vinyl Record -->
     <g class="{spinning_class}">
       <circle cx="60" cy="70" r="42" fill="#18142c" stroke="{theme_color}" stroke-width="1.5" />
-      <circle cx="60" cy="70" r="32" fill="#0d0a1b" stroke="#3b0764" stroke-width="1" />
-      
+      <circle cx="60" cy="70" r="35" fill="#0d0a1b" stroke="#1a3a2a" stroke-width="0.5" />
       <clipPath id="circle-art-clip">
         <circle cx="60" cy="70" r="28" />
       </clipPath>
       <image href="{b64_art}" x="32" y="42" width="56" height="56" clip-path="url(#circle-art-clip)"/>
-      
-      <circle cx="60" cy="70" r="28" fill="none" stroke="#2e2b42" stroke-width="0.5" stroke-dasharray="10 5" />
-      <circle cx="60" cy="70" r="18" fill="none" stroke="#2e2b42" stroke-width="0.5" stroke-dasharray="4 2" />
+      <circle cx="60" cy="70" r="28" fill="none" stroke="#2e2b42" stroke-width="0.5" stroke-dasharray="8 4" />
+      <circle cx="60" cy="70" r="20" fill="none" stroke="#2e2b42" stroke-width="0.3" stroke-dasharray="3 3" />
       <circle cx="60" cy="70" r="6" fill="#0d0a1b" stroke="{theme_color}" stroke-width="0.5" />
       <circle cx="60" cy="70" r="1.5" fill="#ffffff" />
     </g>'''
 else:
     album_art_rendering = f'''
-    <!-- Album Art: Glowing Spinning Vinyl Record -->
     <g class="{spinning_class}">
       <circle cx="60" cy="70" r="42" fill="#18142c" stroke="{theme_color}" stroke-width="1.5" />
-      <circle cx="60" cy="70" r="32" fill="#0d0a1b" stroke="#3b0764" stroke-width="1" />
-      <circle cx="60" cy="70" r="24" fill="none" stroke="#2e2b42" stroke-width="0.5" stroke-dasharray="10 5" />
-      <circle cx="60" cy="70" r="16" fill="none" stroke="#2e2b42" stroke-width="0.5" stroke-dasharray="4 2" />
-      <circle cx="60" cy="70" r="12" fill="{theme_color}" />
+      <circle cx="60" cy="70" r="35" fill="#0d0a1b" stroke="#1a3a2a" stroke-width="0.5" />
+      <circle cx="60" cy="70" r="24" fill="none" stroke="#2e2b42" stroke-width="0.5" stroke-dasharray="8 4" />
+      <circle cx="60" cy="70" r="16" fill="none" stroke="#2e2b42" stroke-width="0.3" stroke-dasharray="3 3" />
+      <circle cx="60" cy="70" r="10" fill="{theme_color}" opacity="0.8" />
       <circle cx="60" cy="70" r="3" fill="#0d0a1b" />
     </g>'''
 
+# Truncate long text for SVG display
+max_title_chars = 30
+max_artist_chars = 35
+display_title = song_title if len(song_title) <= max_title_chars else song_title[:max_title_chars-2] + "..."
+display_artist = artist if len(artist) <= max_artist_chars else artist[:max_artist_chars-2] + "..."
+
 ytmusic_svg = f'''<svg width="480" height="140" viewBox="0 0 480 140" fill="none" xmlns="http://www.w3.org/2000/svg">
   <style>
-    .song-title {{ font: 700 15px 'Inter', system-ui, sans-serif; fill: #ffffff; }}
-    .artist {{ font: 500 12px 'Inter', system-ui, sans-serif; fill: #a78bfa; }}
-    .time {{ font: 500 10px monospace; fill: #94a3b8; }}
-    .badge {{ font: 600 9px monospace; fill: {badge_txt_color}; letter-spacing: 1px; }}
+    .song-title {{ font: 700 14px 'Inter', system-ui, sans-serif; fill: #ffffff; }}
+    .artist {{ font: 500 11.5px 'Inter', system-ui, sans-serif; fill: #a78bfa; }}
+    .time {{ font: 500 9px monospace; fill: #94a3b8; }}
+    .badge {{ font: 600 8.5px monospace; fill: {badge_txt_color}; letter-spacing: 1px; }}
     .vinyl-record {{ transform-origin: 60px 70px; animation: spin 8s linear infinite; }}
     @keyframes spin {{ 0% {{ transform: rotate(0deg); }} 100% {{ transform: rotate(360deg); }} }}
   </style>
@@ -467,11 +495,11 @@ ytmusic_svg = f'''<svg width="480" height="140" viewBox="0 0 480 140" fill="none
   <defs>
     <linearGradient id="bgGrad" x1="0" y1="0" x2="480" y2="140" gradientUnits="userSpaceOnUse">
       <stop offset="0%" stop-color="#0a0817" />
-      <stop offset="100%" stop-color="#120e2e" />
+      <stop offset="100%" stop-color="#0e1a12" />
     </linearGradient>
     <linearGradient id="borderGrad" x1="0" y1="0" x2="480" y2="140" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="{border_stop1}" stop-opacity="0.8" />
-      <stop offset="100%" stop-color="{border_stop2}" stop-opacity="0.4" />
+      <stop offset="0%" stop-color="#1db954" stop-opacity="0.7" />
+      <stop offset="100%" stop-color="#8b5cf6" stop-opacity="0.3" />
     </linearGradient>
     <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
       <feGaussianBlur stdDeviation="6" result="blur" />
@@ -479,8 +507,8 @@ ytmusic_svg = f'''<svg width="480" height="140" viewBox="0 0 480 140" fill="none
     </filter>
   </defs>
 
-  <!-- Glowing background drop shadow -->
-  <rect x="8" y="8" width="464" height="124" rx="16" fill="{shadow_fill}" opacity="0.1" filter="url(#glow)" />
+  <!-- Glowing background shadow -->
+  <rect x="8" y="8" width="464" height="124" rx="16" fill="#1db954" opacity="0.08" filter="url(#glow)" />
 
   <!-- Main Player Container -->
   <rect x="8" y="8" width="464" height="124" rx="16" fill="url(#bgGrad)" stroke="url(#borderGrad)" stroke-width="1.5" />
@@ -488,51 +516,43 @@ ytmusic_svg = f'''<svg width="480" height="140" viewBox="0 0 480 140" fill="none
   {album_art_rendering}
 
   <!-- Track Information -->
-  <g transform="translate(120, 28)">
-    <!-- Dynamic Playing Badge -->
-    <rect x="0" y="0" width="125" height="18" rx="9" fill="{badge_bg_color}" />
-    <circle cx="11" cy="9" r="3.5" fill="{badge_txt_color}">
-      <animate attributeName="opacity" values="0.4;1;0.4" dur="2s" repeatCount="indefinite" />
+  <g transform="translate(118, 26)">
+    <!-- Status Badge -->
+    <rect x="0" y="0" width="120" height="17" rx="8" fill="{badge_bg_color}" />
+    <circle cx="10" cy="8.5" r="3" fill="{badge_txt_color}">
+      {pulse_anim}
     </circle>
-    <text x="22" y="10" dominant-baseline="middle" class="badge">{status_label}</text>
+    <text x="20" y="9" dominant-baseline="middle" class="badge">{status_label}</text>
 
-    <!-- Song & Artist Details -->
-    <text x="0" y="36" class="song-title">{song_title}</text>
-    <text x="0" y="54" class="artist">{artist}</text>
+    <!-- Song & Artist Details (clipped to avoid overlap) -->
+    <text x="0" y="34" class="song-title">{display_title}</text>
+    <text x="0" y="50" class="artist">{display_artist}</text>
   </g>
 
-  <!-- Player Controls (Bottom Progress Section) -->
-  <g transform="translate(120, 95)">
-    <!-- Progress Bar Background -->
-    <rect x="0" y="6" width="260" height="4" rx="2" fill="#334155" />
-    <!-- Active Progress Bar -->
-    <rect x="0" y="6" width="0" height="4" rx="2" fill="{progress_bar_color}">
+  <!-- Progress Bar -->
+  <g transform="translate(118, 95)">
+    <rect x="20" y="6" width="240" height="3" rx="1.5" fill="#1e293b" />
+    <rect x="20" y="6" width="0" height="3" rx="1.5" fill="{theme_color}">
       {progress_bar_animate}
     </rect>
-    <!-- Active slider node -->
-    <circle cx="0" cy="8" r="5" fill="#ffffff">
+    <circle cx="20" cy="7.5" r="4" fill="#ffffff" opacity="0.9">
       {progress_dot_animate}
     </circle>
-    
-    <!-- Track Timers -->
-    <text x="0" y="24" class="time">00:00</text>
-    <text x="260" y="24" text-anchor="end" class="time">{timer_right}</text>
+    <text x="20" y="22" class="time">0:00</text>
+    <text x="260" y="22" text-anchor="end" class="time">{track_duration}</text>
   </g>
 
-  <!-- Interactive Control Icons -->
-  <g transform="translate(395, 78)" stroke="#94a3b8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none">
-    <!-- Skip Back -->
-    <path d="M 4 6 L 4 18 M 12 6 L 6 12 L 12 18" stroke="#94a3b8" />
-    <!-- Play/Pause Button -->
-    <circle cx="28" cy="12" r="10" fill="{theme_color}" fill-opacity="0.1" stroke="{theme_color}" />
-    <path d="M 25 8 V 16 M 31 8 V 16" stroke="{active_play_stroke}" stroke-width="2" />
-    <!-- Skip Forward -->
-    <path d="M 44 6 L 50 12 L 44 18" />
-    <path d="M 52 6 L 52 18" />
+  <!-- Equalizer Visualizer -->
+  <g transform="translate(0, 96)">
+    {eq_bars}
   </g>
 
-  <!-- Brand Accent Icon -->
-  {brand_logo_svg}
+  <!-- YT Music Brand Logo -->
+  <g transform="translate(440, 18)">
+    <circle cx="12" cy="12" r="11" fill="#ff0000" />
+    <circle cx="12" cy="12" r="7" fill="#0a0817" stroke="#ff0000" stroke-width="0.8" />
+    <path d="M 10.5 9 L 15.5 12 L 10.5 15 Z" fill="#ffffff" />
+  </g>
 </svg>'''
 
 with open(f"assets/ytmusic_{cache_buster}.svg", "w") as f:
