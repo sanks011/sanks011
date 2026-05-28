@@ -34,7 +34,7 @@
     
     <text x="58" y="104" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="600" fill="#e2e8f0">Mon Kyamoner Jonmodin</text>
     <text x="58" y="119" font-family="Inter, system-ui, sans-serif" font-size="10" fill="#94a3b8">Mekhla Dasgupta</text>
-    <text x="455" y="110" text-anchor="end" font-family="monospace" font-size="9" fill="#64748b">1d ago</text>
+    <text x="455" y="110" text-anchor="end" font-family="monospace" font-size="9" fill="#64748b">2d ago</text>
     <line x1="20" y1="134" x2="460" y2="134" stroke="#1e293b" stroke-width="0.5" />
 
     <clipPath id="art-clip-2"><circle cx="34" cy="152" r="14" /></clipPath>
@@ -43,7 +43,7 @@
     
     <text x="58" y="148" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="600" fill="#e2e8f0">Manobjomin</text>
     <text x="58" y="163" font-family="Inter, system-ui, sans-serif" font-size="10" fill="#94a3b8">Mon Re Krishikaj Janona (From</text>
-    <text x="455" y="154" text-anchor="end" font-family="monospace" font-size="9" fill="#64748b">1d ago</text>
+    <text x="455" y="154" text-anchor="end" font-family="monospace" font-size="9" fill="#64748b">2d ago</text>
     <line x1="20" y1="178" x2="460" y2="178" stroke="#1e293b" stroke-width="0.5" />
 
     <clipPath id="art-clip-3"><circle cx="34" cy="196" r="14" /></clipPath>
@@ -52,7 +52,7 @@
     
     <text x="58" y="192" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="600" fill="#e2e8f0">Aamar Boss</text>
     <text x="58" y="207" font-family="Inter, system-ui, sans-serif" font-size="10" fill="#94a3b8">Malachandan (From</text>
-    <text x="455" y="198" text-anchor="end" font-family="monospace" font-size="9" fill="#64748b">1d ago</text>
+    <text x="455" y="198" text-anchor="end" font-family="monospace" font-size="9" fill="#64748b">2d ago</text>
     <line x1="20" y1="222" x2="460" y2="222" stroke="#1e293b" stroke-width="0.5" />
 
     <clipPath id="art-clip-4"><circle cx="34" cy="240" r="14" /></clipPath>
@@ -61,7 +61,7 @@
     
     <text x="58" y="236" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="600" fill="#e2e8f0">Coke Studio Bangla</text>
     <text x="58" y="251" font-family="Inter, system-ui, sans-serif" font-size="10" fill="#94a3b8">Long Distance Love</text>
-    <text x="455" y="242" text-anchor="end" font-family="monospace" font-size="9" fill="#64748b">1d ago</text>
+    <text x="455" y="242" text-anchor="end" font-family="monospace" font-size="9" fill="#64748b">2d ago</text>
     
 
 </svg>
