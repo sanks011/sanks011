@@ -25,7 +25,7 @@
     
     <text x="58" y="60" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="600" fill="#e2e8f0">Dark Reader tweak</text>
     <text x="58" y="75" font-family="Inter, system-ui, sans-serif" font-size="10" fill="#94a3b8">SleepyCatHey</text>
-    <text x="455" y="66" text-anchor="end" font-family="monospace" font-size="9" fill="#64748b">16h ago</text>
+    <text x="455" y="66" text-anchor="end" font-family="monospace" font-size="9" fill="#64748b">18h ago</text>
     <line x1="20" y1="90" x2="460" y2="90" stroke="#1e293b" stroke-width="0.5" />
 
     <clipPath id="art-clip-1"><circle cx="34" cy="108" r="14" /></clipPath>
@@ -34,7 +34,7 @@
     
     <text x="58" y="104" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="600" fill="#e2e8f0">Homepage</text>
     <text x="58" y="119" font-family="Inter, system-ui, sans-serif" font-size="10" fill="#94a3b8">SleepyCatHey</text>
-    <text x="455" y="110" text-anchor="end" font-family="monospace" font-size="9" fill="#64748b">16h ago</text>
+    <text x="455" y="110" text-anchor="end" font-family="monospace" font-size="9" fill="#64748b">19h ago</text>
     <line x1="20" y1="134" x2="460" y2="134" stroke="#1e293b" stroke-width="0.5" />
 
     <clipPath id="art-clip-2"><circle cx="34" cy="152" r="14" /></clipPath>
