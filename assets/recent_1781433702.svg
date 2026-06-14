@@ -25,7 +25,7 @@
     
     <text x="58" y="60" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="600" fill="#e2e8f0">Dark Reader tweak</text>
     <text x="58" y="75" font-family="Inter, system-ui, sans-serif" font-size="10" fill="#94a3b8">SleepyCatHey</text>
-    <text x="455" y="66" text-anchor="end" font-family="monospace" font-size="9" fill="#64748b">7d ago</text>
+    <text x="455" y="66" text-anchor="end" font-family="monospace" font-size="9" fill="#64748b">8d ago</text>
     <line x1="20" y1="90" x2="460" y2="90" stroke="#1e293b" stroke-width="0.5" />
 
     <clipPath id="art-clip-1"><circle cx="34" cy="108" r="14" /></clipPath>
@@ -52,7 +52,7 @@
     
     <text x="58" y="192" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="600" fill="#e2e8f0">Mon Kyamoner Jonmodin</text>
     <text x="58" y="207" font-family="Inter, system-ui, sans-serif" font-size="10" fill="#94a3b8">Mekhla Dasgupta</text>
-    <text x="455" y="198" text-anchor="end" font-family="monospace" font-size="9" fill="#64748b">18d ago</text>
+    <text x="455" y="198" text-anchor="end" font-family="monospace" font-size="9" fill="#64748b">19d ago</text>
     <line x1="20" y1="222" x2="460" y2="222" stroke="#1e293b" stroke-width="0.5" />
 
     <clipPath id="art-clip-4"><circle cx="34" cy="240" r="14" /></clipPath>
@@ -61,7 +61,7 @@
     
     <text x="58" y="236" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="600" fill="#e2e8f0">Manobjomin</text>
     <text x="58" y="251" font-family="Inter, system-ui, sans-serif" font-size="10" fill="#94a3b8">Mon Re Krishikaj Janona (From</text>
-    <text x="455" y="242" text-anchor="end" font-family="monospace" font-size="9" fill="#64748b">18d ago</text>
+    <text x="455" y="242" text-anchor="end" font-family="monospace" font-size="9" fill="#64748b">19d ago</text>
     
 
 </svg>
