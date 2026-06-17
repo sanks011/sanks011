@@ -43,7 +43,7 @@
     
     <text x="58" y="148" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="600" fill="#e2e8f0">Shubh Din Aayo</text>
     <text x="58" y="163" font-family="Inter, system-ui, sans-serif" font-size="10" fill="#94a3b8">Shweta Mohan, Abby V, Shivam Sin...</text>
-    <text x="455" y="154" text-anchor="end" font-family="monospace" font-size="9" fill="#64748b">21d ago</text>
+    <text x="455" y="154" text-anchor="end" font-family="monospace" font-size="9" fill="#64748b">22d ago</text>
     <line x1="20" y1="178" x2="460" y2="178" stroke="#1e293b" stroke-width="0.5" />
 
     <clipPath id="art-clip-3"><circle cx="34" cy="196" r="14" /></clipPath>
