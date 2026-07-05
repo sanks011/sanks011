@@ -25,7 +25,7 @@
     
     <text x="58" y="60" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="600" fill="#e2e8f0">Dilawara</text>
     <text x="58" y="75" font-family="Inter, system-ui, sans-serif" font-size="10" fill="#94a3b8">The PropheC &amp; Ezu</text>
-    <text x="455" y="66" text-anchor="end" font-family="monospace" font-size="9" fill="#64748b">8h ago</text>
+    <text x="455" y="66" text-anchor="end" font-family="monospace" font-size="9" fill="#64748b">9h ago</text>
     <line x1="20" y1="90" x2="460" y2="90" stroke="#1e293b" stroke-width="0.5" />
 
     <clipPath id="art-clip-1"><circle cx="34" cy="108" r="14" /></clipPath>
@@ -34,7 +34,7 @@
     
     <text x="58" y="104" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="600" fill="#e2e8f0">Jhol</text>
     <text x="58" y="119" font-family="Inter, system-ui, sans-serif" font-size="10" fill="#94a3b8">Maanu &amp; Annural Khalid</text>
-    <text x="455" y="110" text-anchor="end" font-family="monospace" font-size="9" fill="#64748b">8h ago</text>
+    <text x="455" y="110" text-anchor="end" font-family="monospace" font-size="9" fill="#64748b">9h ago</text>
     <line x1="20" y1="134" x2="460" y2="134" stroke="#1e293b" stroke-width="0.5" />
 
     <clipPath id="art-clip-2"><circle cx="34" cy="152" r="14" /></clipPath>
@@ -43,7 +43,7 @@
     
     <text x="58" y="148" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="600" fill="#e2e8f0">You and Me</text>
     <text x="58" y="163" font-family="Inter, system-ui, sans-serif" font-size="10" fill="#94a3b8">Shubh</text>
-    <text x="455" y="154" text-anchor="end" font-family="monospace" font-size="9" fill="#64748b">8h ago</text>
+    <text x="455" y="154" text-anchor="end" font-family="monospace" font-size="9" fill="#64748b">9h ago</text>
     <line x1="20" y1="178" x2="460" y2="178" stroke="#1e293b" stroke-width="0.5" />
 
     <clipPath id="art-clip-3"><circle cx="34" cy="196" r="14" /></clipPath>
@@ -52,7 +52,7 @@
     
     <text x="58" y="192" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="600" fill="#e2e8f0">Tere Bina Na Guzara E</text>
     <text x="58" y="207" font-family="Inter, system-ui, sans-serif" font-size="10" fill="#94a3b8">Josh Brar</text>
-    <text x="455" y="198" text-anchor="end" font-family="monospace" font-size="9" fill="#64748b">8h ago</text>
+    <text x="455" y="198" text-anchor="end" font-family="monospace" font-size="9" fill="#64748b">9h ago</text>
     <line x1="20" y1="222" x2="460" y2="222" stroke="#1e293b" stroke-width="0.5" />
 
     <clipPath id="art-clip-4"><circle cx="34" cy="240" r="14" /></clipPath>
@@ -61,7 +61,7 @@
     
     <text x="58" y="236" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="600" fill="#e2e8f0">Majboor</text>
     <text x="58" y="251" font-family="Inter, system-ui, sans-serif" font-size="10" fill="#94a3b8">Sheheryar Rehan &amp; Zoha Waseem</text>
-    <text x="455" y="242" text-anchor="end" font-family="monospace" font-size="9" fill="#64748b">8h ago</text>
+    <text x="455" y="242" text-anchor="end" font-family="monospace" font-size="9" fill="#64748b">9h ago</text>
     
 
 </svg>
