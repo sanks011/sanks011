@@ -34,7 +34,7 @@
     
     <text x="58" y="104" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="600" fill="#e2e8f0">Tere Zikr Mein</text>
     <text x="58" y="119" font-family="Inter, system-ui, sans-serif" font-size="10" fill="#94a3b8">Shilpa Rao</text>
-    <text x="455" y="110" text-anchor="end" font-family="monospace" font-size="9" fill="#64748b">5d ago</text>
+    <text x="455" y="110" text-anchor="end" font-family="monospace" font-size="9" fill="#64748b">6d ago</text>
     <line x1="20" y1="134" x2="460" y2="134" stroke="#1e293b" stroke-width="0.5" />
 
     <clipPath id="art-clip-2"><circle cx="34" cy="152" r="14" /></clipPath>
