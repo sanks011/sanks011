@@ -35,7 +35,7 @@
     <!-- Uptime -->
     <g transform="translate(0, 32)">
       <text x="0" y="15" class="log-tag" fill="#a78bfa">SYS_UPTIME:</text>
-      <text x="110" y="15" class="log-val">7783 days (since 31.03.2005)</text>
+      <text x="110" y="15" class="log-val">7784 days (since 31.03.2005)</text>
     </g>
 
     <!-- Energy Source -->
