@@ -1,0 +1,22 @@
+<svg width="480" height="64" viewBox="0 0 480 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="rcBg" x1="0" y1="0" x2="480" y2="64" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0a0817" />
+      <stop offset="100%" stop-color="#1a050d" />
+    </linearGradient>
+    <linearGradient id="rcBorder" x1="0" y1="0" x2="480" y2="64" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ff0033" stop-opacity="0.4" />
+      <stop offset="100%" stop-color="#8b5cf6" stop-opacity="0.2" />
+    </linearGradient>
+  </defs>
+
+  <!-- Container -->
+  <rect x="4" y="4" width="472" height="56" rx="14" fill="url(#rcBg)" stroke="url(#rcBorder)" stroke-width="1" />
+
+  <!-- Header -->
+  <text x="24" y="30" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="700" fill="#ff0033" letter-spacing="1">&#9835; RECENTLY PLAYED</text>
+  <line x1="20" y1="40" x2="460" y2="40" stroke="#1e293b" stroke-width="0.5" />
+
+  <!-- Track Rows -->
+  
+</svg>
