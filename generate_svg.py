@@ -5,7 +5,7 @@ import base64
 import urllib.request
 import urllib.parse
 import ssl
-from datetime import datetime
+from datetime import datetime, timezone
 import glob
 
 # Make sure assets directory exists
@@ -154,8 +154,8 @@ def fetch_lastfm_recent_tracks(username, api_key, limit=5):
                 else:
                     uts = track.get("date", {}).get("uts", "")
                     if uts:
-                        dt = datetime.fromtimestamp(int(uts), tz=__import__('datetime').timezone.utc)
-                        delta = datetime.now(tz=tz) if 'tz' in locals() else datetime.now(tz=__import__('datetime').timezone.utc) - dt
+                        dt = datetime.fromtimestamp(int(uts), tz=timezone.utc)
+                        delta = datetime.now(tz=timezone.utc) - dt
                         if delta.total_seconds() < 3600:
                             time_str = f"{int(delta.total_seconds()//60)}m ago"
                         elif delta.total_seconds() < 86400:
@@ -219,17 +219,13 @@ def download_image_as_b64(url):
 # Generate a unique cache buster based on execution timestamp
 cache_buster = int(datetime.now().timestamp())
 
-# Delete all old dynamic dashboard SVG files to keep the repo clean
-for old_file in glob.glob("assets/contributions_*.svg") + glob.glob("assets/telemetry_*.svg") + glob.glob("assets/ytmusic_*.svg") + glob.glob("assets/contributions.svg") + glob.glob("assets/telemetry.svg") + glob.glob("assets/ytmusic.svg"):
-    try:
-        os.remove(old_file)
-        print(f"Removed stale asset: {old_file}")
-    except Exception as e:
-        print(f"Error cleaning stale asset {old_file}: {e}")
-
 # Fetch dynamic contributions from local prs.json
-with open("prs.json") as f:
-    data = json.load(f)
+if os.path.exists("prs.json"):
+    with open("prs.json") as f:
+        data = json.load(f)
+else:
+    print("Warning: prs.json not found, using empty pull requests dataset")
+    data = {"data": {"user": {"pullRequests": {"nodes": []}}}}
 
 # Exclude personal repos and friends' repos
 excluded_owners = ["sanks011", "sahnik0", "shovon0004", "abhijit5996", "shreyas0017"]
@@ -509,6 +505,156 @@ telemetry_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="800" height="
 
 with open(f"assets/telemetry_{cache_buster}.svg", "w") as f:
     f.write(telemetry_svg)
+
+# ─── Achievements / Milestones SVG ───────────────────────────────────────────
+# Each entry: (svg_icon_paths, title, subtitle, accent_color)
+# icon_paths = list of SVG element strings rendered inside the accent circle at (23, y+cy-11)
+# We use inline Lucide-style paths so GitHub's sanitiser won't strip them.
+
+def _icon_trophy(cx, cy):
+    ox, oy = cx - 10, cy - 10
+    return (
+        f'<g transform="translate({ox},{oy})" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">'
+        f'<path d="M5 7H3.5a2 2 0 0 1 0-4H5"/>'
+        f'<path d="M15 7h1.5a2 2 0 0 0 0-4H15"/>'
+        f'<path d="M3 18h14"/>'
+        f'<path d="M8 12.5V14.5c0 .4-.3.7-.7.9C6.3 15.8 5.5 17 5.5 18"/>'
+        f'<path d="M12 12.5V14.5c0 .4.3.7.7.9c1 .4 1.8 1.6 1.8 2.6"/>'
+        f'<path d="M15 2H5v5a5 5 0 0 0 10 0V2Z"/>'
+        f'</g>'
+    )
+
+def _icon_globe(cx, cy):
+    ox, oy = cx - 10, cy - 10
+    return (
+        f'<g transform="translate({ox},{oy})" fill="none" stroke="#4285f4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">'
+        f'<circle cx="10" cy="10" r="8"/>'
+        f'<path d="M10 2a12.5 12.5 0 0 0 0 16M10 2a12.5 12.5 0 0 1 0 16"/>'
+        f'<path d="M2 10h16"/>'
+        f'</g>'
+    )
+
+def _icon_git(cx, cy):
+    ox, oy = cx - 10, cy - 10
+    return (
+        f'<g transform="translate({ox},{oy})" fill="none" stroke="#10b981" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">'
+        f'<line x1="5" y1="3" x2="5" y2="17"/>'
+        f'<circle cx="5" cy="3" r="1.8"/>'
+        f'<circle cx="5" cy="17" r="1.8"/>'
+        f'<circle cx="15" cy="7" r="1.8"/>'
+        f'<path d="M5 8c4 0 10 2 10 3"/>'
+        f'</g>'
+    )
+
+def _icon_rocket(cx, cy):
+    ox, oy = cx - 10, cy - 10
+    return (
+        f'<g transform="translate({ox},{oy})" fill="none" stroke="#8b5cf6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">'
+        f'<path d="M4 14.5c-1 1-1.5 3.5-1.5 3.5s2.5-.5 3.5-1.5l2-2L6 12.5l-2 2Z"/>'
+        f'<path d="M10 12l-2-2a18 18 0 0 1 1.6-3.2A10.5 10.5 0 0 1 18 1.5c0 2.2-.6 6.1-4.8 9A18 18 0 0 1 10 12Z"/>'
+        f'<path d="M7.5 9.5H3.5s.4-2.5 1.6-3.2c1.3-.9 4 0 4 0"/>'
+        f'<path d="M10 12v4s2.5.4 3.2-1.6c.9-1.3 0-4 0-4"/>'
+        f'</g>'
+    )
+
+def _icon_handoff(cx, cy):
+    ox, oy = cx - 10, cy - 10
+    return (
+        f'<g transform="translate({ox},{oy})" fill="none" stroke="#d946ef" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">'
+        f'<polyline points="14 1 18 5 14 9"/>'
+        f'<path d="M2 9.5V8a3.5 3.5 0 0 1 3.5-3.5H18"/>'
+        f'<polyline points="6 19 2 15 6 11"/>'
+        f'<path d="M18 10.5V12a3.5 3.5 0 0 1-3.5 3.5H2"/>'
+        f'</g>'
+    )
+
+def _icon_code(cx, cy):
+    ox, oy = cx - 10, cy - 10
+    return (
+        f'<g transform="translate({ox},{oy})" fill="none" stroke="#38bdf8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">'
+        f'<polyline points="13 14 17 10 13 6"/>'
+        f'<polyline points="7 6 3 10 7 14"/>'
+        f'<line x1="11" y1="4" x2="9" y2="16"/>'
+        f'</g>'
+    )
+
+# (icon_fn, title, subtitle, accent)
+ACHIEVEMENTS = [
+    (_icon_trophy,  "Winner \u2013 OpenMRS Global AI Hackathon",
+     "VitaSort: automatic vital-sign-based queue prioritisation for OpenMRS",
+     "#f59e0b"),
+    (_icon_globe,   "Google Summer of Code 2025 \u2013 Contributor",
+     "Selected contributor for OpenMRS | openmrs-esm-patient-management",
+     "#4285f4"),
+    (_icon_git,     "Open Source Impact",
+     "27+ Pull Requests merged across 12 repositories &amp; 7 organisations",
+     "#10b981"),
+    (_icon_rocket,  "Founder &amp; Principal Architect \u2013 DevDirect",
+     "Custom software agency helping businesses scale with modern solutions",
+     "#8b5cf6"),
+    (_icon_handoff, "Creator \u2013 GRWM (Get Ready With Me)",
+     "AI-powered context handoff tool \u2013 carry your dev context across sessions",
+     "#d946ef"),
+    (_icon_code,    "Full-Stack &amp; AI Systems Engineer",
+     "MERN \u00b7 FastAPI \u00b7 LangChain \u00b7 PyTorch \u00b7 RAG \u00b7 LLM Fine-Tuning",
+     "#38bdf8"),
+]
+
+def _ach_row(idx, icon_fn, title, subtitle, accent):
+    """Return SVG markup for a single achievement row."""
+    y = 80 + idx * 62
+    cx, cy = 34, y + 27
+    bg  = f'<rect x="1" y="{y}" width="798" height="54" rx="6" fill="#110e2e" stroke="#1e1b4b" stroke-width="1"/>'
+    bar = f'<rect x="1" y="{y}" width="4" height="54" rx="2" fill="{accent}"/>'
+    ring = f'<circle cx="{cx}" cy="{cy}" r="18" fill="#0d0b21" stroke="{accent}" stroke-width="1.2" stroke-opacity="0.7"/>'
+    icon_svg = icon_fn(cx, cy)
+    # Title and subtitle are already pre-escaped in the ACHIEVEMENTS list
+    t   = f'<text x="62" y="{y + 22}" class="ach-title">{title}</text>'
+    sub_display = subtitle if len(subtitle) <= 90 else subtitle[:89] + "\u2026"
+    s   = f'<text x="62" y="{y + 40}" class="ach-sub">{sub_display}</text>'
+    dot = f'<circle cx="788" cy="{cy}" r="3" fill="{accent}" opacity="0.7"/>'
+    return "\n  ".join([bg, bar, ring, icon_svg, t, s, dot])
+
+ach_rows = "\n  ".join(
+    _ach_row(i, *ach) for i, ach in enumerate(ACHIEVEMENTS)
+)
+
+ach_height = 80 + len(ACHIEVEMENTS) * 62 + 20
+
+achievements_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="800" height="{ach_height}" viewBox="0 0 800 {ach_height}" fill="none">
+  <style>
+    .ach-header  {{ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: 800; font-size: 18px; fill: #a78bfa; letter-spacing: 0.5px; }}
+    .ach-sub-hdr {{ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 10px; fill: #64748b; font-weight: 500; }}
+    .ach-title   {{ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: 700; font-size: 13px; fill: #f1f5f9; }}
+    .ach-sub     {{ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 10.5px; fill: #94a3b8; }}
+  </style>
+
+  <!-- Outer frame -->
+  <rect x="1" y="1" width="798" height="{ach_height - 2}" rx="10" fill="#0d0b21" stroke="#1e1b4b" stroke-width="1.5"/>
+
+  <!-- Header -->
+  <g transform="translate(25, 22)">
+    <text x="0" y="14" class="ach-header">SYSTEM MILESTONES &amp; ACHIEVEMENTS</text>
+    <text x="0" y="30" class="ach-sub-hdr">Decorated checkpoints logged across competitive, open-source, and engineering domains</text>
+  </g>
+
+  <!-- Online badge -->
+  <g transform="translate(620, 18)">
+    <rect width="158" height="22" rx="4" fill="#110e2e" stroke="#1e1b4b" stroke-width="1"/>
+    <circle cx="14" cy="11" r="3.5" fill="#10b981"/>
+    <text x="25" y="14.5" font-family="monospace" font-size="9" font-weight="bold" fill="#34d399">MILESTONE_LOG: ACTIVE</text>
+  </g>
+
+  <!-- Separator -->
+  <line x1="25" y1="62" x2="775" y2="62" stroke="#1e1b4b" stroke-width="1" stroke-dasharray="6 3"/>
+
+  <!-- Achievement rows -->
+  {ach_rows}
+</svg>'''
+
+with open(f"assets/achievements_{cache_buster}.svg", "w", encoding="utf-8") as f:
+    f.write(achievements_svg)
+
 
 # Fetch Last.fm details for music scrobbling
 lastfm_username = os.environ.get("LASTFM_USERNAME") or "sankalpasarkar"
@@ -798,11 +944,6 @@ recent_svg = f'''<svg width="480" height="{total_height}" viewBox="0 0 480 {tota
   {track_rows}
 </svg>'''
 
-# Clean up stale recent tracks SVGs
-for old in glob.glob("assets/recent_*.svg"):
-    os.remove(old)
-    print(f"Removed stale asset: {old}")
-
 with open(f"assets/recent_{cache_buster}.svg", "w") as f:
     f.write(recent_svg)
 
@@ -857,7 +998,36 @@ updated = re.sub(
     flags=re.DOTALL
 )
 
+# Replace achievements block
+achievements_start = "<!-- ACHIEVEMENTS_START -->"
+achievements_end = "<!-- ACHIEVEMENTS_END -->"
+new_achievements_block = (
+    f"{achievements_start}\n"
+    "<!-- auto-updated by .github/workflows/update-contributions.yml -->\n\n"
+    f'<p align="center">\n'
+    f'  <img src="./assets/achievements_{cache_buster}.svg" alt="Achievements &amp; Milestones" width="100%" />\n'
+    f'</p>\n\n'
+    f"{achievements_end}"
+)
+
+updated = re.sub(
+    rf"{re.escape(achievements_start)}.*?{re.escape(achievements_end)}",
+    new_achievements_block,
+    updated,
+    flags=re.DOTALL
+)
+
 with open("README.md", "w") as f:
     f.write(updated)
 
-print(f"Successfully compiled contributions, telemetry, YT Music, and Recent Tracks SVGs! Cache buster: {cache_buster}")
+# Clean up stale dashboard SVG files (keeping only current cache_buster assets)
+for pattern in ["contributions_*.svg", "telemetry_*.svg", "ytmusic_*.svg", "achievements_*.svg", "recent_*.svg"]:
+    for old_file in glob.glob(f"assets/{pattern}"):
+        if str(cache_buster) not in old_file:
+            try:
+                os.remove(old_file)
+                print(f"Removed stale asset: {old_file}")
+            except Exception as e:
+                print(f"Error cleaning stale asset {old_file}: {e}")
+
+print(f"Successfully compiled contributions, telemetry, YT Music, Recent Tracks, and Achievements SVGs! Cache buster: {cache_buster}")

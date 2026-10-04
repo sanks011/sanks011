@@ -38,7 +38,7 @@ I'm a passionate developer who loves building scalable systems, developing intel
 <!-- auto-updated by .github/workflows/update-contributions.yml -->
 
 <p align="center">
-  <img src="./assets/ytmusic_1791108917.svg" alt="YouTube Music Player" width="480" />
+  <img src="./assets/ytmusic_1791112066.svg" alt="YouTube Music Player" width="480" />
 </p>
 
 <!-- MUSIC_END -->
@@ -47,7 +47,7 @@ I'm a passionate developer who loves building scalable systems, developing intel
 <!-- auto-updated by .github/workflows/update-contributions.yml -->
 
 <p align="center">
-  <img src="./assets/recent_1791108917.svg" alt="Recently Played Tracks" width="480" />
+  <img src="./assets/recent_1791112066.svg" alt="Recently Played Tracks" width="480" />
 </p>
 
 <!-- RECENT_TRACKS_END -->
@@ -73,13 +73,13 @@ I'm a passionate developer who loves building scalable systems, developing intel
       </td>
       <td width="50%" align="center" style="border: none; padding: 15px; vertical-align: top;">
         <br/>
-        <a href="https://www.sankalpasarkar.xyz/">
-          <img src="https://img.shields.io/badge/CODETWIN_AI-Active_Beta-d946ef?style=for-the-badge&logo=openai&logoColor=white" alt="CodeTwin AI" />
+        <a href="https://github.com/sanks011/grwm">
+          <img src="https://img.shields.io/badge/GRWM-AI_Context_Handoff-d946ef?style=for-the-badge&logo=lightning&logoColor=white" alt="GRWM" />
         </a>
         <br/><br/>
         <strong>Creator &amp; Lead AI Engineer</strong>
         <br/><br/>
-        AI assistant that twins your coding habits.
+        AI-powered&nbsp;context&nbsp;handoff&nbsp;tool&nbsp;&#x2013;&nbsp;carry&nbsp;your&nbsp;dev&nbsp;context&nbsp;across&nbsp;sessions.
       </td>
     </tr>
   </table>
@@ -112,7 +112,7 @@ I'm a passionate developer who loves building scalable systems, developing intel
 <!-- auto-updated by .github/workflows/update-contributions.yml -->
 
 <p align="center">
-  <img src="./assets/contributions_1791108917.svg" alt="Open Source Contributions Telemetry" width="100%" />
+  <img src="./assets/contributions_1791112066.svg" alt="Open Source Contributions Telemetry" width="100%" />
 </p>
 
 <!-- OSS_CONTRIBUTIONS_END -->
@@ -171,7 +171,7 @@ I'm a passionate developer who loves building scalable systems, developing intel
   <br/><br/>
   
   <!-- Row 3: Development Velocity Timeline (Balanced Layout) -->
-  <img width="85%" src="https://github-readme-activity-graph.vercel.app/graph?username=sanks011&bg_color=0d0b21&color=e2e8f0&title_color=a78bfa&line=8b5cf6&point=a78bfa&area=true&area_color=1e1b4b&hide_border=true&border_radius=10&v=2" alt="Contribution Graph" />
+  <img width="85%" src="https://ghchart.rshah.org/8b5cf6/sanks011" alt="Sankalpa's Contribution Graph" />
 </div>
 
 ---
@@ -180,7 +180,14 @@ I'm a passionate developer who loves building scalable systems, developing intel
 
 <div align="center">
 
-<img src="https://github-profile-trophy.vercel.app/?username=sanks011&theme=radical&no-frame=true&no-bg=true&margin-w=4&column=7" alt="Achievements Trophies" />
+<!-- ACHIEVEMENTS_START -->
+<!-- auto-updated by .github/workflows/update-contributions.yml -->
+
+<p align="center">
+  <img src="./assets/achievements_1791112066.svg" alt="Achievements &amp; Milestones" width="100%" />
+</p>
+
+<!-- ACHIEVEMENTS_END -->
 
 </div>
 
@@ -192,7 +199,7 @@ I'm a passionate developer who loves building scalable systems, developing intel
 <!-- auto-updated by .github/workflows/update-contributions.yml -->
 
 <p align="center">
-  <img src="./assets/telemetry_1791108917.svg" alt="System Status Telemetry Console" width="100%" />
+  <img src="./assets/telemetry_1791112066.svg" alt="System Status Telemetry Console" width="100%" />
 </p>
 
 <!-- TELEMETRY_END -->
