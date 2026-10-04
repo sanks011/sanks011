@@ -382,8 +382,23 @@ contributions_svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="800" heig
 {chr(10).join(grid_items)}
 </svg>'''
 
-with open(f"assets/contributions_{cache_buster}.svg", "w") as f:
-    f.write(contributions_svg)
+if prs:
+    with open(f"assets/contributions_{cache_buster}.svg", "w") as f:
+        f.write(contributions_svg)
+else:
+    # If prs is empty (e.g. running locally without prs.json), do not overwrite with an empty SVG
+    if not os.path.exists(f"assets/contributions_{cache_buster}.svg"):
+        existing_contribs = [f for f in glob.glob("assets/contributions_*.svg") if str(cache_buster) not in f]
+        if existing_contribs:
+            import shutil
+            latest_contrib = sorted(existing_contribs)[-1]
+            shutil.copy(latest_contrib, f"assets/contributions_{cache_buster}.svg")
+            print(f"Preserved existing contributions SVG from {latest_contrib}")
+        else:
+            with open(f"assets/contributions_{cache_buster}.svg", "w") as f:
+                f.write(contributions_svg)
+    else:
+        print("Preserved current assets/contributions SVG (prs dataset empty)")
 
 # Calculate uptime days since March 31, 2005
 birthday = datetime(2005, 3, 31)
