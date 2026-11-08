@@ -1,0 +1,259 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="547" viewBox="0 0 800 547" fill="none">
+  <style>
+    .title { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: 800; font-size: 19px; fill: #a78bfa; letter-spacing: 0.5px; }
+    .subtitle { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 11px; fill: #64748b; font-weight: 500; }
+    .stat-val { font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace; font-weight: 800; font-size: 22px; fill: #f8fafc; }
+    .stat-label { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 9px; fill: #94a3b8; font-weight: 700; letter-spacing: 0.8px; }
+    .repo-name { font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace; font-weight: 700; font-size: 12px; fill: #f1f5f9; }
+    .repo-org { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 10px; fill: #64748b; font-weight: 600; }
+    .pr-badge-txt { font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 10.5px; font-weight: bold; fill: #a78bfa; }
+  </style>
+
+  <!-- Frame border with glowing margins -->
+  <rect x="1" y="1" width="798" height="545" rx="10" fill="#0d0b21" stroke="#1e1b4b" stroke-width="1.5"/>
+
+  <!-- Header -->
+  <g transform="translate(25, 28)">
+    <text x="0" y="10" class="title">OPEN SOURCE TELEMETRY</text>
+    <text x="0" y="26" class="subtitle">Distributed telemetry stream covering multi-tenant modules and integration pipelines</text>
+  </g>
+
+  <!-- Online status badge -->
+  <g transform="translate(625, 25)">
+    <rect width="150" height="22" rx="4" fill="#110e2e" stroke="#1e1b4b" stroke-width="1"/>
+    <circle cx="15" cy="11" r="3.5" fill="#10b981"/>
+    <text x="26" y="14.5" font-family="monospace" font-size="9" font-weight="bold" fill="#34d399">SYS_STATUS: LIVE</text>
+  </g>
+
+  <!-- Metrics row -->
+  <g transform="translate(25, 72)">
+    <rect width="240" height="52" rx="6" fill="#110e2e" stroke="#1e1b4b" stroke-width="1"/>
+    <rect width="3.5" height="52" rx="1.5" fill="#8b5cf6"/>
+    <text x="18" y="21" class="stat-label">REPOSITORIES INTEGRATED</text>
+    <text x="18" y="42" class="stat-val">13</text>
+  </g>
+
+  <g transform="translate(280, 72)">
+    <rect width="240" height="52" rx="6" fill="#110e2e" stroke="#1e1b4b" stroke-width="1"/>
+    <rect width="3.5" height="52" rx="1.5" fill="#c084fc"/>
+    <text x="18" y="21" class="stat-label">AGGREGATED PULL REQUESTS</text>
+    <text x="18" y="42" class="stat-val">30</text>
+  </g>
+
+  <g transform="translate(535, 72)">
+    <rect width="240" height="52" rx="6" fill="#110e2e" stroke="#1e1b4b" stroke-width="1"/>
+    <rect width="3.5" height="52" rx="1.5" fill="#38bdf8"/>
+    <text x="18" y="21" class="stat-label">ORGANIZATIONS IMPACTED</text>
+    <text x="18" y="42" class="stat-val">8</text>
+  </g>
+
+  <!-- Grid rendering -->
+  <!-- Repo Card 0 -->
+  <g transform="translate(25, 145)">
+    <rect width="365" height="48" rx="6" fill="#110e2e" stroke="#1e1b4b" stroke-width="1"/>
+    <clipPath id="avatar-clip-0">
+      <rect x="8" y="8" width="32" height="32" rx="4" />
+    </clipPath>
+    <image href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" x="8" y="8" width="32" height="32" clip-path="url(#avatar-clip-0)"/>
+    
+    <text x="48" y="21" class="repo-name">CloudVault</text>
+    <text x="48" y="36" class="repo-org">Tushardevx01</text>
+    
+    <g transform="translate(295, 12)">
+      <rect width="62" height="24" rx="4" fill="#1b153f" stroke="#8b5cf6" stroke-width="1" stroke-opacity="0.3"/>
+      <text x="31" y="16" text-anchor="middle" class="pr-badge-txt">3 PRs</text>
+    </g>
+  </g>
+  <!-- Repo Card 1 -->
+  <g transform="translate(410, 145)">
+    <rect width="365" height="48" rx="6" fill="#110e2e" stroke="#1e1b4b" stroke-width="1"/>
+    <clipPath id="avatar-clip-1">
+      <rect x="8" y="8" width="32" height="32" rx="4" />
+    </clipPath>
+    <image href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" x="8" y="8" width="32" height="32" clip-path="url(#avatar-clip-1)"/>
+    
+    <text x="48" y="21" class="repo-name">FalkorDB</text>
+    <text x="48" y="36" class="repo-org">FalkorDB</text>
+    
+    <g transform="translate(295, 12)">
+      <rect width="62" height="24" rx="4" fill="#1b153f" stroke="#8b5cf6" stroke-width="1" stroke-opacity="0.3"/>
+      <text x="31" y="16" text-anchor="middle" class="pr-badge-txt">1 PRs</text>
+    </g>
+  </g>
+  <!-- Repo Card 2 -->
+  <g transform="translate(25, 201)">
+    <rect width="365" height="48" rx="6" fill="#110e2e" stroke="#1e1b4b" stroke-width="1"/>
+    <clipPath id="avatar-clip-2">
+      <rect x="8" y="8" width="32" height="32" rx="4" />
+    </clipPath>
+    <image href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" x="8" y="8" width="32" height="32" clip-path="url(#avatar-clip-2)"/>
+    
+    <text x="48" y="21" class="repo-name">openmrs-esm-patient-management</text>
+    <text x="48" y="36" class="repo-org">openmrs</text>
+    
+    <g transform="translate(295, 12)">
+      <rect width="62" height="24" rx="4" fill="#1b153f" stroke="#8b5cf6" stroke-width="1" stroke-opacity="0.3"/>
+      <text x="31" y="16" text-anchor="middle" class="pr-badge-txt">6 PRs</text>
+    </g>
+  </g>
+  <!-- Repo Card 3 -->
+  <g transform="translate(410, 201)">
+    <rect width="365" height="48" rx="6" fill="#110e2e" stroke="#1e1b4b" stroke-width="1"/>
+    <clipPath id="avatar-clip-3">
+      <rect x="8" y="8" width="32" height="32" rx="4" />
+    </clipPath>
+    <image href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" x="8" y="8" width="32" height="32" clip-path="url(#avatar-clip-3)"/>
+    
+    <text x="48" y="21" class="repo-name">openmrs-module-patientdocuments</text>
+    <text x="48" y="36" class="repo-org">openmrs</text>
+    
+    <g transform="translate(295, 12)">
+      <rect width="62" height="24" rx="4" fill="#1b153f" stroke="#8b5cf6" stroke-width="1" stroke-opacity="0.3"/>
+      <text x="31" y="16" text-anchor="middle" class="pr-badge-txt">1 PRs</text>
+    </g>
+  </g>
+  <!-- Repo Card 4 -->
+  <g transform="translate(25, 257)">
+    <rect width="365" height="48" rx="6" fill="#110e2e" stroke="#1e1b4b" stroke-width="1"/>
+    <clipPath id="avatar-clip-4">
+      <rect x="8" y="8" width="32" height="32" rx="4" />
+    </clipPath>
+    <image href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" x="8" y="8" width="32" height="32" clip-path="url(#avatar-clip-4)"/>
+    
+    <text x="48" y="21" class="repo-name">Callu</text>
+    <text x="48" y="36" class="repo-org">DevDirect</text>
+    
+    <g transform="translate(295, 12)">
+      <rect width="62" height="24" rx="4" fill="#1b153f" stroke="#8b5cf6" stroke-width="1" stroke-opacity="0.3"/>
+      <text x="31" y="16" text-anchor="middle" class="pr-badge-txt">1 PRs</text>
+    </g>
+  </g>
+  <!-- Repo Card 5 -->
+  <g transform="translate(410, 257)">
+    <rect width="365" height="48" rx="6" fill="#110e2e" stroke="#1e1b4b" stroke-width="1"/>
+    <clipPath id="avatar-clip-5">
+      <rect x="8" y="8" width="32" height="32" rx="4" />
+    </clipPath>
+    <image href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" x="8" y="8" width="32" height="32" clip-path="url(#avatar-clip-5)"/>
+    
+    <text x="48" y="21" class="repo-name">openmrs-module-attachments</text>
+    <text x="48" y="36" class="repo-org">openmrs</text>
+    
+    <g transform="translate(295, 12)">
+      <rect width="62" height="24" rx="4" fill="#1b153f" stroke="#8b5cf6" stroke-width="1" stroke-opacity="0.3"/>
+      <text x="31" y="16" text-anchor="middle" class="pr-badge-txt">2 PRs</text>
+    </g>
+  </g>
+  <!-- Repo Card 6 -->
+  <g transform="translate(25, 313)">
+    <rect width="365" height="48" rx="6" fill="#110e2e" stroke="#1e1b4b" stroke-width="1"/>
+    <clipPath id="avatar-clip-6">
+      <rect x="8" y="8" width="32" height="32" rx="4" />
+    </clipPath>
+    <image href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" x="8" y="8" width="32" height="32" clip-path="url(#avatar-clip-6)"/>
+    
+    <text x="48" y="21" class="repo-name">openmrs-module-queue</text>
+    <text x="48" y="36" class="repo-org">openmrs</text>
+    
+    <g transform="translate(295, 12)">
+      <rect width="62" height="24" rx="4" fill="#1b153f" stroke="#8b5cf6" stroke-width="1" stroke-opacity="0.3"/>
+      <text x="31" y="16" text-anchor="middle" class="pr-badge-txt">5 PRs</text>
+    </g>
+  </g>
+  <!-- Repo Card 7 -->
+  <g transform="translate(410, 313)">
+    <rect width="365" height="48" rx="6" fill="#110e2e" stroke="#1e1b4b" stroke-width="1"/>
+    <clipPath id="avatar-clip-7">
+      <rect x="8" y="8" width="32" height="32" rx="4" />
+    </clipPath>
+    <image href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" x="8" y="8" width="32" height="32" clip-path="url(#avatar-clip-7)"/>
+    
+    <text x="48" y="21" class="repo-name">octocrab</text>
+    <text x="48" y="36" class="repo-org">XAMPPRocky</text>
+    
+    <g transform="translate(295, 12)">
+      <rect width="62" height="24" rx="4" fill="#1b153f" stroke="#8b5cf6" stroke-width="1" stroke-opacity="0.3"/>
+      <text x="31" y="16" text-anchor="middle" class="pr-badge-txt">1 PRs</text>
+    </g>
+  </g>
+  <!-- Repo Card 8 -->
+  <g transform="translate(25, 369)">
+    <rect width="365" height="48" rx="6" fill="#110e2e" stroke="#1e1b4b" stroke-width="1"/>
+    <clipPath id="avatar-clip-8">
+      <rect x="8" y="8" width="32" height="32" rx="4" />
+    </clipPath>
+    <image href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" x="8" y="8" width="32" height="32" clip-path="url(#avatar-clip-8)"/>
+    
+    <text x="48" y="21" class="repo-name">openmrs-esm-core</text>
+    <text x="48" y="36" class="repo-org">openmrs</text>
+    
+    <g transform="translate(295, 12)">
+      <rect width="62" height="24" rx="4" fill="#1b153f" stroke="#8b5cf6" stroke-width="1" stroke-opacity="0.3"/>
+      <text x="31" y="16" text-anchor="middle" class="pr-badge-txt">3 PRs</text>
+    </g>
+  </g>
+  <!-- Repo Card 9 -->
+  <g transform="translate(410, 369)">
+    <rect width="365" height="48" rx="6" fill="#110e2e" stroke="#1e1b4b" stroke-width="1"/>
+    <clipPath id="avatar-clip-9">
+      <rect x="8" y="8" width="32" height="32" rx="4" />
+    </clipPath>
+    <image href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" x="8" y="8" width="32" height="32" clip-path="url(#avatar-clip-9)"/>
+    
+    <text x="48" y="21" class="repo-name">openmrs-esm-cohortbuilder-app</text>
+    <text x="48" y="36" class="repo-org">openmrs</text>
+    
+    <g transform="translate(295, 12)">
+      <rect width="62" height="24" rx="4" fill="#1b153f" stroke="#8b5cf6" stroke-width="1" stroke-opacity="0.3"/>
+      <text x="31" y="16" text-anchor="middle" class="pr-badge-txt">3 PRs</text>
+    </g>
+  </g>
+  <!-- Repo Card 10 -->
+  <g transform="translate(25, 425)">
+    <rect width="365" height="48" rx="6" fill="#110e2e" stroke="#1e1b4b" stroke-width="1"/>
+    <clipPath id="avatar-clip-10">
+      <rect x="8" y="8" width="32" height="32" rx="4" />
+    </clipPath>
+    <image href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" x="8" y="8" width="32" height="32" clip-path="url(#avatar-clip-10)"/>
+    
+    <text x="48" y="21" class="repo-name">speak</text>
+    <text x="48" y="36" class="repo-org">sugarlabs</text>
+    
+    <g transform="translate(295, 12)">
+      <rect width="62" height="24" rx="4" fill="#1b153f" stroke="#8b5cf6" stroke-width="1" stroke-opacity="0.3"/>
+      <text x="31" y="16" text-anchor="middle" class="pr-badge-txt">1 PRs</text>
+    </g>
+  </g>
+  <!-- Repo Card 11 -->
+  <g transform="translate(410, 425)">
+    <rect width="365" height="48" rx="6" fill="#110e2e" stroke="#1e1b4b" stroke-width="1"/>
+    <clipPath id="avatar-clip-11">
+      <rect x="8" y="8" width="32" height="32" rx="4" />
+    </clipPath>
+    <image href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" x="8" y="8" width="32" height="32" clip-path="url(#avatar-clip-11)"/>
+    
+    <text x="48" y="21" class="repo-name">automq</text>
+    <text x="48" y="36" class="repo-org">AutoMQ</text>
+    
+    <g transform="translate(295, 12)">
+      <rect width="62" height="24" rx="4" fill="#1b153f" stroke="#8b5cf6" stroke-width="1" stroke-opacity="0.3"/>
+      <text x="31" y="16" text-anchor="middle" class="pr-badge-txt">2 PRs</text>
+    </g>
+  </g>
+  <!-- Repo Card 12 -->
+  <g transform="translate(25, 481)">
+    <rect width="365" height="48" rx="6" fill="#110e2e" stroke="#1e1b4b" stroke-width="1"/>
+    <clipPath id="avatar-clip-12">
+      <rect x="8" y="8" width="32" height="32" rx="4" />
+    </clipPath>
+    <image href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" x="8" y="8" width="32" height="32" clip-path="url(#avatar-clip-12)"/>
+    
+    <text x="48" y="21" class="repo-name">Python</text>
+    <text x="48" y="36" class="repo-org">TheAlgorithms</text>
+    
+    <g transform="translate(295, 12)">
+      <rect width="62" height="24" rx="4" fill="#1b153f" stroke="#8b5cf6" stroke-width="1" stroke-opacity="0.3"/>
+      <text x="31" y="16" text-anchor="middle" class="pr-badge-txt">1 PRs</text>
+    </g>
+  </g>
+</svg>
